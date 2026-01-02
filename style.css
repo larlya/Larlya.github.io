@@ -158,7 +158,7 @@ strong {
     background: linear-gradient(to right, transparent 0%, var(--sunshine) 50%, transparent 100%);
     background-size: 200% 100%;
     background-position: 100% 0;
-    padding: 2px 6px;
+    padding: 2px 8px;
     border-radius: 4px;
     color: var(--text-dark);
     font-weight: 600;
@@ -166,10 +166,9 @@ strong {
 }
 
 body.dark-mode .highlight {
-    background: linear-gradient(to right, transparent 0%, var(--coral) 50%, transparent 100%);
-    background-size: 200% 100%;
-    background-position: 100% 0;
-    color: var(--cream);
+    background: var(--coral);
+    color: #FFFFFF;
+    font-weight: 600;
 }
 
 .highlight:hover {
@@ -245,38 +244,27 @@ section:first-of-type {
     border-radius: var(--radius-pill);
     transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     position: relative;
-    overflow: hidden;
-}
-
-.tab-btn::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: var(--coral);
-    transform: translate(-50%, -50%);
-    transition: width 0.4s ease, height 0.4s ease;
+    overflow: visible;
 }
 
 .tab-btn:hover {
-    border-color: var(--coral);
+    border-color: var(--sunshine);
+    background: var(--sunshine);
     color: var(--text-dark);
     transform: translateY(-2px);
 }
 
 .tab-btn.active {
     background: var(--coral);
-    color: var(--off-white);
+    color: #FFFFFF;
     border-color: var(--coral);
     transform: scale(1.05);
 }
 
-.tab-btn.active::before {
-    width: 300%;
-    height: 300%;
+.tab-btn.active:hover {
+    background: var(--sunshine);
+    border-color: var(--sunshine);
+    color: var(--text-dark);
 }
 
 /* === TAB CONTENT === */
@@ -324,7 +312,7 @@ ul.check-list li::before {
     font-size: 1.2rem;
     width: 26px;
     height: 26px;
-    background: var(--sunshine);
+    background: var(--coral);
     color: var(--text-dark);
     border-radius: 50%;
     display: flex;
@@ -333,9 +321,15 @@ ul.check-list li::before {
     transition: all 0.3s ease;
 }
 
-ul.check-list li:hover::before {
+body.dark-mode ul.check-list li::before {
     background: var(--coral);
+    color: #FFFFFF;
+}
+
+ul.check-list li:hover::before {
+    background: var(--sunshine);
     transform: scale(1.15);
+    color: var(--text-dark);
 }
 
 /* === PROFILE SECTION === */
@@ -389,7 +383,7 @@ ul.check-list li:hover::before {
     margin-top: var(--spacing-m);
     padding: 18px 38px;
     background: var(--deep-red);
-    color: var(--off-white);
+    color: #FFFFFF;
     font-family: 'Space Mono', monospace;
     font-size: 0.95rem;
     font-weight: 700;
@@ -397,37 +391,16 @@ ul.check-list li:hover::before {
     letter-spacing: 0.08em;
     text-decoration: none;
     border-radius: var(--radius-pill);
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all 0.4s ease;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     position: relative;
-    overflow: hidden;
-}
-
-.btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: var(--gradient-warm);
-    transition: left 0.4s ease;
-    z-index: 0;
 }
 
 .btn:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 28px rgba(255, 107, 90, 0.35);
+    background: var(--sunshine);
     color: var(--text-dark);
-}
-
-.btn:hover::before {
-    left: 0;
-}
-
-.btn * {
-    position: relative;
-    z-index: 1;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(255, 217, 61, 0.4);
 }
 
 /* === SPECIAL BOX === */
