@@ -612,7 +612,7 @@ footer a:hover {
     border: 3px solid var(--warm-gray);
     border-radius: var(--radius-soft);
     cursor: crosshair;
-    display: block; /* <-- keep visible */
+    display: block; /* <-- wichtig: sichtbar halten */
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
@@ -645,34 +645,38 @@ footer a:hover {
     100% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
 }
 
-/* Modal: uses theme variables for border & shadow so it adapts to dark/light */
+/* Modal: uses theme variables so it adapts to light/dark */
 .game-over {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: var(--off-white);
-    border: 3px solid var(--primary-accent);
+    background: var(--surface);                 /* card / modal surface (changes with theme) */
+    color: var(--text-dark);                    /* text color (changes with theme) */
+    border: 3px solid var(--primary-accent);    /* accent border */
     border-radius: var(--radius-soft);
     padding: var(--spacing-l);
     text-align: center;
-    z-index: 10001;
-    box-shadow: var(--modal-shadow);
+    z-index: 10001;                             /* hoch setzen, damit es über allem liegt */
+    box-shadow: var(--modal-shadow);            /* uses theme shadow variable */
     max-width: 90%;
     min-width: 300px;
 }
 
-body.dark-mode .game-over {
-    border-color: var(--primary-accent);
-    background: var(--off-white);
-    color: var(--text-dark);
-    box-shadow: var(--modal-shadow);
-}
-
+/* hidden state */
 .game-over.hidden {
     display: none;
 }
 
+/* ensure inner badges/pills are readable in both themes */
+.game-over .achievement-badge,
+.game-over .game-stats .stat {
+    background: var(--surface);
+    border: 2px solid var(--card-border);
+    color: var(--text-dark);
+}
+
+/* heading style */
 .game-over h2 {
     color: var(--primary-accent);
     margin-bottom: var(--spacing-s);
