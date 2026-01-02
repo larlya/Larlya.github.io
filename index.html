@@ -115,6 +115,33 @@
 
     </div>
 
+<!-- MINI GAME SECTION -->
+<section style="min-height: 100vh; position: relative;">
+    <h3>Bonus Level</h3>
+    <h2>Can you catch my skills?</h2>
+    <p>Beweg die Maus, um meine Skills einzusammeln! 🎯</p>
+    
+    <div class="game-container">
+        <div class="game-stats">
+            <div class="stat">Score: <span id="score">0</span></div>
+            <div class="stat">Time: <span id="timer">30</span>s</div>
+        </div>
+        
+        <canvas id="gameCanvas"></canvas>
+        
+        <button class="btn" id="startGame" style="margin-top: 20px;">
+            Start Game 🎮
+        </button>
+        
+        <div id="gameOver" class="game-over hidden">
+            <h2 id="finalScore"></h2>
+            <p id="gameMessage"></p>
+            <button class="btn" onclick="restartGame()">Play Again</button>
+        </div>
+    </div>
+</section>
+    
+
     <footer style="padding: 50px 0; text-align: center; opacity: 0.5; font-size: 0.8rem; border-top: 1px solid var(--border-color);">
         &copy; 2026 Lara Marie Andres | <a href="mailto:larandres1994@gmail.com" style="color: inherit; text-decoration: none;">Kontakt</a><br>
     </footer>
