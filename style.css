@@ -180,7 +180,9 @@ strong {
 
 /* HIGHLIGHT - Dark Mode: Coral */
 body.dark-mode .highlight {
-    background: var(--coral);
+    background: linear-gradient(to right, transparent 0%, var(--coral) 50%, transparent 100%);
+    background-size: 200% 100%;
+    background-position: 100% 0;
     color: #FFFFFF;
     font-weight: 600;
 }
