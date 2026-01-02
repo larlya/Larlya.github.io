@@ -10,13 +10,31 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Kleine Inline-Styles zur Sicherstellung, dass das Canvas sichtbar ist (minimal) */
+        .canvas-wrapper { position: relative; width: 100%; height: 360px; margin: 20px auto; max-width: 900px; }
+        #gameCanvas { width: 100%; height: 100%; display: block; background: transparent; border-radius: 12px; }
+        .combo-display { position: absolute; left: 50%; top: 10px; transform: translateX(-50%); font-weight: 700; color: #FFD93D; text-shadow: 0 2px 8px rgba(0,0,0,0.6); opacity: 0; transition: opacity 0.2s ease; }
+        .combo-display.show { opacity: 1; }
+        .achievement-badge { display: inline-block; background: #222; color: #fff; padding: 6px 10px; border-radius: 999px; margin: 4px; font-size: 0.85rem; }
+        .badges-earned .badge { display:inline-block; background:#eee; padding:4px 8px; margin:4px; border-radius:8px; }
+        .game-over.hidden { display:none; }
+        .game-over { text-align:center; padding: 16px; background: rgba(255,255,255,0.03); border-radius: 10px; }
+        /* minimal focus for the theme toggle */
+        .theme-toggle { outline: none; border: none; }
+    </style>
 </head>
 <body>
 
-    <!-- Dark Mode Toggle Button (single sun icon; styled via CSS variables) -->
+    <!-- Dark Mode Toggle Button: Moon (visible in light) + Sun (visible in dark) -->
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle Dark Mode">
-        <!-- Sun SVG uses currentColor so it remains visible and changes color per theme -->
-        <svg class="sun-svg" viewBox="0 0 24 24" width="24" height="24" role="img" aria-hidden="true" focusable="false">
+        <!-- Moon icon (visible in light mode) -->
+        <svg class="moon-svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true" focusable="false">
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+        </svg>
+
+        <!-- Sun icon (visible in dark mode) -->
+        <svg class="sun-svg" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
             <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="12" r="4" fill="currentColor"/>
                 <line x1="12" y1="1.5" x2="12" y2="4.2"/>
@@ -44,7 +62,7 @@
             </p>
             
             <p>
-                Als <strong>Interim Head of Communications</strong> und Digital Native weiß ich: Gute Kommunikation braucht beides – das Gefühl für die richtige Story und das technische Verständnis.
+                Als <strong>Interim Head of Communications</strong> und Digital Native weiß ich: Gute Kommunikation braucht beides – das Gefühl für die richtige Story und das technische Verständniss.
             </p>
 
             <p class="scroll-hint" onclick="document.querySelector('section:nth-of-type(2)').scrollIntoView({behavior: 'smooth'})" style="font-size: 0.9rem; margin-top: 50px; opacity: 0.6;">
@@ -212,6 +230,7 @@
         } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
             document.body.classList.add('dark-mode');
         }
+
 
         // === CATCH THE SKILLS GAME - FIXED/ENHANCED VERSION ===
         // (der Spiel-Code ist hier unverändert übernommen)
