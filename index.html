@@ -119,15 +119,21 @@
 <section style="min-height: 100vh; position: relative;">
     <h3>Bonus Level</h3>
     <h2>Can you catch my skills?</h2>
-    <p>Beweg die Maus, um meine Skills einzusammeln! 🎯</p>
+    <p>Klicke auf die fallenden Skills! Baue Combos auf für mehr Punkte! 🎯</p>
     
     <div class="game-container">
         <div class="game-stats">
             <div class="stat">Score: <span id="score">0</span></div>
-            <div class="stat">Time: <span id="timer">30</span>s</div>
+            <div class="stat">Combo: <span id="combo">0</span>x</div>
+            <div class="stat">Time: <span id="timer">45</span>s</div>
         </div>
         
-        <canvas id="gameCanvas"></canvas>
+        <div class="achievements" id="achievements"></div>
+        
+        <div class="canvas-wrapper">
+            <canvas id="gameCanvas"></canvas>
+            <div id="comboDisplay" class="combo-display"></div>
+        </div>
         
         <button class="btn" id="startGame" style="margin-top: 20px;">
             Start Game 🎮
@@ -136,6 +142,7 @@
         <div id="gameOver" class="game-over hidden">
             <h2 id="finalScore"></h2>
             <p id="gameMessage"></p>
+            <div id="badgesEarned" class="badges-earned"></div>
             <button class="btn" onclick="restartGame()">Play Again</button>
         </div>
     </div>
@@ -184,73 +191,241 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 
-        // === CATCH THE SKILLS GAME ===
-const skills = [
-    'TYPO3', 'WordPress', 'HTML/CSS', 'Adobe CC', 'Canva',
-    'Strategie', 'Storytelling', 'Social Media', 'Content Mgmt',
-    'Projektmanagement', 'Teamwork', 'Resilienz'
-];
+      // === CATCH THE SKILLS GAME - ENHANCED VERSION ===
+
+const skillCategories = {
+    hard: {
+        skills: ['TYPO3', 'WordPress', 'HTML/CSS', 'Adobe CC', 'Canva Pro', 
+                'MS Office', 'Projektmgmt', 'Content-CMS', 'SEO', 'Analytics'],
+        color: '#0096FF',
+        points: 10
+    },
+    soft: {
+        skills: ['Strategie', 'Storytelling', 'Teamwork', 'Resilienz', 
+                'Empathie', 'Priorisierung', 'Agilität', 'Leadership', 'Kreativität'],
+        color: '#FF6B5A',
+        points: 15
+    },
+    languages: {
+        skills: ['Englisch C2', 'Französisch A2', 'Deutsch Native'],
+        color: '#B8B4AC',
+        points: 20
+    },
+    tools: {
+        skills: ['Social Media', 'Newsletter', 'Webdesign', 'Grafik', 
+                'Community Mgmt', 'Event Mgmt', 'Redaktion'],
+        color: '#5586FF',
+        points: 12
+    },
+    powerups: {
+        skills: ['⚡ 2x Score', '🕐 Slow-Mo', '🧲 Magnet', '⭐ Bonus'],
+        color: '#FFD93D',
+        points: 0,
+        isPowerUp: true
+    }
+};
 
 let gameActive = false;
 let score = 0;
-let timeLeft = 30;
+let timeLeft = 45;
+let combo = 0;
+let comboTimer = null;
+let maxCombo = 0;
 let fallingSkills = [];
+let particles = [];
+let powerUps = {
+    doubleScore: 0,
+    slowMotion: 0,
+    magnet: 0
+};
+let difficulty = 1;
 let animationId;
 let timerInterval;
+let achievementsUnlocked = new Set();
 
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas ? canvas.getContext('2d') : null;
 const startBtn = document.getElementById('startGame');
+const comboDisplay = document.getElementById('comboDisplay');
+
+const achievements = {
+    'first-catch': { name: '🎯 First Catch', threshold: 1 },
+    'combo-master': { name: '🔥 Combo Master', threshold: 10 },
+    'speed-demon': { name: '⚡ Speed Demon', threshold: 20 },
+    'collector': { name: '💎 Collector', threshold: 50 },
+    'legend': { name: '👑 Legend', threshold: 100 }
+};
 
 if (canvas && ctx) {
-    // Canvas responsive setup
+    // Canvas setup with retina support
     function resizeCanvas() {
-        canvas.width = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
+        const dpr = window.devicePixelRatio || 1;
+        const rect = canvas.getBoundingClientRect();
+        
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+        
+        ctx.scale(dpr, dpr);
+        canvas.style.width = rect.width + 'px';
+        canvas.style.height = rect.height + 'px';
     }
+    
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // Skill Object
-    class Skill {
-        constructor() {
-            this.text = skills[Math.floor(Math.random() * skills.length)];
-            this.x = Math.random() * (canvas.width - 100);
-            this.y = -50;
-            this.speed = 1 + Math.random() * 2;
-            this.width = 120;
-            this.height = 40;
-            this.color = Math.random() > 0.5 ? '#FF6B5A' : '#0096FF';
+    // Particle Effect
+    class Particle {
+        constructor(x, y, color) {
+            this.x = x;
+            this.y = y;
+            this.vx = (Math.random() - 0.5) * 8;
+            this.vy = (Math.random() - 0.5) * 8 - 2;
+            this.alpha = 1;
+            this.size = Math.random() * 4 + 2;
+            this.color = color;
+            this.life = 60;
         }
 
         update() {
-            this.y += this.speed;
+            this.x += this.vx;
+            this.y += this.vy;
+            this.vy += 0.3; // Gravity
+            this.alpha -= 0.02;
+            this.life--;
         }
 
         draw() {
+            ctx.globalAlpha = this.alpha;
+            ctx.fillStyle = this.color;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.globalAlpha = 1;
+        }
+    }
+
+    // Enhanced Skill Object
+    class Skill {
+        constructor(forcePowerUp = false) {
+            // Select category
+            const categories = Object.keys(skillCategories);
+            let categoryKey;
+            
+            if (forcePowerUp) {
+                categoryKey = 'powerups';
+            } else if (Math.random() < 0.15) { // 15% chance for power-up
+                categoryKey = 'powerups';
+            } else {
+                categoryKey = categories[Math.floor(Math.random() * (categories.length - 1))];
+            }
+            
+            const category = skillCategories[categoryKey];
+            this.text = category.skills[Math.floor(Math.random() * category.skills.length)];
+            this.color = category.color;
+            this.basePoints = category.points;
+            this.isPowerUp = category.isPowerUp || false;
+            
+            this.canvasWidth = canvas.getBoundingClientRect().width;
+            this.canvasHeight = canvas.getBoundingClientRect().height;
+            
+            // Dynamic sizing
+            ctx.font = 'bold 15px "Space Mono", monospace';
+            const textWidth = ctx.measureText(this.text).width;
+            this.width = Math.max(textWidth + 40, 110);
+            this.height = 50;
+            
+            // Spawn position
+            this.x = Math.random() * (this.canvasWidth - this.width);
+            this.y = -80;
+            
+            // Speed based on difficulty
+            this.speed = (1.2 + Math.random() * 1.5) * difficulty;
+            
+            // Wobble effect
+            this.wobble = Math.random() * Math.PI * 2;
+            this.wobbleSpeed = 0.05 + Math.random() * 0.05;
+            
+            // Magnet effect
+            this.magnetized = false;
+        }
+
+        update(mouseX, mouseY) {
+            this.y += this.speed * (powerUps.slowMotion > 0 ? 0.5 : 1);
+            this.wobble += this.wobbleSpeed;
+            
+            // Magnet effect
+            if (powerUps.magnet > 0 && mouseY !== null) {
+                const dx = mouseX - (this.x + this.width / 2);
+                const dy = mouseY - (this.y + this.height / 2);
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < 150) {
+                    this.x += dx * 0.03;
+                    this.y += dy * 0.03;
+                    this.magnetized = true;
+                }
+            }
+        }
+
+        draw() {
+            const wobbleOffset = Math.sin(this.wobble) * 3;
+            
+            ctx.save();
+            ctx.translate(this.x + wobbleOffset, this.y);
+            
             // Shadow
-            ctx.shadowColor = 'rgba(0, 0, 0, 0.1)';
+            ctx.shadowColor = 'rgba(0, 0, 0, 0.15)';
             ctx.shadowBlur = 10;
             ctx.shadowOffsetY = 4;
 
-            // Box
-            ctx.fillStyle = this.color;
+            // Glow for power-ups
+            if (this.isPowerUp) {
+                ctx.shadowColor = this.color;
+                ctx.shadowBlur = 20;
+            }
+
+            // Box with gradient
+            const gradient = ctx.createLinearGradient(0, 0, this.width, 0);
+            gradient.addColorStop(0, this.color);
+            gradient.addColorStop(1, this.adjustColor(this.color, -20));
+            
+            ctx.fillStyle = gradient;
             ctx.beginPath();
-            ctx.roundRect(this.x, this.y, this.width, this.height, 20);
+            ctx.roundRect(0, 0, this.width, this.height, 25);
             ctx.fill();
+
+            // Border for magnetized
+            if (this.magnetized) {
+                ctx.strokeStyle = '#FFD93D';
+                ctx.lineWidth = 3;
+                ctx.stroke();
+            }
 
             // Text
             ctx.shadowBlur = 0;
             ctx.fillStyle = '#FFFFFF';
-            ctx.font = 'bold 14px "Space Mono", monospace';
+            ctx.font = `bold ${this.isPowerUp ? '18px' : '15px'} "Space Mono", monospace`;
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
-            ctx.fillText(this.text, this.x + this.width / 2, this.y + this.height / 2);
+            ctx.fillText(this.text, this.width / 2, this.height / 2);
+            
+            ctx.restore();
+        }
+
+        adjustColor(color, amount) {
+            const num = parseInt(color.replace('#', ''), 16);
+            const r = Math.max(0, Math.min(255, (num >> 16) + amount));
+            const g = Math.max(0, Math.min(255, ((num >> 8) & 0x00FF) + amount));
+            const b = Math.max(0, Math.min(255, (num & 0x0000FF) + amount));
+            return `#${((r << 16) | (g << 8) | b).toString(16).padStart(6, '0')}`;
         }
 
         isClicked(mouseX, mouseY) {
-            return mouseX > this.x && mouseX < this.x + this.width &&
-                   mouseY > this.y && mouseY < this.y + this.height;
+            const wobbleOffset = Math.sin(this.wobble) * 3;
+            return mouseX > this.x + wobbleOffset && 
+                   mouseX < this.x + wobbleOffset + this.width &&
+                   mouseY > this.y && 
+                   mouseY < this.y + this.height;
         }
     }
 
@@ -260,29 +435,44 @@ if (canvas && ctx) {
     function startGame() {
         gameActive = true;
         score = 0;
-        timeLeft = 30;
+        combo = 0;
+        maxCombo = 0;
+        timeLeft = 45;
+        difficulty = 1;
         fallingSkills = [];
+        particles = [];
+        achievementsUnlocked.clear();
+        powerUps = { doubleScore: 0, slowMotion: 0, magnet: 0 };
         
-        document.getElementById('score').textContent = score;
-        document.getElementById('timer').textContent = timeLeft;
+        updateUI();
         document.getElementById('gameOver').classList.add('hidden');
+        document.getElementById('achievements').innerHTML = '';
         
         canvas.classList.add('active');
         startBtn.style.display = 'none';
 
-        // Spawn skills every 800ms
+        // Spawn skills with increasing difficulty
+        let spawnRate = 800;
         const spawnInterval = setInterval(() => {
             if (gameActive) {
                 fallingSkills.push(new Skill());
+                
+                // Increase difficulty every 10 seconds
+                if (timeLeft % 10 === 0) {
+                    difficulty += 0.15;
+                    spawnRate = Math.max(400, spawnRate - 50);
+                }
             } else {
                 clearInterval(spawnInterval);
             }
-        }, 800);
+        }, spawnRate);
 
-        // Timer countdown
+        // Timer
         timerInterval = setInterval(() => {
             timeLeft--;
+            updatePowerUps();
             document.getElementById('timer').textContent = timeLeft;
+            
             if (timeLeft <= 0) {
                 endGame();
             }
@@ -291,48 +481,184 @@ if (canvas && ctx) {
         gameLoop();
     }
 
-    // Game Loop
+    // Main Game Loop
+    let mouseX = null;
+    let mouseY = null;
+
+    canvas.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        mouseX = e.clientX - rect.left;
+        mouseY = e.clientY - rect.top;
+    });
+
     function gameLoop() {
         if (!gameActive) return;
 
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const rect = canvas.getBoundingClientRect();
+        ctx.clearRect(0, 0, rect.width, rect.height);
 
         // Update and draw skills
         fallingSkills.forEach((skill, index) => {
-            skill.update();
+            skill.update(mouseX, mouseY);
             skill.draw();
 
-            // Remove if off screen
-            if (skill.y > canvas.height) {
+            if (skill.y > rect.height) {
                 fallingSkills.splice(index, 1);
+                resetCombo();
+            }
+        });
+
+        // Update and draw particles
+        particles.forEach((particle, index) => {
+            particle.update();
+            particle.draw();
+            if (particle.life <= 0) {
+                particles.splice(index, 1);
             }
         });
 
         animationId = requestAnimationFrame(gameLoop);
     }
 
-    // Mouse Click to Catch
-    canvas.addEventListener('click', (e) => {
+    // Interaction Handler
+    function handleInteraction(e) {
         if (!gameActive) return;
 
         const rect = canvas.getBoundingClientRect();
-        const mouseX = e.clientX - rect.left;
-        const mouseY = e.clientY - rect.top;
+        let clickX, clickY;
+
+        if (e.type === 'click') {
+            clickX = e.clientX - rect.left;
+            clickY = e.clientY - rect.top;
+        } else if (e.type === 'touchstart') {
+            e.preventDefault();
+            clickX = e.touches[0].clientX - rect.left;
+            clickY = e.touches[0].clientY - rect.top;
+        }
+
+        let caught = false;
 
         fallingSkills.forEach((skill, index) => {
-            if (skill.isClicked(mouseX, mouseY)) {
-                score += 10;
-                document.getElementById('score').textContent = score;
+            if (skill.isClicked(clickX, clickY)) {
+                caught = true;
+                
+                // Handle power-ups
+                if (skill.isPowerUp) {
+                    activatePowerUp(skill.text);
+                } else {
+                    // Normal skill
+                    const points = skill.basePoints * (1 + combo * 0.1) * (powerUps.doubleScore > 0 ? 2 : 1);
+                    score += Math.floor(points);
+                    combo++;
+                    
+                    if (combo > maxCombo) maxCombo = combo;
+                    
+                    // Combo display
+                    if (combo >= 5) {
+                        showComboText(`${combo}x COMBO!`);
+                    }
+                    
+                    checkAchievements();
+                    updateUI();
+                }
+                
+                // Particles
+                for (let i = 0; i < 15; i++) {
+                    particles.push(new Particle(
+                        clickX, 
+                        clickY, 
+                        skill.color
+                    ));
+                }
+                
                 fallingSkills.splice(index, 1);
-
-                // Visual feedback
-                ctx.fillStyle = 'rgba(255, 217, 61, 0.5)';
-                ctx.beginPath();
-                ctx.arc(mouseX, mouseY, 30, 0, Math.PI * 2);
-                ctx.fill();
+                
+                // Reset combo timer
+                clearTimeout(comboTimer);
+                comboTimer = setTimeout(resetCombo, 2000);
             }
         });
-    });
+    }
+
+    canvas.addEventListener('click', handleInteraction);
+    canvas.addEventListener('touchstart', handleInteraction);
+
+    // Power-Up System
+    function activatePowerUp(type) {
+        if (type.includes('2x Score')) {
+            powerUps.doubleScore = 10;
+            showComboText('2x SCORE!');
+        } else if (type.includes('Slow-Mo')) {
+            powerUps.slowMotion = 8;
+            showComboText('SLOW MOTION!');
+        } else if (type.includes('Magnet')) {
+            powerUps.magnet = 12;
+            showComboText('MAGNET!');
+        } else if (type.includes('Bonus')) {
+            score += 50;
+            showComboText('+50 BONUS!');
+        }
+        updateUI();
+    }
+
+    function updatePowerUps() {
+        if (powerUps.doubleScore > 0) powerUps.doubleScore--;
+        if (powerUps.slowMotion > 0) powerUps.slowMotion--;
+        if (powerUps.magnet > 0) powerUps.magnet--;
+    }
+
+    // UI Updates
+    function updateUI() {
+        document.getElementById('score').textContent = score;
+        document.getElementById('combo').textContent = combo;
+        
+        const comboStat = document.querySelector('.stat:nth-child(2)');
+        if (combo >= 5) {
+            comboStat.classList.add('combo-active');
+        } else {
+            comboStat.classList.remove('combo-active');
+        }
+    }
+
+    function showComboText(text) {
+        comboDisplay.textContent = text;
+        comboDisplay.classList.remove('show');
+        void comboDisplay.offsetWidth; // Trigger reflow
+        comboDisplay.classList.add('show');
+    }
+
+    function resetCombo() {
+        combo = 0;
+        updateUI();
+    }
+
+    // Achievements
+    function checkAchievements() {
+        Object.keys(achievements).forEach(key => {
+            if (achievementsUnlocked.has(key)) return;
+            
+            const achievement = achievements[key];
+            let unlocked = false;
+            
+            if (key === 'first-catch' && score >= achievement.threshold) unlocked = true;
+            if (key === 'combo-master' && combo >= achievement.threshold) unlocked = true;
+            if (key === 'speed-demon' && combo >= achievement.threshold) unlocked = true;
+            if (key === 'collector' && score >= achievement.threshold * 10) unlocked = true;
+            if (key === 'legend' && score >= achievement.threshold * 10) unlocked = true;
+            
+            if (unlocked) {
+                achievementsUnlocked.add(key);
+                showAchievement(achievement.name);
+            }
+        });
+    }
+
+    function showAchievement(name) {
+        const badge = document.createElement('div');
+        badge.className = 'achievement-badge';
+        badge.textContent = name;
+        document.getElementById('achievements').appendChild(badge);
+    }
 
     // End Game
     function endGame() {
@@ -341,12 +667,44 @@ if (canvas && ctx) {
         cancelAnimationFrame(animationId);
 
         let message = '';
-        if (score >= 200) message = '🔥 Wow! Du bist ein Talent-Scout!';
-        else if (score >= 100) message = '✨ Nicht schlecht! Wir sollten reden.';
-        else message = '💪 Guter Versuch! Nochmal?';
+        let rank = '';
+        
+        if (score >= 500) { 
+            message = '🏆 LEGENDARY! Du bist ein absoluter Profi!';
+            rank = 'S-Tier';
+        } else if (score >= 300) { 
+            message = '🔥 AMAZING! Wir sollten definitiv reden!';
+            rank = 'A-Tier';
+        } else if (score >= 150) { 
+            message = '✨ GREAT! Solide Performance!';
+            rank = 'B-Tier';
+        } else { 
+            message = '💪 Guter Start! Versuch es nochmal!';
+            rank = 'C-Tier';
+        }
 
-        document.getElementById('finalScore').textContent = `Score: ${score}`;
+        document.getElementById('finalScore').textContent = `${score} Punkte (${rank})`;
         document.getElementById('gameMessage').textContent = message;
+        
+        // Show badges
+        const badgesDiv = document.getElementById('badgesEarned');
+        badgesDiv.innerHTML = '';
+        if (achievementsUnlocked.size > 0) {
+            badgesDiv.innerHTML = '<p style="margin-bottom: 10px;"><strong>Achievements:</strong></p>';
+            achievementsUnlocked.forEach(key => {
+                const badge = document.createElement('span');
+                badge.className = 'badge';
+                badge.textContent = achievements[key].name;
+                badgesDiv.appendChild(badge);
+            });
+        }
+        if (maxCombo >= 10) {
+            const badge = document.createElement('span');
+            badge.className = 'badge';
+            badge.textContent = `🔥 Max Combo: ${maxCombo}x`;
+            badgesDiv.appendChild(badge);
+        }
+        
         document.getElementById('gameOver').classList.remove('hidden');
     }
 
