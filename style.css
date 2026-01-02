@@ -762,3 +762,34 @@ height: 450px;
 font-size: 2.5rem;
 }
 }
+
+
+/* Decorative ribbons (scrollable SVG backgrounds) */
+.ribbon {
+  display: block;
+  width: 100%;
+  height: 220px;            /* default Höhe; anzupassen per breakpoint */
+  pointer-events: none;
+  opacity: 1;
+  transform-origin: center;
+  mix-blend-mode: normal;   /* set to overlay/lighten if you want blend effects */
+}
+
+/* responsive heights */
+@media (min-width: 1200px) {
+  .ribbon { height: 320px; }
+}
+@media (max-width: 768px) {
+  .ribbon { height: 160px; }
+}
+
+/* separate tweaking for each ribbon if needed */
+.ribbon-1 { margin-top: -20px; } /* leicht überlappt hero */
+.ribbon-2 { margin-top: -40px; } /* zieht sich hinter card */
+.ribbon-3 { margin-top: -10px; }
+
+/* subtle dark-mode tweak (more opacity so ribbons read on dark) */
+body.dark-mode .ribbon path { opacity: 0.12 !important; }
+
+/* If you prefer blend effect for color mixing on top of page background */
+/* .ribbon path { mix-blend-mode: screen; } */
