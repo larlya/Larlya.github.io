@@ -4,7 +4,7 @@
 
 :root {
     /* NEUTRAL BASE */
-    --cream: #FAF7F2;
+    --cream: #FCFCFA;
     --off-white: #FEFEFE;
     --warm-gray: #D8D4CC;
     --text-dark: #1A1816;
@@ -12,14 +12,14 @@
     
     /* POPPIGE AKZENTFARBEN */
     --coral: #FF6B5A;
-    --sunshine: #FFD93D;
-    --sage: #6DCCC4;
+    --electric-blue: #0096FF;
+    --dark-taupe: #B8B4AC;
     --deep-red: #C73E3A;
     --sky: #5586FF;
     
     /* GRADIENTS */
-    --gradient-warm: linear-gradient(135deg, #FF6B5A 0%, #FFD93D 100%);
-    --gradient-cool: linear-gradient(135deg, #6DCCC4 0%, #5586FF 100%);
+    --gradient-warm: linear-gradient(135deg, #FF6B5A 0%, #0096FF 100%);
+    --gradient-cool: linear-gradient(135deg, #B8B4AC 0%, #5586FF 100%);
     
     /* SPACING & RADIUS */
     --radius-soft: 20px;
@@ -155,7 +155,7 @@ strong {
 }
 
 .highlight {
-    background: linear-gradient(to right, transparent 0%, var(--sunshine) 50%, transparent 100%);
+    background: linear-gradient(to right, transparent 0%, var(--electric-blue) 50%, transparent 100%);
     background-size: 200% 100%;
     background-position: 100% 0;
     padding: 2px 8px;
@@ -166,7 +166,7 @@ strong {
 }
 
 body.dark-mode .highlight {
-    background: var(--coral);
+    background: var(--electric-blue);
     color: #FFFFFF;
     font-weight: 600;
 }
@@ -248,9 +248,9 @@ section:first-of-type {
 }
 
 .tab-btn:hover {
-    border-color: var(--sunshine);
-    background: var(--sunshine);
-    color: var(--text-dark);
+    border-color: var(--electric-blue);
+    background: var(--electric-blue);
+    color: #FFFFFF;
     transform: translateY(-2px);
 }
 
@@ -262,9 +262,9 @@ section:first-of-type {
 }
 
 .tab-btn.active:hover {
-    background: var(--sunshine);
-    border-color: var(--sunshine);
-    color: var(--text-dark);
+    background: var(--electric-blue);
+    border-color: var(--electric-blue);
+    color: #FFFFFF;
 }
 
 /* === TAB CONTENT === */
@@ -327,9 +327,9 @@ body.dark-mode ul.check-list li::before {
 }
 
 ul.check-list li:hover::before {
-    background: var(--sunshine);
+    background: var(--electric-blue);
     transform: scale(1.15);
-    color: var(--text-dark);
+    color: #FFFFFF;
 }
 
 /* === PROFILE SECTION === */
@@ -348,7 +348,7 @@ ul.check-list li:hover::before {
     border-radius: 50%;
     object-fit: cover;
     border: 4px solid var(--off-white);
-    outline: 3px solid var(--sage);
+    outline: 3px solid var(--dark-taupe);
     transition: all 0.4s ease;
 }
 
@@ -397,19 +397,19 @@ ul.check-list li:hover::before {
 }
 
 .btn:hover {
-    background: var(--sunshine);
-    color: var(--text-dark);
+    background: var(--electric-blue);
+    color: #FFFFFF;
     transform: translateY(-4px);
-    box-shadow: 0 12px 28px rgba(255, 217, 61, 0.4);
+    box-shadow: 0 12px 28px rgba(0, 150, 255, 0.4);
 }
 
 /* === SPECIAL BOX === */
 .info-box {
     margin-top: var(--spacing-m);
-    background: linear-gradient(135deg, rgba(109, 204, 196, 0.08) 0%, rgba(255, 217, 61, 0.08) 100%);
+    background: linear-gradient(135deg, rgba(184, 180, 172, 0.12) 0%, rgba(0, 150, 255, 0.08) 100%);
     padding: var(--spacing-m);
     border-radius: var(--radius-soft);
-    border-left: 4px solid var(--sage);
+    border-left: 4px solid var(--dark-taupe);
 }
 
 .info-box strong {
