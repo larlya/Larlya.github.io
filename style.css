@@ -795,7 +795,7 @@ font-size: 2.5rem;
     position: absolute;
     border-radius: 50%;
     filter: blur(80px);
-    opacity: 0.15;
+    opacity: 0.35;
     transition: transform 0.1s ease-out;
 }
 
@@ -825,7 +825,7 @@ font-size: 2.5rem;
 
 /* Dark mode: etwas stärker */
 body.dark-mode .ribbon-layer {
-    opacity: 0.12;
+    opacity: 0.10;
 }
 
 /* Content über Ribbon */
