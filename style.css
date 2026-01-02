@@ -518,21 +518,23 @@ footer a:hover {
 }
 
 
-/* === MINI GAME === */
+/* === MINI GAME ENHANCED === */
 .game-container {
     position: relative;
-    max-width: 800px;
+    max-width: 100%;
     margin: 0 auto;
     text-align: center;
 }
 
 .game-stats {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    gap: var(--spacing-m);
     margin-bottom: var(--spacing-m);
     font-family: 'Space Mono', monospace;
     font-size: 1.2rem;
     font-weight: 700;
+    flex-wrap: wrap;
 }
 
 .game-stats .stat {
@@ -540,30 +542,99 @@ footer a:hover {
     padding: 12px 24px;
     border-radius: var(--radius-pill);
     border: 2px solid var(--warm-gray);
+    transition: all 0.3s ease;
 }
 
 .game-stats .stat span {
     color: var(--primary-accent);
 }
 
+.game-stats .stat.combo-active {
+    background: var(--primary-accent);
+    color: #FFFFFF;
+    border-color: var(--primary-accent);
+    transform: scale(1.1);
+}
+
+.game-stats .stat.combo-active span {
+    color: #FFFFFF;
+}
+
+.achievements {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: var(--spacing-s);
+    min-height: 40px;
+    flex-wrap: wrap;
+}
+
+.achievement-badge {
+    background: var(--off-white);
+    border: 2px solid var(--warm-gray);
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+    font-size: 0.75rem;
+    font-family: 'Space Mono', monospace;
+    animation: badgePop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes badgePop {
+    0% { transform: scale(0); opacity: 0; }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.canvas-wrapper {
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
 #gameCanvas {
     width: 100%;
-    max-width: 800px;
-    height: 500px;
+    max-width: 750px;
+    height: 650px;
     background: var(--off-white);
     border: 3px solid var(--warm-gray);
     border-radius: var(--radius-soft);
-    cursor: none;
+    cursor: crosshair;
     display: none;
-    margin: 0 auto;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
 #gameCanvas.active {
     display: block;
 }
 
-.game-over {
+.combo-display {
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 4rem;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800;
+    color: var(--primary-accent);
+    pointer-events: none;
+    opacity: 0;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.combo-display.show {
+    animation: comboFlash 0.6s ease-out;
+}
+
+@keyframes comboFlash {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
+}
+
+.game-over {
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -572,8 +643,10 @@ footer a:hover {
     border-radius: var(--radius-soft);
     padding: var(--spacing-l);
     text-align: center;
-    z-index: 10;
+    z-index: 1000;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 90%;
+    min-width: 300px;
 }
 
 .game-over.hidden {
@@ -585,12 +658,50 @@ footer a:hover {
     margin-bottom: var(--spacing-s);
 }
 
+.badges-earned {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin: var(--spacing-m) 0;
+}
+
+.badges-earned .badge {
+    background: var(--primary-accent);
+    color: #FFFFFF;
+    padding: 8px 16px;
+    border-radius: var(--radius-pill);
+    font-size: 0.85rem;
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+}
+
 @media (max-width: 768px) {
     #gameCanvas {
-        height: 400px;
+        height: 550px;
+        max-width: 100%;
     }
     
     .game-stats {
         font-size: 1rem;
+        gap: var(--spacing-s);
+    }
+    
+    .game-stats .stat {
+        padding: 10px 18px;
+    }
+    
+    .combo-display {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #gameCanvas {
+        height: 450px;
+    }
+    
+    .combo-display {
+        font-size: 2.5rem;
     }
 }
