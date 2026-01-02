@@ -9,22 +9,30 @@
     --warm-gray: #D8D4CC;
     --text-dark: #1A1816;
     --text-muted: #6B6660;
-    
+
+    /* TOGGLE ICON */
+    --toggle-bg: rgba(255,255,255,0.9);
+    --toggle-color: #F6A352;
+
     /* POPPIGE AKZENTFARBEN */
     --coral: #FF6B5A;
     --electric-blue: #0096FF;
     --dark-taupe: #B8B4AC;
     --deep-red: #C73E3A;
     --sky: #5586FF;
-    
+
     /* FARBLOGIK LIGHT MODE */
     --primary-accent: var(--coral);
     --secondary-accent: var(--electric-blue);
-    
+
     /* GRADIENTS */
     --gradient-warm: linear-gradient(135deg, #FF6B5A 0%, #0096FF 100%);
     --gradient-cool: linear-gradient(135deg, #B8B4AC 0%, #5586FF 100%);
-    
+
+    /* MODAL / SHADOW */
+    --modal-border: rgba(0,0,0,0.12);
+    --modal-shadow: 0 20px 60px rgba(0,0,0,0.12);
+
     /* SPACING & RADIUS */
     --radius-soft: 20px;
     --radius-pill: 100px;
@@ -42,10 +50,18 @@ body.dark-mode {
     --warm-gray: #3D3935;
     --text-dark: #FAF7F2;
     --text-muted: #AEA89F;
-    
+
+    /* TOGGLE ICON DARK */
+    --toggle-bg: rgba(255,255,255,0.03);
+    --toggle-color: #F1C555;
+
     /* FARBLOGIK DARK MODE (konträr) */
     --primary-accent: var(--electric-blue);
     --secondary-accent: var(--coral);
+
+    /* MODAL / SHADOW */
+    --modal-border: rgba(255,255,255,0.06);
+    --modal-shadow: 0 40px 80px rgba(0,0,0,0.6);
 }
 
 /* === GLOBAL RESET === */
@@ -76,9 +92,9 @@ body {
     position: fixed;
     top: 30px;
     right: 30px;
-    z-index: 1000;
-    background: var(--off-white);
-    border: 2px solid var(--warm-gray);
+    z-index: 10000;
+    background: var(--toggle-bg);
+    border: 1px solid rgba(0,0,0,0.06);
     width: 56px;
     height: 56px;
     border-radius: 50%;
@@ -87,32 +103,19 @@ body {
     align-items: center;
     justify-content: center;
     font-size: 1.5rem;
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, background 0.3s ease;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    color: var(--toggle-color);
 }
 
 .theme-toggle:hover {
-    transform: rotate(180deg) scale(1.1);
+    transform: rotate(180deg) scale(1.06);
     border-color: var(--primary-accent);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.12);
 }
 
-.theme-toggle:active {
-    transform: rotate(180deg) scale(0.95);
-}
-
-/* Icons verstecken je nach Modus */
-.theme-toggle .sun-icon {
-    display: none;
-}
-
-body.dark-mode .theme-toggle .moon-icon {
-    display: none;
-}
-
-body.dark-mode .theme-toggle .sun-icon {
-    display: block;
-}
+/* Sun SVG uses currentColor */
+.theme-toggle .sun-svg { width: 28px; height: 28px; display: block; }
 
 /* === TYPOGRAFIE === */
 h1, h2, h3 {
@@ -184,13 +187,13 @@ body.dark-mode .highlight {
     background-size: 200% 100%;
     background-position: 100% 0;
     padding: 2px 8px;
-    border-radius: 4px;  /* ← Semikolon hinzugefügt */
+    border-radius: 4px;
     color: #FFFFFF;
     font-weight: 600;
     transition: background-position 0.6s ease;
 }
 
-.body.dark-mode .highlight:hover {
+body.dark-mode .highlight:hover {
     background-position: 0 0;
 }
 
@@ -385,26 +388,7 @@ body.dark-mode ul.check-list li:hover::before {
     transform: scale(1.05) rotate(3deg);
 }
 
-.profile-stats {
-    flex: 1;
-}
-
-.stat-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 8px;
-    font-weight: 500;
-    font-size: 0.95rem;
-}
-
-.stat-icon {
-    font-size: 1.3rem;
-    min-width: 28px;
-}
-
 /* === BUTTON === */
-/* BUTTONS - Light Mode: Standard Coral, Hover Blau */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -419,8 +403,8 @@ body.dark-mode ul.check-list li:hover::before {
     text-transform: uppercase;
     letter-spacing: 0.08em;
     text-decoration: none;
-    border: none;  /* ← Diese Zeile hinzufügen */
-    cursor: pointer;  /* ← Und diese */
+    border: none;
+    cursor: pointer;
     border-radius: var(--radius-pill);
 }
 
@@ -636,6 +620,7 @@ footer a:hover {
     100% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
 }
 
+/* Modal: uses theme variables for border & shadow so it adapts to dark/light */
 .game-over {
     position: fixed;
     top: 50%;
@@ -646,10 +631,17 @@ footer a:hover {
     border-radius: var(--radius-soft);
     padding: var(--spacing-l);
     text-align: center;
-    z-index: 1000;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    z-index: 10001;
+    box-shadow: var(--modal-shadow);
     max-width: 90%;
     min-width: 300px;
+}
+
+body.dark-mode .game-over {
+    border-color: var(--primary-accent);
+    background: var(--off-white);
+    color: var(--text-dark);
+    box-shadow: var(--modal-shadow);
 }
 
 .game-over.hidden {
@@ -679,6 +671,7 @@ footer a:hover {
     font-weight: 700;
 }
 
+/* Responsive mini-game tweaks */
 @media (max-width: 768px) {
     #gameCanvas {
         height: 550px;
