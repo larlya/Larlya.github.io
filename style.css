@@ -185,6 +185,7 @@ body.dark-mode .highlight {
     background-position: 100% 0;
     color: #FFFFFF;
     font-weight: 600;
+    transition: background-position 0.6s ease;  /* ← Diese Zeile hinzufügen! */
 }
 
 /* === LAYOUT SECTIONS === */
