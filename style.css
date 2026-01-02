@@ -532,19 +532,21 @@ footer a:hover {
 .game-container {
     position: relative;
     max-width: 100%;
-    margin: 0 auto;
-    text-align: center;
+    margin: 0;              /* nicht zentrieren mit auto */
+    text-align: left;       /* Inhalt linksbündig innerhalb der .container */
+    padding: 0;
 }
 
 .game-stats {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;  /* links ausrichten */
     gap: var(--spacing-m);
     margin-bottom: var(--spacing-m);
     font-family: 'Space Mono', monospace;
     font-size: 1.2rem;
     font-weight: 700;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 .game-stats .stat {
