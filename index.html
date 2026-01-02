@@ -3,285 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lara Marie Andres | Strategie & Kommunikation</title>
+    <title>Lara Marie Andres | Portfolio</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
-    <style>
-        /* --- FARBPALETTE & VARIABLES --- */
-        :root {
-            --bg-dark: #09090b;      /* Fast schwarz, leichter Blaustich */
-            --text-main: #f4f4f5;    /* Helles Weiß-Grau */
-            --text-muted: #a1a1aa;   /* Gedimmtes Grau */
-            
-            /* Der neue "Stilvolle Verlauf" (Orange zu Lila) */
-            --gradient-main: linear-gradient(135deg, #FF9F43 0%, #ff6b6b 50%, #6c5ce7 100%);
-            
-            /* Glas-Effekt Hintergrund für Boxen */
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.08);
-        }
-
-        /* --- GRUNDGERÜST --- */
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            font-family: 'Manrope', sans-serif; /* Die neue Schrift */
-            margin: 0;
-            padding: 0;
-            line-height: 1.8; /* Etwas mehr Luft zwischen Zeilen */
-            overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(108, 92, 231, 0.1) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(255, 107, 107, 0.08) 0%, transparent 40%);
-            /* Das erzeugt ganz dezente farbige "Blobs" im Hintergrund */
-        }
-
-        .container {
-            max-width: 750px;
-            margin: 0 auto;
-            padding: 0 25px;
-        }
-
-        /* --- TYPOGRAFIE --- */
-        h1 {
-            font-size: 3.8rem; /* Größer & Plakativer */
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            margin-bottom: 1rem;
-            line-height: 1.1;
-        }
-        
-        /* Der Text-Verlauf Effekt */
-        .text-gradient {
-            background: var(--gradient-main);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
-        }
-
-        h2 {
-            font-size: 1.6rem;
-            font-weight: 400;
-            color: var(--text-muted);
-            margin-top: 0;
-        }
-
-        h3 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: #fff;
-        }
-
-        p {
-            font-size: 1.15rem;
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-        }
-
-        /* --- SCROLLY SECTIONS --- */
-        section {
-            min-height: 60vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            margin-bottom: 80px;
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1); /* Weichere Animation */
-        }
-
-        section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- GLASSMORPHISM CARD (Das Menü) --- */
-        .tabs-container {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px); /* Der Milchglas-Effekt */
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px; /* Rundere Ecken */
-            padding: 40px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-        }
-
-        /* --- TABS NAVIGATION --- */
-        .tab-buttons {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 30px;
-            border-bottom: 1px solid var(--glass-border);
-            padding-bottom: 15px;
-            overflow-x: auto; /* Scrollbar auf sehr kleinen Handys */
-        }
-
-        .tab-btn {
-            background: transparent;
-            border: none;
-            color: var(--text-muted);
-            font-size: 1.05rem;
-            font-weight: 600;
-            cursor: pointer;
-            padding: 8px 12px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            font-family: inherit;
-            white-space: nowrap;
-        }
-
-        .tab-btn:hover {
-            background: rgba(255,255,255,0.05);
-            color: #fff;
-        }
-
-        .tab-btn.active {
-            background: rgba(255,255,255,0.1);
-            color: #fff;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            position: relative;
-        }
-        /* Kleiner farbiger Punkt im aktiven Button */
-        .tab-btn.active::before {
-            content: '';
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--gradient-main);
-            margin-right: 8px;
-        }
-
-        /* --- INHALTE & LISTEN --- */
-        .tab-content { display: none; animation: slideUp 0.4s ease-out; }
-        .tab-content.active { display: block; }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        ul.check-list { list-style: none; padding: 0; }
-        ul.check-list li {
-            margin-bottom: 16px;
-            padding-left: 30px;
-            position: relative;
-            color: var(--text-main);
-        }
-        ul.check-list li strong { color: #fff; font-weight: 600; }
-
-        /* --- PROFIL HEADER (Hinter den Kulissen) --- */
-.profile-header {
-    display: flex;
-    align-items: center;
-    gap: 25px;
-    margin-bottom: 30px;
-    padding-bottom: 25px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-
-.profile-img {
-    width: 110px;
-    height: 110px;
-    border-radius: 50%; /* Macht das Bild rund */
-    object-fit: cover;  /* Verhindert Verzerren */
-    border: 3px solid rgba(255, 107, 107, 0.5); /* Farbiger Rand */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
-
-.profile-stats {
-    font-size: 0.95rem;
-    color: var(--text-muted);
-}
-
-.stat-row {
-    margin-bottom: 6px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-/* Emoji Styling */
-.stat-icon { font-size: 1.2rem; min-width: 25px; }
-
-/* Mobile Anpassung für das Profil */
-@media (max-width: 600px) {
-    .profile-header {
-        flex-direction: column;
-        text-align: center;
-    }
-}
-        
-        /* Das Häkchen wird jetzt auch bunt */
-        ul.check-list li::before {
-            content: '✓';
-            background: var(--gradient-main);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            position: absolute;
-            left: 0;
-            font-weight: 800;
-            font-size: 1.2em;
-        }
-
-        /* --- BUTTON --- */
-        .btn {
-            display: inline-block;
-            margin-top: 25px;
-            padding: 16px 40px;
-            background: var(--gradient-main); /* Button ist jetzt bunt */
-            color: #fff;
-            font-weight: 700;
-            text-decoration: none;
-            border-radius: 50px;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.2);
-        }
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(255, 107, 107, 0.4);
-        }
-
-        /* --- HIGHLIGHT TEXT IM FLIEẞTEXT --- */
-        .highlight {
-            color: #fff;
-            border-bottom: 2px solid rgba(255, 107, 107, 0.5); /* Unterstreichung statt nur Farbe */
-        }
-
-        /* Handy Anpassung */
-        @media (max-width: 600px) {
-            h1 { font-size: 2.8rem; }
-            .tabs-container { padding: 25px; }
-            .tab-btn { font-size: 0.9rem; }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="container">
         
-       <section class="visible" style="min-height: 90vh;">
-    <h2>Hallo, ich bin Lara.</h2>
-    
-    <h1>Kommunikation mit <br><span class="text-gradient">Substanz & Struktur.</span></h1>
-    
-    <p>
-        Ich verbinde <span class="highlight">Wissenschaft & NGO-Arbeit</span> mit moderner Strategie. 
-        Mein Fokus liegt darauf, komplexe Inhalte verständlich zu machen und digitale Prozesse zu schaffen, die dem Team den Rücken freihalten.
-    </p>
-    
-    <p>
-        Als <strong>Interim Head of Communications</strong> und Digital Native weiß ich: Gute Kommunikation braucht beides – das Gefühl für die richtige Story und das technische Verständnis für die Plattform, auf der sie landet.
-    </p>
+        <section class="visible" style="min-height: 90vh;">
+            <h2>Hallo, ich bin Lara.</h2>
+            
+            <h1>Kommunikation mit <br><span class="text-gradient">Substanz & Struktur.</span></h1>
+            
+            <p>
+                Ich verbinde <span class="highlight">Wissenschaft & NGO-Arbeit</span> mit moderner Strategie. 
+                Mein Fokus liegt darauf, komplexe Inhalte verständlich zu machen und digitale Prozesse zu schaffen, die dem Team den Rücken freihalten.
+            </p>
+            
+            <p>
+                Als <strong>Interim Head of Communications</strong> und Digital Native weiß ich: Gute Kommunikation braucht beides – das Gefühl für die richtige Story und das technische Verständnis für die Plattform, auf der sie landet.
+            </p>
 
-    <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 50px;">
-        ↓ Mehr erfahren
-    </p>
-</section>
+            <p style="font-size: 0.9rem; margin-top: 50px; opacity: 0.6;">
+                ↓ Mehr erfahren
+            </p>
+        </section>
 
         <section>
             <h3>Lerne mich kennen</h3>
@@ -294,95 +45,78 @@
                     <button class="tab-btn" onclick="openTab('perfect-match')">Perfect Match</button>
                 </div>
 
-               <div id="hard-facts" class="tab-content active">
-    <p><strong>Zuletzt (bis 12/2025):</strong><br>
-    Kommunikationsmanagerin bei <span class="highlight">EUniWell (Universität zu Köln)</span>.</p>
-    
-    <ul class="check-list">
-        <li><strong>Rollen-Evolution:</strong> Start als Managerin, dann <br>
-            • 1 Jahr als <strong>Interim Head of Communications</strong> (Teamleitung)<br>
-            • 1 Jahr als <strong>Social Media Lead</strong> (Strategie & Content).
-        </li>
-        <li><strong>Ausbildung:</strong> <span class="highlight">Master of Arts (M.A.)</span> North American Studies<br>
-            (Universität zu Köln, Abschlussnote 1,4).
-        </li>
-        <li><strong>Tech-Stack:</strong> TYPO3, WordPress, MS Office, Basic Coding (HTML/CSS).</li>
-        <li><strong>Zertifikate:</strong> Storytelling, New Work / Agiles Arbeiten, Projektmanagement.</li>
-    </ul>
-</div>
+                <div id="hard-facts" class="tab-content active">
+                    <p><strong>Zuletzt (bis 12/2025):</strong><br>
+                    Kommunikationsmanagerin bei <span class="highlight">EUniWell (Universität zu Köln)</span>.</p>
+                    
+                    <ul class="check-list">
+                        <li><strong>Rollen-Evolution:</strong> Start als Managerin, dann <br>
+                            • 1 Jahr als <strong>Interim Head of Communications</strong> (Teamleitung)<br>
+                            • 1 Jahr als <strong>Social Media Lead</strong> (Strategie & Content).
+                        </li>
+                        <li><strong>Ausbildung:</strong> <span class="highlight">Master of Arts (M.A.)</span> North American Studies<br>
+                            (Universität zu Köln, Abschlussnote 1,4).
+                        </li>
+                        <li><strong>Tech-Stack:</strong> TYPO3, WordPress, MS Office, Basic Coding (HTML/CSS).</li>
+                        <li><strong>Zertifikate:</strong> Storytelling, New Work / Agiles Arbeiten, Projektmanagement.</li>
+                    </ul>
+                </div>
+
                 <div id="behind-scenes" class="tab-content">
-    
-    <div class="profile-header">
-        <img src="profil.jpg" alt="Lara Marie Andres" class="profile-img">
-        
-        <div class="profile-stats">
-            <div class="stat-row">
-                <span class="stat-icon">👋</span> 
-                <span>Lara, 31 Jahre</span>
-            </div>
-            <div class="stat-row">
-                <span class="stat-icon">📍</span> 
-                <span>Ursprüngliche Saarländerin (ja, ich kenne die Witze)</span>
-            </div>
-            <div class="stat-row">
-                <span class="stat-icon">🇬🇧</span> 
-                <span>Englisch: C1/C2 (My happy place)</span>
-            </div>
-            <div class="stat-row">
-                <span class="stat-icon">🇫🇷</span> 
-                <span>Französisch: A2 (Reicht für Urlaub & Baguette)</span>
-            </div>
-        </div>
-    </div>
+                    <div class="profile-header">
+                        <img src="profil.jpg" alt="Lara Marie Andres" class="profile-img">
+                        <div class="profile-stats">
+                            <div class="stat-row"><span class="stat-icon">👋</span> <span>Lara, 31 Jahre</span></div>
+                            <div class="stat-row"><span class="stat-icon">📍</span> <span>Saarländerin (kenne alle Witze)</span></div>
+                            <div class="stat-row"><span class="stat-icon">🇬🇧</span> <span>Englisch: C1/C2 (My happy place)</span></div>
+                            <div class="stat-row"><span class="stat-icon">🇫🇷</span> <span>Französisch: A2 (Reicht für Baguette)</span></div>
+                        </div>
+                    </div>
 
-    <p><strong>Mein Mindset & Motivation:</strong></p>
-    
-    <ul class="check-list">
-        <li><strong>Haltung:</strong> Ich verstehe mich als Feministin und blicke <span class="highlight">intersektional</span> auf die Welt. Mein Studium hat meinen Blick für gesellschaftliche Strukturen geschärft.</li>
-        
-        <li><strong>Engagement:</strong> Queere Rechte sind mir ein echtes Anliegen. Beim SCHMIT-Z e.V. habe ich gelernt, wie wichtig Sichtbarkeit ist – und wie man sie schafft.</li>
-        
-        <li><strong>Tech-Neugier:</strong> Ich bin der Typ Mensch, der wissen will, <i>wie</i> es funktioniert. Deshalb der VHS-Kurs in Programmierung. Ich nutze Tools nicht nur, ich durchdringe sie gerne.</li>
-    </ul>
+                    <p><strong>Mein Mindset & Motivation:</strong></p>
+                    <ul class="check-list">
+                        <li><strong>Haltung:</strong> Ich verstehe mich als Feministin und blicke <span class="highlight">intersektional</span> auf die Welt. Mein Studium hat meinen Blick für gesellschaftliche Strukturen geschärft.</li>
+                        <li><strong>Engagement:</strong> Queere Rechte sind mir ein echtes Anliegen. Beim SCHMIT-Z e.V. habe ich gelernt, wie wichtig Sichtbarkeit ist – und wie man sie schafft.</li>
+                        <li><strong>Tech-Neugier:</strong> Ich bin der Typ Mensch, der wissen will, <i>wie</i> es funktioniert. Deshalb der VHS-Kurs in Programmierung. Ich nutze Tools nicht nur, ich durchdringe sie gerne.</li>
+                    </ul>
 
-    <div style="margin-top: 25px; background: rgba(255,255,255,0.03); padding: 15px; border-radius: 8px; border-left: 3px solid #c7aae4;">
-        <strong>Und sonst so?</strong><br>
-        <span style="color: var(--text-muted); font-size: 0.95rem;">
-        Bin ich sehr tierlieb und gerne draußen. Ich glaube daran, dass Empathie und ein respektvolles Miteinander die Basis für alles sind – im Team genauso wie im Leben.
-        </span>
-    </div>
-</div>
-               <div id="perfect-match" class="tab-content">
-    <p><strong>Was ich suche:</strong></p>
-    <p>
-        Köln ist meine Homebase. Aber gute Arbeit macht nicht an der Stadtgrenze halt. Ich suche eine Aufgabe mit <span class="highlight">Wirkung</span>.
-    </p>
-    
-    <ul class="check-list">
-        <li><strong>Das Umfeld:</strong> Meine Wurzeln liegen im Non-Profit-Sektor. Aber ich muss dort nicht bleiben. <br>
-        Ein <strong>wertebasiertes Unternehmen</strong> reizt mich genauso – solange der "Purpose" stimmt.</li>
+                    <div style="margin-top: 25px; background: rgba(0,0,0,0.03); padding: 15px; border-radius: 12px; border-left: 3px solid var(--accent-color);">
+                        <strong>Und sonst so?</strong><br>
+                        <span style="font-size: 0.95rem; opacity: 0.8;">
+                        Bin ich sehr tierlieb und gerne draußen. Ich glaube daran, dass Empathie und ein respektvolles Miteinander die Basis für alles sind – im Team genauso wie im Leben.
+                        </span>
+                    </div>
+                </div>
 
-        <li><strong>Ort & Modus:</strong> Ob Köln, Bonn, Düsseldorf oder die Region – für den richtigen Job bin ich mobil. <br>
-        <strong>Hybrid & Remote</strong> sind für mich dabei kein "Nice-to-have", sondern gelebte Kultur für effizientes Arbeiten.</li>
-        
-        <li><strong>Die Kultur:</strong> Ich suche ein Team, das "New Work" wirklich lebt. Offenheit, Humor und der Wille, Dinge besser zu machen, sind mir wichtiger als starre Hierarchien.</li>
-    </ul>
-    
-    <div style="margin-top: 30px;">
-        <a href="mailto:larandres1994@gmail.com" class="btn">Lass uns sprechen →</a>
-    </div>
-</div>
+                <div id="perfect-match" class="tab-content">
+                    <p><strong>Was ich suche:</strong></p>
+                    <p>Köln ist meine Homebase. Aber gute Arbeit macht nicht an der Stadtgrenze halt. Ich suche eine Aufgabe mit <span class="highlight">Wirkung</span>.</p>
+                    
+                    <ul class="check-list">
+                        <li><strong>Das Umfeld:</strong> Meine Wurzeln liegen im Non-Profit-Sektor. Aber ich muss dort nicht bleiben. <br>
+                        Ein <strong>wertebasiertes Unternehmen</strong> reizt mich genauso – solange der "Purpose" stimmt.</li>
+
+                        <li><strong>Ort & Modus:</strong> Ob Köln, Bonn, Düsseldorf oder die Region – für den richtigen Job bin ich mobil. <br>
+                        <strong>Hybrid & Remote</strong> sind für mich dabei kein "Nice-to-have", sondern gelebte Kultur für effizientes Arbeiten.</li>
+                        
+                        <li><strong>Die Kultur:</strong> Ich suche ein Team, das "New Work" wirklich lebt. Offenheit, Humor und der Wille, Dinge besser zu machen, sind mir wichtiger als starre Hierarchien.</li>
+                    </ul>
+                    
+                    <div style="margin-top: 30px;">
+                        <a href="mailto:larandres1994@gmail.com" class="btn">Lass uns sprechen →</a>
+                    </div>
+                </div>
             </div>
         </section>
 
     </div>
 
-    <footer style="padding: 50px 0; text-align: center; color: #555; font-size: 0.8rem; border-top: 1px solid #1a1a1e;">
-        &copy; 2025 Lara Marie Andres | <a href="mailto:larandres1994@gmail.com" style="color: #777; text-decoration: none;">Kontakt</a><br>
+    <footer style="padding: 50px 0; text-align: center; opacity: 0.5; font-size: 0.8rem; border-top: 1px solid var(--border-color);">
+        &copy; 2025 Lara Marie Andres | <a href="mailto:larandres1994@gmail.com" style="color: inherit; text-decoration: none;">Kontakt</a><br>
     </footer>
 
     <script>
-        // 1. Scrollytelling Logik
+        // Scrollytelling
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -390,21 +124,14 @@
                 }
             });
         }, { threshold: 0.1 });
+        document.querySelectorAll('section').forEach(section => observer.observe(section));
 
-        document.querySelectorAll('section').forEach(section => {
-            observer.observe(section);
-        });
-
-        // 2. Tab Logik
+        // Tabs
         function openTab(tabName) {
             var contents = document.getElementsByClassName("tab-content");
-            for (var i = 0; i < contents.length; i++) {
-                contents[i].classList.remove("active");
-            }
+            for (var i = 0; i < contents.length; i++) { contents[i].classList.remove("active"); }
             var buttons = document.getElementsByClassName("tab-btn");
-            for (var i = 0; i < buttons.length; i++) {
-                buttons[i].classList.remove("active");
-            }
+            for (var i = 0; i < buttons.length; i++) { buttons[i].classList.remove("active"); }
             document.getElementById(tabName).classList.add("active");
             event.currentTarget.classList.add("active");
         }
