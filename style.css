@@ -599,10 +599,11 @@ footer a:hover {
 
 .canvas-wrapper {
     max-width: 100%;
-    margin: 0 auto;
+    margin: 0;                    /* kein zentrierendes auto */
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;  /* Canvas linksbündig im container */
     position: relative;
+    gap: 24px;                    /* optional: Abstand zwischen Stats und Canvas falls nötig */
 }
 
 /* Ensure canvas area is visible by default (prevents it disappearing during play) */
