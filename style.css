@@ -529,17 +529,35 @@ opacity: 0.8;
 
 
 /* === MINI GAME ENHANCED === */
+.game-section { 
+    /* optional: rustikale Abstände über/unter dem Block */
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
 .game-container {
-position: relative;
-max-width: 100%;
-margin: 0;              /* nicht zentrieren mit auto */
-text-align: left;       /* Inhalt linksbündig innerhalb der .container */
-padding: 0;
+    /* gleiche Max-Breite wie .container, zentriert in der Seite */
+    max-width: 880px;
+    margin: 0 auto;      /* zentriert die Block-Spalte, Inhalt innen linksbündig */
+    text-align: left;    /* Inhalte linksbündig innerhalb der Spalte */
+    padding: 0 0 40px 0; /* optional: Abstand nach unten */
+    max-width: 880px;     /* gleiche Breite wie .container oben */
+    margin: 0 auto;       /* zentriert die column auf der Seite */
+    text-align: left;     /* Inhalte innerhalb linksbündig */
+    padding: 0 0 40px 0;  /* optionaler Abstand nach unten */
+}
+
+.game-section h3,
+.game-section h2,
+.game-section p {
+    text-align: left !important;  /* !important überschreibt vorhandene inline text-align */
+    margin-left: 0;
 }
 
 .game-stats {
 display: flex;
-justify-content: flex-start;  /* links ausrichten */
+    justify-content: flex-start;   /* linksbündig */
+    justify-content: flex-start;
 gap: var(--spacing-m);
 margin-bottom: var(--spacing-m);
 font-family: 'Space Mono', monospace;
@@ -597,28 +615,37 @@ animation: badgePop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 100% { transform: scale(1); opacity: 1; }
 }
 
+/* Canvas wrapper: Canvas links (keine horizontale Zentrierung) */
 .canvas-wrapper {
 max-width: 100%;
-    margin: 0 auto;
-    margin: 0;                    /* kein zentrierendes auto */
+    margin: 0;                      /* kein auto zentrieren */
+    margin: 0;                     /* kein auto zentrieren */
 display: flex;
-    justify-content: center;
-    justify-content: flex-start;  /* Canvas linksbündig im container */
+    justify-content: flex-start;    /* Canvas linksbündig in der column */
+    justify-content: flex-start;   /* linksbündig */
 position: relative;
-    gap: 24px;                    /* optional: Abstand zwischen Stats und Canvas falls nötig */
+    gap: 24px;                      /* optionaler horizontaler Abstand */
+    gap: 24px;
 }
 
-/* Ensure canvas area is visible by default (prevents it disappearing during play) */
+/* Canvas: sichtbar und links innerhalb der column */
 #gameCanvas {
 width: 100%;
 max-width: 750px;
 height: 650px;
-background: var(--off-white);
-border: 3px solid var(--warm-gray);
+background: var(--surface);
+border: 3px solid var(--card-border);
 border-radius: var(--radius-soft);
 cursor: crosshair;
-display: block; /* <-- wichtig: sichtbar halten */
+display: block;
+    margin: 0;                       /* wichtig: kein auto */
+    margin: 0;                      /* wichtig: kein auto */
 box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.game-container .btn {
+    margin-left: 0;
+    display: inline-flex;
 }
 
 /* If you still want an .active class visual, you can animate it — but keep canvas present */
@@ -734,51 +761,4 @@ height: 450px;
 .combo-display {
 font-size: 2.5rem;
 }
-}
-
-
-/* --- Dekorative, dezente Farbstreifen im Seiten-Hintergrund --- */
-/* Fügt semi-transparente Coral- und Blue-Ribbons als Hintergrund-SVG hinzu.
-   Leg diesen Block ans Ende von style.css. */
-
-html, body {
-  height: 100%;
-}
-
-/* make sure body is a positioning context so ::before can sit behind content */
-body {
-  position: relative;
-}
-
-/* light-mode background ribbons */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: -1; /* hinter allem */
-  background-repeat: no-repeat;
-  background-position: center top;
-  background-size: cover;
-  /* Data-URI SVG: two soft ribbons (blue top-right, coral bottom-left). Opacity subtle */
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 900' preserveAspectRatio='none'><path d='M1200,0 C1100,150 900,200 700,220 C400,240 200,300 0,450 L0,900 L1440,900 L1440,0 Z' fill='%230096FF' opacity='0.08'/><path d='M0,700 C200,600 400,550 700,520 C950,500 1150,460 1440,400 L1440,900 L0,900 Z' fill='%23FF6B5A' opacity='0.08'/></svg>");
-}
-
-/* dark-mode: slightly stronger ribbons (still subtle) */
-body.dark-mode::before {
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 900' preserveAspectRatio='none'><path d='M1200,0 C1100,150 900,200 700,220 C400,240 200,300 0,450 L0,900 L1440,900 L1440,0 Z' fill='%230096FF' opacity='0.12'/><path d='M0,700 C200,600 400,550 700,520 C950,500 1150,460 1440,400 L1440,900 L0,900 Z' fill='%23FF6B5A' opacity='0.12'/></svg>");
-  /* ggf. leichter Kontrast-Boost */
-  background-blend-mode: normal;
-}
-
-/* Feinjustierung (optional):
-   Wenn du möchtest, dass die Ribbons weniger flächig wirken, kannst du die
-   opacity-Werte im SVG oben reduzieren (z.B. 0.06 statt 0.08).
-   Oder in dark-mode auf 0.14 erhöhen. */
-
-/* Optional: reduce visibility on very small screens */
-@media (max-width: 600px) {
-  body::before, body.dark-mode::before {
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 900' preserveAspectRatio='none'><path d='M1200,0 C1100,150 900,200 700,220 C400,240 200,300 0,450 L0,900 L1440,900 L1440,0 Z' fill='%230096FF' opacity='0.05'/><path d='M0,700 C200,600 400,550 700,520 C950,500 1150,460 1440,400 L1440,900 L0,900 Z' fill='%23FF6B5A' opacity='0.05'/></svg>");
-  }
 }
