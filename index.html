@@ -3,41 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lara Marie Andres</title>
+    <title>Lara Marie Andres | Kommunikation & Strategie</title>
     <style>
         /* --- GRUNDGERÜST --- */
         body {
-            background-color: #0f0f11; /* Fast Schwarz, sehr edel */
+            background-color: #0f0f11;
             color: #e0e0e0;
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
             line-height: 1.7;
-            overflow-x: hidden; /* Verhindert seitliches Wackeln */
+            overflow-x: hidden;
         }
 
-        /* --- LAYOUT --- */
         .container {
-            max-width: 700px;
+            max-width: 720px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        /* Jede Section ist mindestens so hoch wie der halbe Bildschirm,
-           damit man Scroll-Raum hat */
+        /* --- SCROLLY SECTIONS --- */
         section {
-            min-height: 60vh; 
+            min-height: 60vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            margin-bottom: 50px;
-            /* Startzustand für Animation: Unsichtbar & etwas tiefer */
+            margin-bottom: 60px;
             opacity: 0;
             transform: translateY(30px);
-            transition: all 1s ease-out; /* Die Dauer des Einblendens */
+            transition: all 1s ease-out;
         }
 
-        /* Diese Klasse fügt das Javascript hinzu, wenn gescrollt wird */
         section.visible {
             opacity: 1;
             transform: translateY(0);
@@ -54,7 +50,7 @@
 
         h2 {
             font-size: 1.8rem;
-            font-weight: 300; /* Dünne Schrift wirkt eleganter */
+            font-weight: 300;
             color: #a0a0a0;
             margin-top: 0;
         }
@@ -62,36 +58,89 @@
         h3 {
             font-size: 1.4rem;
             color: #fff;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
         p {
             font-size: 1.15rem;
             color: #ccc;
             margin-bottom: 1.5rem;
-            max-width: 600px;
         }
 
-        /* --- AKZENTE --- */
         .highlight {
-            color: #c7aae4; /* Ein sanftes Flieder/Lila statt Neon */
+            color: #c7aae4;
             font-weight: 600;
         }
 
-        /* --- SKILLS PILLEN (Dezenter) --- */
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 10px;
+        /* --- INTERAKTIVES MENÜ (TABS) --- */
+        .tabs-container {
+            background: #1a1a1e;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 1px solid #333;
         }
-        .skill-tag {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 6px 14px;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            color: #bbb;
-            border: 1px solid rgba(255,255,255,0.1);
+
+        .tab-buttons {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            color: #777;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 5px 0;
+            position: relative;
+            transition: color 0.3s;
+            font-family: inherit;
+        }
+
+        .tab-btn:hover { color: #fff; }
+        .tab-btn.active { color: #c7aae4; }
+        
+        /* Unterstrich Animation */
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -11px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #c7aae4;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Listen Styles --- */
+        ul.check-list { list-style: none; padding: 0; }
+        ul.check-list li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+        }
+        ul.check-list li::before {
+            content: '✓';
+            color: #c7aae4;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
         }
 
         /* --- BUTTON --- */
@@ -110,19 +159,13 @@
             color: #0f0f11;
         }
 
-        /* --- FOOTER --- */
-        footer {
-            padding: 50px 0;
-            text-align: center;
-            font-size: 0.9rem;
-            color: #555;
-            border-top: 1px solid #222;
-        }
-
         /* Handy Anpassung */
         @media (max-width: 600px) {
             h1 { font-size: 2.5rem; }
-            section { min-height: auto; padding: 40px 0; }
+            .tab-buttons { flex-direction: column; gap: 10px; border-bottom: none; }
+            .tab-btn { text-align: left; padding: 10px; background: #222; border-radius: 6px; }
+            .tab-btn.active { background: #333; color: #c7aae4; }
+            .tab-btn.active::after { display: none; }
         }
     </style>
 </head>
@@ -130,69 +173,107 @@
 
     <div class="container">
         
-        <section class="visible" style="min-height: 80vh;">
+        <section class="visible" style="min-height: 90vh;">
             <h2>Hallo, ich bin Lara.</h2>
             <h1>Kommunikation mit <br>Substanz & Struktur.</h1>
             <p>
-                Ich verbinde Wissenschaft und Gemeinnützigkeit mit moderner Kommunikation. 
-                Keine Buzzwords, sondern klare Strategien und technische Umsetzung.
+                Ich verbinde <span class="highlight">Wissenschaft & NGO-Arbeit</span> mit moderner Strategie. 
+                Erprobt in internationalen Teams, zertifiziert in Storytelling und immer an der Lösung interessiert, nicht am Problem.
             </p>
-            <p style="font-size: 0.9rem; color: #777;">↓ Bitte scrollen</p>
+            <p style="font-size: 0.9rem; color: #777; margin-top: 50px;">↓ Mehr erfahren</p>
         </section>
 
         <section>
-            <h3>01. Wo ich herkomme</h3>
-            <p>
-                Meine Wurzeln liegen im <span class="highlight">wissenschaftlichen Bereich und in NGOs</span>. 
-                Dort lernt man schnell: Es geht um Inhalte, die verstanden werden müssen, und um Ressourcen, die effizient genutzt werden wollen.
-            </p>
-            <p>
-                Ich mag komplexe Themen. Ich mag es, wenn Dinge Sinn ergeben und wenn Kommunikation nicht nur "laut" ist, sondern ankommt.
-            </p>
-        </section>
+            <h3>Lerne mich kennen</h3>
+            <p style="margin-bottom: 30px;">Klick dich durch meine drei Facetten:</p>
+            
+            <div class="tabs-container">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" onclick="openTab('hard-facts')">Hard Facts</button>
+                    <button class="tab-btn" onclick="openTab('behind-scenes')">Hinter den Kulissen</button>
+                    <button class="tab-btn" onclick="openTab('perfect-match')">Perfect Match</button>
+                </div>
 
-        <section>
-            <h3>02. Mein Werkzeugkasten</h3>
-            <p>
-                Ich plane nicht nur, ich setze um. Technische Hürden sehe ich eher als Rätsel, die ich lösen will. Ob CMS-Pflege oder Community Management – ich arbeite mich rein.
-            </p>
-            <div class="skills">
-                <span class="skill-tag">Kommunikationsstrategie</span>
-                <span class="skill-tag">TYPO3 & WordPress</span>
-                <span class="skill-tag">Social Media Management</span>
-                <span class="skill-tag">Technische Problemlösung</span>
+                <div id="hard-facts" class="tab-content active">
+                    <p><strong>Aktuelle Position:</strong><br>
+                    <span class="highlight">Interim Head of Communications</span> & Social Media Lead (stv.)<br>
+                    bei EUniWell (Universität zu Köln).</p>
+                    
+                    <ul class="check-list">
+                        <li><strong>Verantwortung:</strong> Leitung des internationalen Kommunikationsteams (11 Partner-Unis).</li>
+                        <li><strong>Strategie:</strong> Planung & Content-Erstellung für 5 Social-Media-Kanäle.</li>
+                        <li><strong>Tech-Stack:</strong> TYPO3, WordPress, MS Office, Basic Coding (HTML/CSS).</li>
+                        <li><strong>Ausbildung:</strong> B.A. Soziologie & English Studies (Uni Trier, Note 2,1).</li>
+                        <li><strong>Zertifikate:</strong> Storytelling, New Work / Agiles Arbeiten, Projektmanagement.</li>
+                    </ul>
+                </div>
+
+                <div id="behind-scenes" class="tab-content">
+                    <p>
+                        <strong>Analytisch & Menschlich:</strong><br>
+                        Durch mein Studium (Soziologie/North American Studies) habe ich gelernt, Kontexte zu verstehen. Durch meine Arbeit im Queeren Zentrum Trier (SCHMIT-Z e.V.), was es heißt, anzupacken – von der Pressemeldung bis zur Kasse beim Event.
+                    </p>
+                    <p>
+                        <strong>Lernbereit:</strong><br>
+                        Ich habe freiwillig einen VHS-Kurs "Einführung in die Programmierung" belegt. Nicht, um Entwicklerin zu werden, sondern um auf Augenhöhe mit der IT sprechen zu können.
+                    </p>
+                    <p style="font-size: 0.9em; color: #aaa; border-left: 2px solid #c7aae4; padding-left: 15px; margin-top: 20px;">
+                        <i>Proof of Work:</i> An der Uni Köln erhielt ich eine offizielle <strong>Leistungszulage</strong>, weil ich als Elternzeitvertretung Führungsverantwortung übernommen und Prozesse optimiert habe.
+                    </p>
+                </div>
+
+                <div id="perfect-match" class="tab-content">
+                    <p><strong>Was ich suche & biete:</strong></p>
+                    <p>
+                        Köln ist mein Lebensmittelpunkt. Ich möchte hier nicht nur wohnen, sondern <span class="highlight">aktiv mitgestalten</span>.
+                    </p>
+                    <ul class="check-list">
+                        <li><strong>Umfeld:</strong> Wissenschaft, NGO, Bildung oder Stiftungen. Orte, an denen Inhalte zählen.</li>
+                        <li><strong>Kultur:</strong> Ein Team, das motiviert ist. Ich arbeite gerne eigenständig, aber nie gerne einsam.</li>
+                        <li><strong>Mindset:</strong> "Das haben wir schon immer so gemacht" ist für mich kein Argument. Ich suche Offenheit für digitale Lösungen (New Work).</li>
+                    </ul>
+                    
+                    <div style="margin-top: 30px;">
+                        <a href="mailto:larandres1994@gmail.com" class="btn">Lass uns sprechen →</a>
+                    </div>
+                </div>
             </div>
-        </section>
-
-        <section>
-            <h3>03. Was ich suche</h3>
-            <p>
-                Ein Team, das motiviert ist. Ich glaube daran, dass man gemeinsam bessere Lösungen findet als allein im stillen Kämmerlein. Ich suche eine Umgebung, in der Mitdenken erwünscht ist und wir gemeinsam an einem Strang ziehen.
-            </p>
-            <a href="mailto:deine-email@beispiel.de" class="btn">Kontakt aufnehmen</a>
         </section>
 
     </div>
 
-    <footer>
-        &copy; 2026 Lara Marie Andres | Gehostet auf GitHub
+    <footer style="padding: 50px 0; text-align: center; color: #555; font-size: 0.8rem; border-top: 1px solid #1a1a1e;">
+        &copy; 2025 Lara Marie Andres | <a href="mailto:larandres1994@gmail.com" style="color: #777; text-decoration: none;">Kontakt</a><br>
+        <span style="opacity: 0.5;">Gebaut mit Code, Kaffee & AI.</span>
     </footer>
 
     <script>
-        // Das hier ist der "Magische Beobachter"
-        // Er schaut, ob eine Section im Bild ist.
+        // 1. Scrollytelling Logik
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
                 }
             });
-        }, { threshold: 0.1 }); // Reagiert, wenn 10% des Elements sichtbar sind
+        }, { threshold: 0.1 });
 
-        // Wir sagen dem Beobachter, er soll alle <section> Elemente beobachten
         document.querySelectorAll('section').forEach(section => {
             observer.observe(section);
         });
+
+        // 2. Tab Logik
+        function openTab(tabName) {
+            var contents = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < contents.length; i++) {
+                contents[i].classList.remove("active");
+            }
+            var buttons = document.getElementsByClassName("tab-btn");
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active");
+            event.currentTarget.classList.add("active");
+        }
     </script>
 
 </body>
