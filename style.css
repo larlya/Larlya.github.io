@@ -17,6 +17,10 @@
     --deep-red: #C73E3A;
     --sky: #5586FF;
     
+    /* FARBLOGIK LIGHT MODE */
+    --primary-accent: var(--coral);
+    --secondary-accent: var(--electric-blue);
+    
     /* GRADIENTS */
     --gradient-warm: linear-gradient(135deg, #FF6B5A 0%, #0096FF 100%);
     --gradient-cool: linear-gradient(135deg, #B8B4AC 0%, #5586FF 100%);
@@ -38,6 +42,10 @@ body.dark-mode {
     --warm-gray: #3D3935;
     --text-dark: #FAF7F2;
     --text-muted: #AEA89F;
+    
+    /* FARBLOGIK DARK MODE (konträr) */
+    --primary-accent: var(--electric-blue);
+    --secondary-accent: var(--coral);
 }
 
 /* === GLOBAL RESET === */
@@ -85,7 +93,7 @@ body {
 
 .theme-toggle:hover {
     transform: rotate(180deg) scale(1.1);
-    border-color: var(--coral);
+    border-color: var(--primary-accent);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
@@ -154,6 +162,7 @@ strong {
     display: inline-block;
 }
 
+/* HIGHLIGHT - Light Mode: Blau */
 .highlight {
     background: linear-gradient(to right, transparent 0%, var(--electric-blue) 50%, transparent 100%);
     background-size: 200% 100%;
@@ -165,14 +174,15 @@ strong {
     transition: background-position 0.6s ease;
 }
 
-body.dark-mode .highlight {
-    background: var(--electric-blue);
-    color: #FFFFFF;
-    font-weight: 600;
-}
-
 .highlight:hover {
     background-position: 0 0;
+}
+
+/* HIGHLIGHT - Dark Mode: Coral */
+body.dark-mode .highlight {
+    background: var(--coral);
+    color: #FFFFFF;
+    font-weight: 600;
 }
 
 /* === LAYOUT SECTIONS === */
@@ -230,6 +240,7 @@ section:first-of-type {
     border-bottom: 2px solid var(--warm-gray);
 }
 
+/* TAB BUTTONS - Light Mode: Standard Coral, Hover Blau */
 .tab-btn {
     background: transparent;
     border: 2px solid var(--warm-gray);
@@ -248,22 +259,22 @@ section:first-of-type {
 }
 
 .tab-btn:hover {
-    border-color: var(--electric-blue);
-    background: var(--electric-blue);
+    border-color: var(--secondary-accent);
+    background: var(--secondary-accent);
     color: #FFFFFF;
     transform: translateY(-2px);
 }
 
 .tab-btn.active {
-    background: var(--coral);
+    background: var(--primary-accent);
     color: #FFFFFF;
-    border-color: var(--coral);
+    border-color: var(--primary-accent);
     transform: scale(1.05);
 }
 
 .tab-btn.active:hover {
-    background: var(--electric-blue);
-    border-color: var(--electric-blue);
+    background: var(--secondary-accent);
+    border-color: var(--secondary-accent);
     color: #FFFFFF;
 }
 
@@ -302,6 +313,7 @@ ul.check-list li {
     line-height: 1.6;
 }
 
+/* BULLET POINTS - Light Mode: Initial Blau, Hover Coral */
 ul.check-list li::before {
     content: '✦';
     position: absolute;
@@ -312,8 +324,8 @@ ul.check-list li::before {
     font-size: 1.2rem;
     width: 26px;
     height: 26px;
-    background: var(--coral);
-    color: var(--text-dark);
+    background: var(--electric-blue);
+    color: #FFFFFF;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -321,12 +333,19 @@ ul.check-list li::before {
     transition: all 0.3s ease;
 }
 
+ul.check-list li:hover::before {
+    background: var(--coral);
+    transform: scale(1.15);
+    color: #FFFFFF;
+}
+
+/* BULLET POINTS - Dark Mode: Initial Coral, Hover Blau */
 body.dark-mode ul.check-list li::before {
     background: var(--coral);
     color: #FFFFFF;
 }
 
-ul.check-list li:hover::before {
+body.dark-mode ul.check-list li:hover::before {
     background: var(--electric-blue);
     transform: scale(1.15);
     color: #FFFFFF;
@@ -353,7 +372,7 @@ ul.check-list li:hover::before {
 }
 
 .profile-img:hover {
-    outline-color: var(--coral);
+    outline-color: var(--primary-accent);
     transform: scale(1.05) rotate(3deg);
 }
 
@@ -376,13 +395,14 @@ ul.check-list li:hover::before {
 }
 
 /* === BUTTON === */
+/* BUTTONS - Light Mode: Standard Coral, Hover Blau */
 .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     margin-top: var(--spacing-m);
     padding: 18px 38px;
-    background: var(--deep-red);
+    background: var(--primary-accent);
     color: #FFFFFF;
     font-family: 'Space Mono', monospace;
     font-size: 0.95rem;
@@ -397,10 +417,14 @@ ul.check-list li:hover::before {
 }
 
 .btn:hover {
-    background: var(--electric-blue);
+    background: var(--secondary-accent);
     color: #FFFFFF;
     transform: translateY(-4px);
     box-shadow: 0 12px 28px rgba(0, 150, 255, 0.4);
+}
+
+body.dark-mode .btn:hover {
+    box-shadow: 0 12px 28px rgba(255, 107, 90, 0.4);
 }
 
 /* === SPECIAL BOX === */
@@ -436,7 +460,7 @@ footer a {
 }
 
 footer a:hover {
-    color: var(--coral);
+    color: var(--primary-accent);
 }
 
 /* === RESPONSIVE === */
