@@ -3,23 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lara Marie Andres | Kommunikation & Strategie</title>
+    <title>Lara Marie Andres | Strategie & Kommunikation</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&display=swap" rel="stylesheet">
+
     <style>
+        /* --- FARBPALETTE & VARIABLES --- */
+        :root {
+            --bg-dark: #09090b;      /* Fast schwarz, leichter Blaustich */
+            --text-main: #f4f4f5;    /* Helles Weiß-Grau */
+            --text-muted: #a1a1aa;   /* Gedimmtes Grau */
+            
+            /* Der neue "Stilvolle Verlauf" (Orange zu Lila) */
+            --gradient-main: linear-gradient(135deg, #FF9F43 0%, #ff6b6b 50%, #6c5ce7 100%);
+            
+            /* Glas-Effekt Hintergrund für Boxen */
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
         /* --- GRUNDGERÜST --- */
         body {
-            background-color: #0f0f11;
-            color: #e0e0e0;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Manrope', sans-serif; /* Die neue Schrift */
             margin: 0;
             padding: 0;
-            line-height: 1.7;
+            line-height: 1.8; /* Etwas mehr Luft zwischen Zeilen */
             overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(108, 92, 231, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(255, 107, 107, 0.08) 0%, transparent 40%);
+            /* Das erzeugt ganz dezente farbige "Blobs" im Hintergrund */
         }
 
         .container {
-            max-width: 720px;
+            max-width: 750px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 25px;
+        }
+
+        /* --- TYPOGRAFIE --- */
+        h1 {
+            font-size: 3.8rem; /* Größer & Plakativer */
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+        
+        /* Der Text-Verlauf Effekt */
+        .text-gradient {
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: var(--text-muted);
+            margin-top: 0;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
         }
 
         /* --- SCROLLY SECTIONS --- */
@@ -28,10 +88,10 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            margin-bottom: 60px;
+            margin-bottom: 80px;
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s ease-out;
+            transform: translateY(40px);
+            transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1); /* Weichere Animation */
         }
 
         section.visible {
@@ -39,133 +99,122 @@
             transform: translateY(0);
         }
 
-        /* --- TYPOGRAFIE --- */
-        h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            letter-spacing: -0.05em;
-            margin-bottom: 1rem;
-            color: #fff;
-        }
-
-        h2 {
-            font-size: 1.8rem;
-            font-weight: 300;
-            color: #a0a0a0;
-            margin-top: 0;
-        }
-
-        h3 {
-            font-size: 1.4rem;
-            color: #fff;
-            margin-bottom: 15px;
-        }
-
-        p {
-            font-size: 1.15rem;
-            color: #ccc;
-            margin-bottom: 1.5rem;
-        }
-
-        .highlight {
-            color: #c7aae4;
-            font-weight: 600;
-        }
-
-        /* --- INTERAKTIVES MENÜ (TABS) --- */
+        /* --- GLASSMORPHISM CARD (Das Menü) --- */
         .tabs-container {
-            background: #1a1a1e;
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            border: 1px solid #333;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px); /* Der Milchglas-Effekt */
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px; /* Rundere Ecken */
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
         }
 
+        /* --- TABS NAVIGATION --- */
         .tab-buttons {
             display: flex;
-            gap: 25px;
-            margin-bottom: 25px;
-            border-bottom: 1px solid #333;
-            padding-bottom: 10px;
+            gap: 15px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 15px;
+            overflow-x: auto; /* Scrollbar auf sehr kleinen Handys */
         }
 
         .tab-btn {
-            background: none;
+            background: transparent;
             border: none;
-            color: #777;
-            font-size: 1.1rem;
+            color: var(--text-muted);
+            font-size: 1.05rem;
             font-weight: 600;
             cursor: pointer;
-            padding: 5px 0;
-            position: relative;
-            transition: color 0.3s;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
             font-family: inherit;
+            white-space: nowrap;
         }
 
-        .tab-btn:hover { color: #fff; }
-        .tab-btn.active { color: #c7aae4; }
-        
-        /* Unterstrich Animation */
-        .tab-btn.active::after {
+        .tab-btn:hover {
+            background: rgba(255,255,255,0.05);
+            color: #fff;
+        }
+
+        .tab-btn.active {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        /* Kleiner farbiger Punkt im aktiven Button */
+        .tab-btn.active::before {
             content: '';
-            position: absolute;
-            bottom: -11px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: #c7aae4;
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--gradient-main);
+            margin-right: 8px;
         }
 
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-
+        /* --- INHALTE & LISTEN --- */
+        .tab-content { display: none; animation: slideUp 0.4s ease-out; }
         .tab-content.active { display: block; }
 
-        @keyframes fadeIn {
+        @keyframes slideUp {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- Listen Styles --- */
         ul.check-list { list-style: none; padding: 0; }
         ul.check-list li {
-            margin-bottom: 12px;
-            padding-left: 25px;
+            margin-bottom: 16px;
+            padding-left: 30px;
             position: relative;
+            color: var(--text-main);
         }
+        ul.check-list li strong { color: #fff; font-weight: 600; }
+        
+        /* Das Häkchen wird jetzt auch bunt */
         ul.check-list li::before {
             content: '✓';
-            color: #c7aae4;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             position: absolute;
             left: 0;
-            font-weight: bold;
+            font-weight: 800;
+            font-size: 1.2em;
         }
 
         /* --- BUTTON --- */
         .btn {
             display: inline-block;
-            margin-top: 20px;
-            padding: 15px 30px;
-            border: 1px solid #c7aae4;
-            color: #c7aae4;
+            margin-top: 25px;
+            padding: 16px 40px;
+            background: var(--gradient-main); /* Button ist jetzt bunt */
+            color: #fff;
+            font-weight: 700;
             text-decoration: none;
-            border-radius: 4px;
-            transition: all 0.3s;
+            border-radius: 50px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.2);
         }
         .btn:hover {
-            background: #c7aae4;
-            color: #0f0f11;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 107, 107, 0.4);
+        }
+
+        /* --- HIGHLIGHT TEXT IM FLIEẞTEXT --- */
+        .highlight {
+            color: #fff;
+            border-bottom: 2px solid rgba(255, 107, 107, 0.5); /* Unterstreichung statt nur Farbe */
         }
 
         /* Handy Anpassung */
         @media (max-width: 600px) {
-            h1 { font-size: 2.5rem; }
-            .tab-buttons { flex-direction: column; gap: 10px; border-bottom: none; }
-            .tab-btn { text-align: left; padding: 10px; background: #222; border-radius: 6px; }
-            .tab-btn.active { background: #333; color: #c7aae4; }
-            .tab-btn.active::after { display: none; }
+            h1 { font-size: 2.8rem; }
+            .tabs-container { padding: 25px; }
+            .tab-btn { font-size: 0.9rem; }
         }
     </style>
 </head>
