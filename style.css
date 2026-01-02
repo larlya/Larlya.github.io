@@ -415,10 +415,9 @@ body.dark-mode ul.check-list li:hover::before {
     text-transform: uppercase;
     letter-spacing: 0.08em;
     text-decoration: none;
+    border: none;  /* ← Diese Zeile hinzufügen */
+    cursor: pointer;  /* ← Und diese */
     border-radius: var(--radius-pill);
-    transition: all 0.4s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    position: relative;
 }
 
 .btn:hover {
