@@ -173,6 +173,48 @@
             color: var(--text-main);
         }
         ul.check-list li strong { color: #fff; font-weight: 600; }
+
+        /* --- PROFIL HEADER (Hinter den Kulissen) --- */
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 30px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.profile-img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%; /* Macht das Bild rund */
+    object-fit: cover;  /* Verhindert Verzerren */
+    border: 3px solid rgba(255, 107, 107, 0.5); /* Farbiger Rand */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.profile-stats {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+.stat-row {
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Emoji Styling */
+.stat-icon { font-size: 1.2rem; min-width: 25px; }
+
+/* Mobile Anpassung für das Profil */
+@media (max-width: 600px) {
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+}
         
         /* Das Häkchen wird jetzt auch bunt */
         ul.check-list li::before {
@@ -269,24 +311,47 @@
     </ul>
 </div>
                 <div id="behind-scenes" class="tab-content">
+    
+    <div class="profile-header">
+        <img src="profil.jpg" alt="Lara Marie Andres" class="profile-img">
+        
+        <div class="profile-stats">
+            <div class="stat-row">
+                <span class="stat-icon">👋</span> 
+                <span>Lara, 31 Jahre</span>
+            </div>
+            <div class="stat-row">
+                <span class="stat-icon">📍</span> 
+                <span>Ursprüngliche Saarländerin (ja, ich kenne die Witze)</span>
+            </div>
+            <div class="stat-row">
+                <span class="stat-icon">🇬🇧</span> 
+                <span>Englisch: C1/C2 (My happy place)</span>
+            </div>
+            <div class="stat-row">
+                <span class="stat-icon">🇫🇷</span> 
+                <span>Französisch: A2 (Reicht für Urlaub & Baguette)</span>
+            </div>
+        </div>
+    </div>
+
     <p><strong>Mein Mindset & Motivation:</strong></p>
     
     <ul class="check-list">
-        <li><strong>Haltung:</strong> Ich verstehe mich als Feministin und blicke interkulturell auf die Welt. Mein Studium (Soziologie/North American Studies) hat meinen Blick für gesellschaftliche Strukturen und Diversität geschärft.</li>
+        <li><strong>Haltung:</strong> Ich verstehe mich als Feministin und blicke <span class="highlight">intersektional</span> auf die Welt. Mein Studium hat meinen Blick für gesellschaftliche Strukturen geschärft.</li>
         
-        <li><strong>Engagement:</strong> Queere Rechte sind mir ein echtes Anliegen. Beim <span class="highlight">SCHMIT-Z e.V.</span> habe ich gelernt, wie wichtig Sichtbarkeit ist – und wie man sie kommunikativ schafft.</li>
+        <li><strong>Engagement:</strong> Queere Rechte sind mir ein echtes Anliegen. Beim SCHMIT-Z e.V. habe ich gelernt, wie wichtig Sichtbarkeit ist – und wie man sie schafft.</li>
         
         <li><strong>Tech-Neugier:</strong> Ich bin der Typ Mensch, der wissen will, <i>wie</i> es funktioniert. Deshalb der VHS-Kurs in Programmierung. Ich nutze Tools nicht nur, ich durchdringe sie gerne.</li>
     </ul>
 
     <div style="margin-top: 25px; background: rgba(255,255,255,0.03); padding: 15px; border-radius: 8px; border-left: 3px solid #c7aae4;">
-        <strong>Und ganz privat?</strong><br>
+        <strong>Und sonst so?</strong><br>
         <span style="color: var(--text-muted); font-size: 0.95rem;">
         Bin ich sehr tierlieb und gerne draußen. Ich glaube daran, dass Empathie und ein respektvolles Miteinander die Basis für alles sind – im Team genauso wie im Leben.
         </span>
     </div>
 </div>
-
                <div id="perfect-match" class="tab-content">
     <p><strong>Was ich suche:</strong></p>
     <p>
