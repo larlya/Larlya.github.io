@@ -432,8 +432,6 @@ if (canvas && ctx) {
     }
 
     // Start Game
-    startBtn.addEventListener('click', startGame);
-
 function startGame() {
     gameActive = true;
     score = 0;
@@ -453,10 +451,38 @@ function startGame() {
     canvas.classList.add('active');
     startBtn.style.display = 'none';
     
-    // ← WICHTIG: Canvas-Größe NACH dem Anzeigen setzen!
-    resizeCanvas();
+    // WICHTIG: Warte auf nächsten Frame, damit Browser die Größe berechnen kann
+    requestAnimationFrame(() => {
+        resizeCanvas();
+        
+        // Jetzt erst Timer und Spawning starten
+        let spawnRate = 800;
+        const spawnInterval = setInterval(() => {
+            if (gameActive) {
+                fallingSkills.push(new Skill());
+                
+                if (timeLeft % 10 === 0) {
+                    difficulty += 0.15;
+                    spawnRate = Math.max(400, spawnRate - 50);
+                }
+            } else {
+                clearInterval(spawnInterval);
+            }
+        }, spawnRate);
 
-    // Rest des Codes bleibt gleich...;
+        timerInterval = setInterval(() => {
+            timeLeft--;
+            updatePowerUps();
+            document.getElementById('timer').textContent = timeLeft;
+            
+            if (timeLeft <= 0) {
+                endGame();
+            }
+        }, 1000);
+
+        gameLoop();
+    });
+}
 
         // Spawn skills with increasing difficulty
         let spawnRate = 800;
