@@ -66,19 +66,45 @@
             </p>
         </section>
 
-       <!-- LONG FLOW RIBBON: ONE CONTINUOUS SVG (insert after hero section) -->
-<svg class="flow-ribbon" viewBox="0 0 1440 2000" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+      <!-- FLOWING RIBBON: Winds through the page -->
+<svg class="flow-ribbon" viewBox="0 0 1440 3000" preserveAspectRatio="xMidYMin slice" aria-hidden="true" focusable="false">
   <defs>
-    <linearGradient id="flowGradient" x1="0" x2="1" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#0096FF" stop-opacity="0.95"/>
-      <stop offset="50%" stop-color="#0096FF" stop-opacity="0.35"/>
-      <stop offset="100%" stop-color="#FF6B5A" stop-opacity="0.95"/>
+    <linearGradient id="ribbonGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF6B5A" stop-opacity="1"/>
+      <stop offset="50%" stop-color="#FF8F7A" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#0096FF" stop-opacity="1"/>
     </linearGradient>
-    <!-- soften the edge of the ribbon -->
-    <filter id="ribbonBlur" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="8" />
+    <filter id="ribbonBlur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="12" />
     </filter>
   </defs>
+
+  <!-- Main flowing ribbon path -->
+  <path class="ribbon-path" d="
+    M 1600 -100
+    Q 1200 100, 900 200
+    Q 500 350, 300 500
+    Q 50 700, 200 900
+    Q 400 1100, 700 1200
+    Q 1100 1350, 1400 1500
+    Q 1550 1650, 1300 1800
+    Q 900 2000, 500 2100
+    Q 100 2200, -100 2400
+    L -100 2600
+    Q 200 2500, 600 2400
+    Q 1000 2300, 1400 2100
+    Q 1600 1950, 1500 1750
+    Q 1300 1500, 900 1350
+    Q 500 1200, 300 1050
+    Q 100 900, 150 700
+    Q 200 500, 500 350
+    Q 900 150, 1300 50
+    Q 1500 -50, 1600 -100
+    Z"
+    fill="url(#ribbonGradient)"
+    filter="url(#ribbonBlur)"
+  />
+</svg>
 
   <!-- Big, flowing path that snakes down the page -->
   <path d="M1440 80
@@ -801,12 +827,13 @@
             });
         } // end supportsCanvas
 
-// subtle parallax for the long flow ribbon
+// Smooth parallax for the flow ribbon
 (function ribbonParallax() {
   const ribbon = document.querySelector('.flow-ribbon');
   if (!ribbon) return;
 
   let ticking = false;
+  
   function onScroll() {
     if (!ticking) {
       window.requestAnimationFrame(update);
@@ -815,16 +842,20 @@
   }
 
   function update() {
-    const scroll = window.scrollY || window.pageYOffset;
-    // gentle upward movement (negative means slower than scroll)
-    const offset = Math.round(scroll * -0.08);
-    ribbon.style.transform = `translate3d(0, ${offset}px, 0)`;
+    const scrollY = window.scrollY || window.pageYOffset;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollProgress = Math.min(scrollY / docHeight, 1);
+    
+    // Ribbon bewegt sich langsamer als Scroll (Parallax) + leichte Rotation
+    const translateY = scrollY * 0.3;
+    const rotate = scrollProgress * 5; // Leichte Rotation beim Scrollen
+    
+    ribbon.style.transform = `translateY(${translateY}px) rotate(${rotate}deg)`;
     ticking = false;
   }
 
   window.addEventListener('scroll', onScroll, { passive: true });
-  // initial update so it aligns if page already scrolled
-  update();
+  update(); // Initial call
 })();
         
     }); // end DOMContentLoaded
