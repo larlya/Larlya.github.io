@@ -183,6 +183,181 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+
+        // === CATCH THE SKILLS GAME ===
+const skills = [
+    'TYPO3', 'WordPress', 'HTML/CSS', 'Adobe CC', 'Canva',
+    'Strategie', 'Storytelling', 'Social Media', 'Content Mgmt',
+    'Projektmanagement', 'Teamwork', 'Resilienz'
+];
+
+let gameActive = false;
+let score = 0;
+let timeLeft = 30;
+let fallingSkills = [];
+let animationId;
+let timerInterval;
+
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas ? canvas.getContext('2d') : null;
+const startBtn = document.getElementById('startGame');
+
+if (canvas && ctx) {
+    // Canvas responsive setup
+    function resizeCanvas() {
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    // Skill Object
+    class Skill {
+        constructor() {
+            this.text = skills[Math.floor(Math.random() * skills.length)];
+            this.x = Math.random() * (canvas.width - 100);
+            this.y = -50;
+            this.speed = 1 + Math.random() * 2;
+            this.width = 120;
+            this.height = 40;
+            this.color = Math.random() > 0.5 ? '#FF6B5A' : '#0096FF';
+        }
+
+        update() {
+            this.y += this.speed;
+        }
+
+        draw() {
+            // Shadow
+            ctx.shadowColor = 'rgba(0, 0, 0, 0.1)';
+            ctx.shadowBlur = 10;
+            ctx.shadowOffsetY = 4;
+
+            // Box
+            ctx.fillStyle = this.color;
+            ctx.beginPath();
+            ctx.roundRect(this.x, this.y, this.width, this.height, 20);
+            ctx.fill();
+
+            // Text
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = 'bold 14px "Space Mono", monospace';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(this.text, this.x + this.width / 2, this.y + this.height / 2);
+        }
+
+        isClicked(mouseX, mouseY) {
+            return mouseX > this.x && mouseX < this.x + this.width &&
+                   mouseY > this.y && mouseY < this.y + this.height;
+        }
+    }
+
+    // Start Game
+    startBtn.addEventListener('click', startGame);
+
+    function startGame() {
+        gameActive = true;
+        score = 0;
+        timeLeft = 30;
+        fallingSkills = [];
+        
+        document.getElementById('score').textContent = score;
+        document.getElementById('timer').textContent = timeLeft;
+        document.getElementById('gameOver').classList.add('hidden');
+        
+        canvas.classList.add('active');
+        startBtn.style.display = 'none';
+
+        // Spawn skills every 800ms
+        const spawnInterval = setInterval(() => {
+            if (gameActive) {
+                fallingSkills.push(new Skill());
+            } else {
+                clearInterval(spawnInterval);
+            }
+        }, 800);
+
+        // Timer countdown
+        timerInterval = setInterval(() => {
+            timeLeft--;
+            document.getElementById('timer').textContent = timeLeft;
+            if (timeLeft <= 0) {
+                endGame();
+            }
+        }, 1000);
+
+        gameLoop();
+    }
+
+    // Game Loop
+    function gameLoop() {
+        if (!gameActive) return;
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Update and draw skills
+        fallingSkills.forEach((skill, index) => {
+            skill.update();
+            skill.draw();
+
+            // Remove if off screen
+            if (skill.y > canvas.height) {
+                fallingSkills.splice(index, 1);
+            }
+        });
+
+        animationId = requestAnimationFrame(gameLoop);
+    }
+
+    // Mouse Click to Catch
+    canvas.addEventListener('click', (e) => {
+        if (!gameActive) return;
+
+        const rect = canvas.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+
+        fallingSkills.forEach((skill, index) => {
+            if (skill.isClicked(mouseX, mouseY)) {
+                score += 10;
+                document.getElementById('score').textContent = score;
+                fallingSkills.splice(index, 1);
+
+                // Visual feedback
+                ctx.fillStyle = 'rgba(255, 217, 61, 0.5)';
+                ctx.beginPath();
+                ctx.arc(mouseX, mouseY, 30, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        });
+    });
+
+    // End Game
+    function endGame() {
+        gameActive = false;
+        clearInterval(timerInterval);
+        cancelAnimationFrame(animationId);
+
+        let message = '';
+        if (score >= 200) message = '🔥 Wow! Du bist ein Talent-Scout!';
+        else if (score >= 100) message = '✨ Nicht schlecht! Wir sollten reden.';
+        else message = '💪 Guter Versuch! Nochmal?';
+
+        document.getElementById('finalScore').textContent = `Score: ${score}`;
+        document.getElementById('gameMessage').textContent = message;
+        document.getElementById('gameOver').classList.remove('hidden');
+    }
+
+    // Restart
+    window.restartGame = function() {
+        startBtn.style.display = 'inline-flex';
+        canvas.classList.remove('active');
+        startGame();
+    }
+}
+
         
     </script>
 
