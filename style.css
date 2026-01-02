@@ -190,6 +190,10 @@ body.dark-mode .highlight {
     transition: background-position 0.6s ease;
 }
 
+.body.dark-mode .highlight:hover {
+    background-position: 0 0;
+}
+
 /* === LAYOUT SECTIONS === */
 section {
     min-height: 50vh;
