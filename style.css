@@ -764,48 +764,43 @@ font-size: 2.5rem;
 }
 
 
-/* --- Flow Ribbon (long, scrollable background band) --- */
-body { position: relative; } /* sicherstellen, dass das SVG relativ zum body positioniert werden kann */
-
-/* Das Ribbon selbst */
+/* --- Flow Ribbon (winding background band) --- */
 .flow-ribbon {
-  position: absolute;        /* im Dokumentfluss, aber positioniert */
-  top: 40px;                 /* Start etwas unter dem Header/Hero; passe an */
+  position: fixed;              /* Fixed statt absolute für smooth scrolling */
+  top: 0;
   left: 0;
-  width: 100%;
-  height: 1800px;            /* sorgt dafür, dass Ribbon lang ist; anpassen falls nötig */
-  pointer-events: none;      /* keine Interaktion */
-  z-index: 0;                /* hinter Inhalten (die z-index:1 haben) */
-  transform: translate3d(0,0,0);
-  will-change: transform;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  overflow: visible;
+}
+
+.flow-ribbon .ribbon-path {
+  opacity: 0.12;
+  transform-origin: center center;
+  transition: opacity 0.4s ease;
+}
+
+/* Dark mode: etwas kräftiger */
+body.dark-mode .flow-ribbon .ribbon-path {
+  opacity: 0.18;
+  filter: url(#ribbonBlur) drop-shadow(0 0 40px rgba(0, 150, 255, 0.3));
 }
 
 /* Stelle sicher, dass Inhalt über dem Ribbon liegt */
-.container, section, .tabs-container, .game-container {
+.container, 
+section, 
+.tabs-container, 
+.game-container,
+footer {
   position: relative;
   z-index: 1;
 }
 
-/* Sichtbarkeit / Stärke */
-.flow-ribbon path {
-  mix-blend-mode: normal;    /* alternativ: screen / overlay für andere Effekte */
-  transition: opacity 260ms linear;
-  opacity: 0.18;             /* default light visibility */
-}
-
-/* Dark mode: etwas stärker sichtbar */
-body.dark-mode .flow-ribbon path {
-  opacity: 0.26;
-  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.25));
-}
-
-/* Responsive: auf kleineren Viewports die Höhe reduzieren, damit es nicht zu dominant wird */
-@media (max-width: 900px) {
-  .flow-ribbon { height: 1200px; top: 20px; }
-  .flow-ribbon path { opacity: 0.14; }
-}
-
-@media (max-width: 480px) {
-  .flow-ribbon { height: 900px; top: 10px; }
-  .flow-ribbon path { opacity: 0.12; }
+/* Responsive */
+@media (max-width: 768px) {
+  .flow-ribbon .ribbon-path {
+    opacity: 0.08;
+  }
 }
