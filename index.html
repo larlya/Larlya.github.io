@@ -279,7 +279,7 @@
         // (der Spiel-Code ist hier unverändert übernommen)
         const skillCategories = {
             hard: {
-                skills: ['TYPO3', 'WordPress', 'HTML/CSS', 'Adobe CC', 'Canva Pro', 'MS Office', 'Projektmgmt', 'Content-CMS', 'SEO', 'Analytics'],
+                skills: ['TYPO3', 'WordPress', 'HTML/CSS', 'Adobe CC', 'Canva Pro', 'MS Office', 'Projekt Mgmt', 'Content Mgmt', 'SEO', 'Analytics', 'Javascript'],
                 color: '#0096FF',
                 points: 10
             },
@@ -289,7 +289,7 @@
                 points: 15
             },
             languages: {
-                skills: ['Englisch C2', 'Französisch A2', 'Deutsch Native'],
+                skills: ['Englisch C1', 'Französisch A2', 'Deutsch Native'],
                 color: '#B8B4AC',
                 points: 20
             },
@@ -616,13 +616,13 @@ function endGame() {
                 let message = '';
                 let rank = '';
                 
-                if (score >= 2000) { 
+                if (score >= 2500) { 
                     message = '🏆 LEGENDARY! Du bist ein absoluter Profi!';
                     rank = 'S-Tier';
-                } else if (score >= 1500) { 
+                } else if (score >= 2000) { 
                     message = '🔥 AMAZING! Wir sollten definitiv reden!';
                     rank = 'A-Tier';
-                } else if (score >= 1000) { 
+                } else if (score >= 1500) { 
                     message = '✨ GREAT! Solide Performance!';
                     rank = 'B-Tier';
                 } else { 
