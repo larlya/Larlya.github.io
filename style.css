@@ -779,43 +779,67 @@ font-size: 2.5rem;
 }
 
 
-/* --- Flow Ribbon (winding background band) --- */
-.flow-ribbon {
-  position: fixed;              /* Fixed statt absolute für smooth scrolling */
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: 0;
-  overflow: visible;
+/* === FLOWING RIBBON BACKGROUND === */
+.ribbon-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
 }
 
-.flow-ribbon .ribbon-path {
-  opacity: 0.12;
-  transform-origin: center center;
-  transition: opacity 0.4s ease;
+.ribbon-layer {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.15;
+    transition: transform 0.1s ease-out;
 }
 
-/* Dark mode: etwas kräftiger */
-body.dark-mode .flow-ribbon .ribbon-path {
-  opacity: 0.18;
-  filter: url(#ribbonBlur) drop-shadow(0 0 40px rgba(0, 150, 255, 0.3));
+.ribbon-1 {
+    width: 800px;
+    height: 800px;
+    background: linear-gradient(135deg, #FF6B5A 0%, #FF8F7A 100%);
+    top: -200px;
+    right: -200px;
 }
 
-/* Stelle sicher, dass Inhalt über dem Ribbon liegt */
-.container, 
-section, 
-.tabs-container, 
-.game-container,
-footer {
-  position: relative;
-  z-index: 1;
+.ribbon-2 {
+    width: 600px;
+    height: 600px;
+    background: linear-gradient(135deg, #0096FF 0%, #5586FF 100%);
+    top: 600px;
+    left: -150px;
 }
 
-/* Responsive */
+.ribbon-3 {
+    width: 700px;
+    height: 700px;
+    background: linear-gradient(135deg, #FF6B5A 30%, #0096FF 100%);
+    top: 1400px;
+    right: -100px;
+}
+
+/* Dark mode: etwas stärker */
+body.dark-mode .ribbon-layer {
+    opacity: 0.12;
+}
+
+/* Content über Ribbon */
+.container, section, .tabs-container, .game-container, footer {
+    position: relative;
+    z-index: 1;
+}
+
 @media (max-width: 768px) {
-  .flow-ribbon .ribbon-path {
-    opacity: 0.08;
-  }
+    .ribbon-layer {
+        opacity: 0.1;
+        filter: blur(60px);
+    }
+    .ribbon-1 { width: 500px; height: 500px; }
+    .ribbon-2 { width: 400px; height: 400px; }
+    .ribbon-3 { width: 450px; height: 450px; }
 }
