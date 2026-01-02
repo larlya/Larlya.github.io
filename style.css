@@ -184,10 +184,10 @@ body.dark-mode .highlight {
     background-size: 200% 100%;
     background-position: 100% 0;
     padding: 2px 8px;
-    border-radius: 4px
+    border-radius: 4px;  /* ← Semikolon hinzugefügt */
     color: #FFFFFF;
     font-weight: 600;
-    transition: background-position 0.6s ease;  /* ← Diese Zeile hinzufügen! */
+    transition: background-position 0.6s ease;
 }
 
 /* === LAYOUT SECTIONS === */
