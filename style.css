@@ -530,16 +530,16 @@ footer a:hover {
 
 /* === MINI GAME ENHANCED === */
 .game-container {
-    position: relative;
-    max-width: 100%;
-    margin: 0;              /* nicht zentrieren mit auto */
-    text-align: left;       /* Inhalt linksbündig innerhalb der .container */
-    padding: 0;
+    /* gleiche Max-Breite wie .container, zentriert in der Seite */
+    max-width: 880px;
+    margin: 0 auto;      /* zentriert die Block-Spalte, Inhalt innen linksbündig */
+    text-align: left;    /* Inhalte linksbündig innerhalb der Spalte */
+    padding: 0 0 40px 0; /* optional: Abstand nach unten */
 }
 
 .game-stats {
     display: flex;
-    justify-content: flex-start;  /* links ausrichten */
+    justify-content: flex-start;   /* linksbündig */
     gap: var(--spacing-m);
     margin-bottom: var(--spacing-m);
     font-family: 'Space Mono', monospace;
@@ -597,25 +597,27 @@ footer a:hover {
     100% { transform: scale(1); opacity: 1; }
 }
 
+/* Canvas wrapper: Canvas links (keine horizontale Zentrierung) */
 .canvas-wrapper {
     max-width: 100%;
-    margin: 0;                    /* kein zentrierendes auto */
+    margin: 0;                      /* kein auto zentrieren */
     display: flex;
-    justify-content: flex-start;  /* Canvas linksbündig im container */
+    justify-content: flex-start;    /* Canvas linksbündig in der column */
     position: relative;
-    gap: 24px;                    /* optional: Abstand zwischen Stats und Canvas falls nötig */
+    gap: 24px;                      /* optionaler horizontaler Abstand */
 }
 
-/* Ensure canvas area is visible by default (prevents it disappearing during play) */
+/* Canvas: sichtbar und links innerhalb der column */
 #gameCanvas {
     width: 100%;
     max-width: 750px;
     height: 650px;
-    background: var(--off-white);
-    border: 3px solid var(--warm-gray);
+    background: var(--surface);
+    border: 3px solid var(--card-border);
     border-radius: var(--radius-soft);
     cursor: crosshair;
-    display: block; /* <-- wichtig: sichtbar halten */
+    display: block;
+    margin: 0;                       /* wichtig: kein auto */
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
