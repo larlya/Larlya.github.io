@@ -11,18 +11,14 @@
 
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Kleine Inline-Styles zur Sicherstellung, dass das Canvas sichtbar ist (minimal) */
-        .canvas-wrapper { position: relative; width: 100%; height: 360px; margin: 20px auto; max-width: 900px; }
-        #gameCanvas { width: 100%; height: 100%; display: block; background: transparent; border-radius: 12px; }
-        .combo-display { position: absolute; left: 50%; top: 10px; transform: translateX(-50%); font-weight: 700; color: #FFD93D; text-shadow: 0 2px 8px rgba(0,0,0,0.6); opacity: 0; transition: opacity 0.2s ease; }
-        .combo-display.show { opacity: 1; }
-        .achievement-badge { display: inline-block; background: #222; color: #fff; padding: 6px 10px; border-radius: 999px; margin: 4px; font-size: 0.85rem; }
-        .badges-earned .badge { display:inline-block; background:#eee; padding:4px 8px; margin:4px; border-radius:8px; }
-        .game-over.hidden { display:none; }
-        .game-over { text-align:center; padding: 16px; background: rgba(255,255,255,0.03); border-radius: 10px; }
-        /* minimal focus for the theme toggle */
-        .theme-toggle { outline: none; border: none; }
-    </style>
+  /* Minimale Inline-Styles: nur Canvas-bezogene Dinge (keine Badge- oder Modal-Overrides) */
+  .canvas-wrapper { position: relative; width: 100%; height: 360px; margin: 20px auto; max-width: 900px; }
+  #gameCanvas { width: 100%; height: 100%; display: block; background: transparent; border-radius: 12px; }
+  .combo-display { position: absolute; left: 50%; top: 10px; transform: translateX(-50%); font-weight: 700; color: #FFD93D; text-shadow: 0 2px 8px rgba(0,0,0,0.6); opacity: 0; transition: opacity 0.2s ease; }
+  .combo-display.show { opacity: 1; }
+  /* Keine Badges-/Modal-Overrides hier — das regelt style.css */
+  .theme-toggle { outline: none; border: none; }
+</style>
 </head>
 <body>
 
