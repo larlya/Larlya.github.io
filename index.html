@@ -117,35 +117,37 @@
 
 <!-- MINI GAME SECTION -->
 <section style="min-height: 100vh; position: relative;">
-    <h3>Bonus Level</h3>
-    <h2>Can you catch my skills?</h2>
-    <p>Klicke auf die fallenden Skills! Baue Combos auf für mehr Punkte! 🎯</p>
-    
-    <div class="game-container">
-        <div class="game-stats">
-            <div class="stat">Score: <span id="score">0</span></div>
-            <div class="stat">Combo: <span id="combo">0</span>x</div>
-            <div class="stat">Time: <span id="timer">45</span>s</div>
+    <div class="container">  <!-- ← Container hinzugefügt -->
+        <h3 style="text-align: center;">Bonus Level</h3>
+        <h2 style="text-align: center;">Can you catch my skills?</h2>
+        <p style="text-align: center;">Klicke auf die fallenden Skills! Baue Combos auf für mehr Punkte! 🎯</p>
+        
+        <div class="game-container">
+            <div class="game-stats">
+                <div class="stat">Score: <span id="score">0</span></div>
+                <div class="stat">Combo: <span id="combo">0</span>x</div>
+                <div class="stat">Time: <span id="timer">45</span>s</div>
+            </div>
+            
+            <div class="achievements" id="achievements"></div>
+            
+            <div class="canvas-wrapper">
+                <canvas id="gameCanvas"></canvas>
+                <div id="comboDisplay" class="combo-display"></div>
+            </div>
+            
+            <button class="btn" id="startGame" style="margin-top: 20px;">
+                Start Game 🎮
+            </button>
+            
+            <div id="gameOver" class="game-over hidden">
+                <h2 id="finalScore"></h2>
+                <p id="gameMessage"></p>
+                <div id="badgesEarned" class="badges-earned"></div>
+                <button class="btn" onclick="restartGame()">Play Again</button>
+            </div>
         </div>
-        
-        <div class="achievements" id="achievements"></div>
-        
-        <div class="canvas-wrapper">
-            <canvas id="gameCanvas"></canvas>
-            <div id="comboDisplay" class="combo-display"></div>
-        </div>
-        
-        <button class="btn" id="startGame" style="margin-top: 20px;">
-            Start Game 🎮
-        </button>
-        
-        <div id="gameOver" class="game-over hidden">
-            <h2 id="finalScore"></h2>
-            <p id="gameMessage"></p>
-            <div id="badgesEarned" class="badges-earned"></div>
-            <button class="btn" onclick="restartGame()">Play Again</button>
-        </div>
-    </div>
+    </div>  <!-- ← Container schließen -->
 </section>
     
 
@@ -432,24 +434,29 @@ if (canvas && ctx) {
     // Start Game
     startBtn.addEventListener('click', startGame);
 
-    function startGame() {
-        gameActive = true;
-        score = 0;
-        combo = 0;
-        maxCombo = 0;
-        timeLeft = 45;
-        difficulty = 1;
-        fallingSkills = [];
-        particles = [];
-        achievementsUnlocked.clear();
-        powerUps = { doubleScore: 0, slowMotion: 0, magnet: 0 };
-        
-        updateUI();
-        document.getElementById('gameOver').classList.add('hidden');
-        document.getElementById('achievements').innerHTML = '';
-        
-        canvas.classList.add('active');
-        startBtn.style.display = 'none';
+function startGame() {
+    gameActive = true;
+    score = 0;
+    combo = 0;
+    maxCombo = 0;
+    timeLeft = 45;
+    difficulty = 1;
+    fallingSkills = [];
+    particles = [];
+    achievementsUnlocked.clear();
+    powerUps = { doubleScore: 0, slowMotion: 0, magnet: 0 };
+    
+    updateUI();
+    document.getElementById('gameOver').classList.add('hidden');
+    document.getElementById('achievements').innerHTML = '';
+    
+    canvas.classList.add('active');
+    startBtn.style.display = 'none';
+    
+    // ← WICHTIG: Canvas-Größe NACH dem Anzeigen setzen!
+    resizeCanvas();
+
+    // Rest des Codes bleibt gleich...;
 
         // Spawn skills with increasing difficulty
         let spawnRate = 800;
