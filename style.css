@@ -529,17 +529,29 @@ footer a:hover {
 
 
 /* === MINI GAME ENHANCED === */
+.game-section { 
+    /* optional: rustikale Abstände über/unter dem Block */
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
 .game-container {
-    /* gleiche Max-Breite wie .container, zentriert in der Seite */
-    max-width: 880px;
-    margin: 0 auto;      /* zentriert die Block-Spalte, Inhalt innen linksbündig */
-    text-align: left;    /* Inhalte linksbündig innerhalb der Spalte */
-    padding: 0 0 40px 0; /* optional: Abstand nach unten */
+    max-width: 880px;     /* gleiche Breite wie .container oben */
+    margin: 0 auto;       /* zentriert die column auf der Seite */
+    text-align: left;     /* Inhalte innerhalb linksbündig */
+    padding: 0 0 40px 0;  /* optionaler Abstand nach unten */
+}
+
+.game-section h3,
+.game-section h2,
+.game-section p {
+    text-align: left !important;  /* !important überschreibt vorhandene inline text-align */
+    margin-left: 0;
 }
 
 .game-stats {
     display: flex;
-    justify-content: flex-start;   /* linksbündig */
+    justify-content: flex-start;
     gap: var(--spacing-m);
     margin-bottom: var(--spacing-m);
     font-family: 'Space Mono', monospace;
@@ -600,11 +612,11 @@ footer a:hover {
 /* Canvas wrapper: Canvas links (keine horizontale Zentrierung) */
 .canvas-wrapper {
     max-width: 100%;
-    margin: 0;                      /* kein auto zentrieren */
+    margin: 0;                     /* kein auto zentrieren */
     display: flex;
-    justify-content: flex-start;    /* Canvas linksbündig in der column */
+    justify-content: flex-start;   /* linksbündig */
     position: relative;
-    gap: 24px;                      /* optionaler horizontaler Abstand */
+    gap: 24px;
 }
 
 /* Canvas: sichtbar und links innerhalb der column */
@@ -617,8 +629,13 @@ footer a:hover {
     border-radius: var(--radius-soft);
     cursor: crosshair;
     display: block;
-    margin: 0;                       /* wichtig: kein auto */
+    margin: 0;                      /* wichtig: kein auto */
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.game-container .btn {
+    margin-left: 0;
+    display: inline-flex;
 }
 
 /* If you still want an .active class visual, you can animate it — but keep canvas present */
