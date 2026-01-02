@@ -735,3 +735,50 @@ height: 450px;
 font-size: 2.5rem;
 }
 }
+
+
+/* --- Dekorative, dezente Farbstreifen im Seiten-Hintergrund --- */
+/* Fügt semi-transparente Coral- und Blue-Ribbons als Hintergrund-SVG hinzu.
+   Leg diesen Block ans Ende von style.css. */
+
+html, body {
+  height: 100%;
+}
+
+/* make sure body is a positioning context so ::before can sit behind content */
+body {
+  position: relative;
+}
+
+/* light-mode background ribbons */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1; /* hinter allem */
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  /* Data-URI SVG: two soft ribbons (blue top-right, coral bottom-left). Opacity subtle */
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 900' preserveAspectRatio='none'><path d='M1200,0 C1100,150 900,200 700,220 C400,240 200,300 0,450 L0,900 L1440,900 L1440,0 Z' fill='%230096FF' opacity='0.08'/><path d='M0,700 C200,600 400,550 700,520 C950,500 1150,460 1440,400 L1440,900 L0,900 Z' fill='%23FF6B5A' opacity='0.08'/></svg>");
+}
+
+/* dark-mode: slightly stronger ribbons (still subtle) */
+body.dark-mode::before {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 900' preserveAspectRatio='none'><path d='M1200,0 C1100,150 900,200 700,220 C400,240 200,300 0,450 L0,900 L1440,900 L1440,0 Z' fill='%230096FF' opacity='0.12'/><path d='M0,700 C200,600 400,550 700,520 C950,500 1150,460 1440,400 L1440,900 L0,900 Z' fill='%23FF6B5A' opacity='0.12'/></svg>");
+  /* ggf. leichter Kontrast-Boost */
+  background-blend-mode: normal;
+}
+
+/* Feinjustierung (optional):
+   Wenn du möchtest, dass die Ribbons weniger flächig wirken, kannst du die
+   opacity-Werte im SVG oben reduzieren (z.B. 0.06 statt 0.08).
+   Oder in dark-mode auf 0.14 erhöhen. */
+
+/* Optional: reduce visibility on very small screens */
+@media (max-width: 600px) {
+  body::before, body.dark-mode::before {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 900' preserveAspectRatio='none'><path d='M1200,0 C1100,150 900,200 700,220 C400,240 200,300 0,450 L0,900 L1440,900 L1440,0 Z' fill='%230096FF' opacity='0.05'/><path d='M0,700 C200,600 400,550 700,520 C950,500 1150,460 1440,400 L1440,900 L0,900 Z' fill='%23FF6B5A' opacity='0.05'/></svg>");
+  }
+}
