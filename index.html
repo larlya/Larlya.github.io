@@ -828,35 +828,35 @@ function endGame() {
             });
         } // end supportsCanvas
 
-// Smooth parallax for the flow ribbon
+// Parallax for ribbon layers
 (function ribbonParallax() {
-  const ribbon = document.querySelector('.flow-ribbon');
-  if (!ribbon) return;
+    const layers = document.querySelectorAll('.ribbon-layer');
+    if (!layers.length) return;
 
-  let ticking = false;
-  
-  function onScroll() {
-    if (!ticking) {
-      window.requestAnimationFrame(update);
-      ticking = true;
+    let ticking = false;
+
+    function onScroll() {
+        if (!ticking) {
+            window.requestAnimationFrame(update);
+            ticking = true;
+        }
     }
-  }
 
-  function update() {
-    const scrollY = window.scrollY || window.pageYOffset;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const scrollProgress = Math.min(scrollY / docHeight, 1);
-    
-    // Ribbon bewegt sich langsamer als Scroll (Parallax) + leichte Rotation
-    const translateY = scrollY * 0.3;
-    const rotate = scrollProgress * 5; // Leichte Rotation beim Scrollen
-    
-    ribbon.style.transform = `translateY(${translateY}px) rotate(${rotate}deg)`;
-    ticking = false;
-  }
+    function update() {
+        const scrollY = window.scrollY || window.pageYOffset;
+        
+        layers.forEach((layer, index) => {
+            // Jede Ebene bewegt sich unterschiedlich schnell
+            const speed = 0.1 + (index * 0.05);
+            const yOffset = scrollY * speed;
+            layer.style.transform = `translateY(${yOffset}px)`;
+        });
+        
+        ticking = false;
+    }
 
-  window.addEventListener('scroll', onScroll, { passive: true });
-  update(); // Initial call
+    window.addEventListener('scroll', onScroll, { passive: true });
+    update();
 })();
         
     }); // end DOMContentLoaded
