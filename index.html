@@ -3,64 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bewerbung | Lara Marie Andres</title>
+    <title>Lara Marie Andres</title>
     <style>
-        /* Modernes, cleanes CSS */
+        /* --- GRUNDGERÜST --- */
         body {
-            background-color: #1a1a1a; /* Dark Mode Hintergrund */
-            color: #f0f0f0; /* Helle Schrift */
-            font-family: 'Helvetica Neue', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            background-color: #0f0f11; /* Fast Schwarz, sehr edel */
+            color: #e0e0e0;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             margin: 0;
-            text-align: center;
+            padding: 0;
+            line-height: 1.7;
+            overflow-x: hidden; /* Verhindert seitliches Wackeln */
         }
+
+        /* --- LAYOUT --- */
         .container {
-            max-width: 600px;
-            padding: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
+
+        /* Jede Section ist mindestens so hoch wie der halbe Bildschirm,
+           damit man Scroll-Raum hat */
+        section {
+            min-height: 60vh; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-bottom: 50px;
+            /* Startzustand für Animation: Unsichtbar & etwas tiefer */
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease-out; /* Die Dauer des Einblendens */
+        }
+
+        /* Diese Klasse fügt das Javascript hinzu, wenn gescrollt wird */
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- TYPOGRAFIE --- */
         h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            background: linear-gradient(45deg, #ff6b6b, #feca57); /* Farbverlauf */
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        p {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            color: #ccc;
-        }
-        .btn {
-            margin-top: 30px;
-            display: inline-block;
-            padding: 15px 30px;
-            border: 2px solid #fff;
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: -0.05em;
+            margin-bottom: 1rem;
             color: #fff;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 300; /* Dünne Schrift wirkt eleganter */
+            color: #a0a0a0;
+            margin-top: 0;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.15rem;
+            color: #ccc;
+            margin-bottom: 1.5rem;
+            max-width: 600px;
+        }
+
+        /* --- AKZENTE --- */
+        .highlight {
+            color: #c7aae4; /* Ein sanftes Flieder/Lila statt Neon */
+            font-weight: 600;
+        }
+
+        /* --- SKILLS PILLEN (Dezenter) --- */
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 10px;
+        }
+        .skill-tag {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: #bbb;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* --- BUTTON --- */
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 30px;
+            border: 1px solid #c7aae4;
+            color: #c7aae4;
             text-decoration: none;
-            border-radius: 50px; /* Pill-Shape */
-            transition: all 0.3s ease;
+            border-radius: 4px;
+            transition: all 0.3s;
         }
         .btn:hover {
-            background: #fff;
-            color: #1a1a1a;
-            transform: translateY(-5px); /* Schwebe-Effekt */
+            background: #c7aae4;
+            color: #0f0f11;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 50px 0;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #555;
+            border-top: 1px solid #222;
+        }
+
+        /* Handy Anpassung */
+        @media (max-width: 600px) {
+            h1 { font-size: 2.5rem; }
+            section { min-height: auto; padding: 40px 0; }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>Hallo, ich bin Lara Marie Andres.</h1>
-        <p>
-            Dies ist keine normale Bewerbung. Das hier ist der Beweis, dass ich Dinge einfach selbst in die Hand nehme.
-            <br><br>
-            (Und ja, ich habe diese Seite selbst gebaut.)
-        </p>
-        <a href="mailto:larandres1994@gmail.com" class="btn">Sag Hallo 👋</a>
+        
+        <section class="visible" style="min-height: 80vh;">
+            <h2>Hallo, ich bin Lara.</h2>
+            <h1>Kommunikation mit <br>Substanz & Struktur.</h1>
+            <p>
+                Ich verbinde Wissenschaft und Gemeinnützigkeit mit moderner Kommunikation. 
+                Keine Buzzwords, sondern klare Strategien und technische Umsetzung.
+            </p>
+            <p style="font-size: 0.9rem; color: #777;">↓ Bitte scrollen</p>
+        </section>
+
+        <section>
+            <h3>01. Wo ich herkomme</h3>
+            <p>
+                Meine Wurzeln liegen im <span class="highlight">wissenschaftlichen Bereich und in NGOs</span>. 
+                Dort lernt man schnell: Es geht um Inhalte, die verstanden werden müssen, und um Ressourcen, die effizient genutzt werden wollen.
+            </p>
+            <p>
+                Ich mag komplexe Themen. Ich mag es, wenn Dinge Sinn ergeben und wenn Kommunikation nicht nur "laut" ist, sondern ankommt.
+            </p>
+        </section>
+
+        <section>
+            <h3>02. Mein Werkzeugkasten</h3>
+            <p>
+                Ich plane nicht nur, ich setze um. Technische Hürden sehe ich eher als Rätsel, die ich lösen will. Ob CMS-Pflege oder Community Management – ich arbeite mich rein.
+            </p>
+            <div class="skills">
+                <span class="skill-tag">Kommunikationsstrategie</span>
+                <span class="skill-tag">TYPO3 & WordPress</span>
+                <span class="skill-tag">Social Media Management</span>
+                <span class="skill-tag">Technische Problemlösung</span>
+            </div>
+        </section>
+
+        <section>
+            <h3>03. Was ich suche</h3>
+            <p>
+                Ein Team, das motiviert ist. Ich glaube daran, dass man gemeinsam bessere Lösungen findet als allein im stillen Kämmerlein. Ich suche eine Umgebung, in der Mitdenken erwünscht ist und wir gemeinsam an einem Strang ziehen.
+            </p>
+            <a href="mailto:deine-email@beispiel.de" class="btn">Kontakt aufnehmen</a>
+        </section>
+
     </div>
+
+    <footer>
+        &copy; 2024 Lara Marie Andres | Gehostet auf GitHub
+    </footer>
+
+    <script>
+        // Das hier ist der "Magische Beobachter"
+        // Er schaut, ob eine Section im Bild ist.
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 }); // Reagiert, wenn 10% des Elements sichtbar sind
+
+        // Wir sagen dem Beobachter, er soll alle <section> Elemente beobachten
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
 
 </body>
 </html>
