@@ -11,25 +11,62 @@
 
     <link rel="stylesheet" href="style.css">
     <style>
-  /* Minimale Inline-Styles: nur Canvas-bezogene Dinge (keine Badge- oder Modal-Overrides) */
+  /* Minimale Inline-Styles */
   .canvas-wrapper { position: relative; width: 100%; height: 360px; margin: 20px auto; max-width: 900px; }
   #gameCanvas { width: 100%; height: 100%; display: block; background: transparent; border-radius: 12px; }
   .combo-display { position: absolute; left: 50%; top: 10px; transform: translateX(-50%); font-weight: 700; color: #FFD93D; text-shadow: 0 2px 8px rgba(0,0,0,0.6); opacity: 0; transition: opacity 0.2s ease; }
   .combo-display.show { opacity: 1; }
-  /* Keine Badges-/Modal-Overrides hier — das regelt style.css */
-  .theme-toggle { outline: none; border: none; }
+  .theme-toggle, .lang-toggle { outline: none; border: none; }
+  
+  /* Language Toggle Button */
+  .lang-toggle {
+      position: fixed;
+      top: 30px;
+      right: 100px;
+      z-index: 10000;
+      background: var(--toggle-bg, rgba(255,255,255,0.9));
+      border: 1px solid rgba(0,0,0,0.06);
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-dark, #1A1816);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  }
+  .lang-toggle:hover {
+      transform: scale(1.06);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+  }
+  @media (max-width: 768px) {
+      .lang-toggle {
+          top: 20px;
+          right: 80px;
+          width: 48px;
+          height: 48px;
+          font-size: 0.75rem;
+      }
+  }
 </style>
 </head>
 <body>
 
-    <!-- Dark Mode Toggle Button: Moon (visible in light) + Sun (visible in dark) -->
+    <!-- Language Toggle Button -->
+    <button class="lang-toggle" id="langToggle" aria-label="Switch Language">
+        <span class="lang-text">EN</span>
+    </button>
+
+    <!-- Dark Mode Toggle Button -->
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle Dark Mode">
-        <!-- Moon icon (visible in light mode) -->
         <svg class="moon-svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true" focusable="false">
             <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
         </svg>
-
-        <!-- Sun icon (visible in dark mode) -->
         <svg class="sun-svg" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
             <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="12" r="4" fill="currentColor"/>
@@ -48,20 +85,20 @@
     <div class="container">
         
         <section class="visible" style="min-height: 90vh;">
-            <h2>Hallo, ich bin Lara.</h2>
+            <h2 data-i18n="hero-greeting">Hallo, ich bin Lara.</h2>
             
-            <h1>Kommunikation mit <br><span class="text-gradient">Substanz & Struktur.</span></h1>
+            <h1><span data-i18n="hero-title">Kommunikation mit</span> <br><span class="text-gradient" data-i18n="hero-title-gradient">Substanz & Struktur.</span></h1>
             
-            <p>
+            <p data-i18n="hero-p1">
                 Ich verbinde <span class="highlight">Wissenschaft &amp; NGO-Arbeit</span> mit moderner Strategie. 
                 Mein Fokus liegt darauf, komplexe Inhalte verständlich zu machen und digitale Prozesse zu schaffen, die dem Team den Rücken freihalten.
             </p>
             
-            <p>
-                Als <strong>Interim Head of Communications</strong> und Digital Native weiß ich: Gute Kommunikation braucht beides – das Gefühl für die richtige Story und das technische Verständniss.
+            <p data-i18n="hero-p2">
+                Als <strong>Interim Head of Communications</strong> und Digital Native weiß ich: Gute Kommunikation braucht beides – das Gefühl für die richtige Story und das technische Verständnis.
             </p>
 
-            <p class="scroll-hint" onclick="document.querySelector('section:nth-of-type(2)').scrollIntoView({behavior: 'smooth'})" style="font-size: 0.9rem; margin-top: 50px; opacity: 0.6;">
+            <p class="scroll-hint" data-i18n="scroll-hint" onclick="document.querySelector('section:nth-of-type(2)').scrollIntoView({behavior: 'smooth'})" style="font-size: 0.9rem; margin-top: 50px; opacity: 0.6;">
             ↓ Mehr erfahren
             </p>
         </section>
@@ -73,71 +110,31 @@
     <div class="ribbon-layer ribbon-3"></div>
 </div>
 
-  <!-- Main flowing ribbon path -->
-  <path class="ribbon-path" d="
-    M 1600 -100
-    Q 1200 100, 900 200
-    Q 500 350, 300 500
-    Q 50 700, 200 900
-    Q 400 1100, 700 1200
-    Q 1100 1350, 1400 1500
-    Q 1550 1650, 1300 1800
-    Q 900 2000, 500 2100
-    Q 100 2200, -100 2400
-    L -100 2600
-    Q 200 2500, 600 2400
-    Q 1000 2300, 1400 2100
-    Q 1600 1950, 1500 1750
-    Q 1300 1500, 900 1350
-    Q 500 1200, 300 1050
-    Q 100 900, 150 700
-    Q 200 500, 500 350
-    Q 900 150, 1300 50
-    Q 1500 -50, 1600 -100
-    Z"
-    fill="url(#ribbonGradient)"
-    filter="url(#ribbonBlur)"
-  />
-</svg>
-
-  <!-- Big, flowing path that snakes down the page -->
-  <path d="M1440 80
-           C1200 160 1000 240 820 320
-           C640 400 520 520 380 620
-           C240 720 140 820 40 920
-           L40 1400
-           L1440 1400
-           L1440 80 Z"
-        fill="url(#flowGradient)"
-        opacity="0.18"
-        filter="url(#ribbonBlur)"></path>
-</svg>
-
         <section>
-            <h3>Lerne mich kennen</h3>
-            <p style="margin-bottom: 30px;">Klick dich durch meine Facetten:</p>
+            <h3 data-i18n="section-title">Lerne mich kennen</h3>
+            <p style="margin-bottom: 30px;" data-i18n="section-subtitle">Klick dich durch meine Facetten:</p>
             
             <div class="tabs-container">
                 <div class="tab-buttons">
-                    <button class="tab-btn active" onclick="openTab(event, 'hard-facts')">Hard Facts</button>
-                    <button class="tab-btn" onclick="openTab(event, 'behind-scenes')">Hinter den Kulissen</button>
-                    <button class="tab-btn" onclick="openTab(event, 'perfect-match')">Perfect Match</button>
+                    <button class="tab-btn active" onclick="openTab(event, 'hard-facts')" data-i18n="tab-hard-facts">Hard Facts</button>
+                    <button class="tab-btn" onclick="openTab(event, 'behind-scenes')" data-i18n="tab-behind-scenes">Hinter den Kulissen</button>
+                    <button class="tab-btn" onclick="openTab(event, 'perfect-match')" data-i18n="tab-perfect-match">Perfect Match</button>
                 </div>
 
                 <div id="hard-facts" class="tab-content active">
-                    <p><strong>Zuletzt (11/2021 bis 12/2025):</strong><br>
+                    <p data-i18n="hf-intro"><strong>Zuletzt (11/2021 bis 12/2025):</strong><br>
                     Kommunikationsmanagerin bei <span class="highlight">EUniWell (Universität zu Köln)</span>.</p>
                     
                     <ul class="check-list">
-                        <li><strong>Rollen-Evolution:</strong> Start als Wissenschaftliche Hilfskraft, dann <strong>Kommunikationsmanagerin</strong> mit Übernahme zusätzlicher Aufgabenbereiche<br>
+                        <li data-i18n="hf-role"><strong>Rollen-Evolution:</strong> Start als Wissenschaftliche Hilfskraft, dann <strong>Kommunikationsmanagerin</strong> mit Übernahme zusätzlicher Aufgabenbereiche<br>
                             • 1 Jahr als <strong>Interim Head of Communications</strong> (Internationale Teamleitung)<br>
                             • 1 Jahr als <strong>Social Media Lead</strong> (Strategie &amp; Content).
                         </li>
-                        <li><strong>Ausbildung:</strong> <span class="highlight">Master of Arts (M.A.)</span> North American Studies<br>
+                        <li data-i18n="hf-education"><strong>Ausbildung:</strong> <span class="highlight">Master of Arts (M.A.)</span> North American Studies<br>
                             (Universität zu Köln, Abschlussnote 1,4).
                         </li>
-                        <li><strong>Tech-Stack:</strong> TYPO3, WordPress, Adobe CC, MS Office, Basic Coding (HTML/CSS/Javascript).</li>
-                        <li><strong>Zertifikate:</strong> Storytelling, New Work / Agiles Arbeiten, Projektmanagement.</li>
+                        <li data-i18n="hf-tech"><strong>Tech-Stack:</strong> TYPO3, WordPress, Adobe CC, MS Office, Basic Coding (HTML/CSS/Javascript).</li>
+                        <li data-i18n="hf-certs"><strong>Zertifikate:</strong> Storytelling, New Work / Agiles Arbeiten, Projektmanagement.</li>
                     </ul>
                 </div>
 
@@ -145,40 +142,40 @@
                     <div class="profile-header">
                         <img src="profil.jpg" alt="Lara Marie Andres" class="profile-img">
                         <div class="profile-stats">
-                            <div class="stat-row"><span class="stat-icon">👋</span> <span>Lara Marie Andres, 31 Jahre</span></div>
-                            <div class="stat-row"><span class="stat-icon">📍</span> <span>Köln, geboren im Saarland (kenne alle Witze)</span></div>
-                            <div class="stat-row"><span class="stat-icon">🇬🇧</span> <span>Englisch: C1/C2 (Studium und Arbeit auf Englisch)</span></div>
-                            <div class="stat-row"><span class="stat-icon">🇫🇷</span> <span>Französisch: A2 (Reicht für Baguette)</span></div>
+                            <div class="stat-row"><span class="stat-icon">👋</span> <span data-i18n="bs-name">Lara Marie Andres, 31 Jahre</span></div>
+                            <div class="stat-row"><span class="stat-icon">📍</span> <span data-i18n="bs-location">Köln, geboren im Saarland (kenne alle Witze)</span></div>
+                            <div class="stat-row"><span class="stat-icon">🇬🇧</span> <span data-i18n="bs-english">Englisch: C1/C2 (Studium und Arbeit auf Englisch)</span></div>
+                            <div class="stat-row"><span class="stat-icon">🇫🇷</span> <span data-i18n="bs-french">Französisch: A2 (Reicht für Baguette)</span></div>
                         </div>
                     </div>
 
-                    <p><strong>Mein Mindset & Motivation:</strong></p>
+                    <p data-i18n="bs-mindset-title"><strong>Mein Mindset & Motivation:</strong></p>
                     <ul class="check-list">
-                        <li><strong>Haltung:</strong> Ich verstehe mich als Feministin und blicke <span class="highlight">intersektional</span> auf die Welt. Mein Studium hat meinen Blick für gesellschaftliche Zusammenhänge geschärft.</li>
-                        <li><strong>Engagement:</strong> Queere Rechte sind mir ein echtes Anliegen. Beim SCHMIT-Z e.V. habe ich gelernt, wie wichtig Sichtbarkeit ist – und wie man sie schafft.</li>
-                        <li><strong>Tech-Neugier:</strong> Ich bin der Typ Mensch, der wissen will, <i>wie</i> es funktioniert. Deshalb der VHS-Kurs in Programmierung. Ich nutze Tools nicht nur, ich denke sie mit.</li>
+                        <li data-i18n="bs-mindset-1"><strong>Haltung:</strong> Ich verstehe mich als Feministin und blicke <span class="highlight">intersektional</span> auf die Welt. Mein Studium hat meinen Blick für gesellschaftliche Zusammenhänge geschärft.</li>
+                        <li data-i18n="bs-mindset-2"><strong>Engagement:</strong> Queere Rechte sind mir ein echtes Anliegen. Beim SCHMIT-Z e.V. habe ich gelernt, wie wichtig Sichtbarkeit ist – und wie man sie schafft.</li>
+                        <li data-i18n="bs-mindset-3"><strong>Tech-Neugier:</strong> Ich bin der Typ Mensch, der wissen will, <i>wie</i> es funktioniert. Deshalb der VHS-Kurs in Programmierung. Ich nutze Tools nicht nur, ich denke sie mit.</li>
                     </ul>
 
                     <div class="info-box">                       
-                        <strong>Und sonst so?</strong><br>
-                        <span style="font-size: 0.95rem; opacity: 0.8;">
+                        <strong data-i18n="bs-else-title">Und sonst so?</strong><br>
+                        <span style="font-size: 0.95rem; opacity: 0.8;" data-i18n="bs-else-text">
                         Bin ich sehr tierlieb und gerne draußen. Ich glaube daran, dass Empathie und ein respektvolles Miteinander die Basis für alles sind – im Team genauso wie im Leben.
                         </span>
                     </div>
                 </div>
 
                 <div id="perfect-match" class="tab-content">
-                    <p><strong>Was ich suche:</strong></p>
-                    <p>Köln ist meine Homebase. Aber gute Arbeit macht nicht an der Stadtgrenze halt. Ich suche eine Aufgabe mit <span class="highlight">Wirkung</span>.</p>
+                    <p data-i18n="pm-title"><strong>Was ich suche:</strong></p>
+                    <p data-i18n="pm-intro">Köln ist meine Homebase. Aber gute Arbeit macht nicht an der Stadtgrenze halt. Ich suche eine Aufgabe mit <span class="highlight">Wirkung</span>.</p>
                     
                     <ul class="check-list">
-                        <li><strong>Das Umfeld:</strong> Meine Wurzeln liegen im Non-Profit-Sektor. Aber ich muss dort nicht bleiben. Ein <strong>wertebasiertes Unternehmen</strong> reizt mich genauso.</li>
-                        <li><strong>Ort & Modus:</strong> Ob Köln, Bonn, Düsseldorf oder die Region – für den richtigen Job bin ich natürlich gerne mobil. <strong>Hybrid & Remote</strong> sind für mich möglich.</li>
-                        <li><strong>Die Kultur:</strong> Ich suche ein Team, das "New Work" wirklich lebt. Offenheit, Humor und der Wille, Dinge besser zu machen, sind mir wichtiger als starre Hierarchien.</li>
+                        <li data-i18n="pm-environment"><strong>Das Umfeld:</strong> Meine Wurzeln liegen im Non-Profit-Sektor. Aber ich muss dort nicht bleiben. Ein <strong>wertebasiertes Unternehmen</strong> reizt mich genauso.</li>
+                        <li data-i18n="pm-location"><strong>Ort & Modus:</strong> Ob Köln, Bonn, Düsseldorf oder die Region – für den richtigen Job bin ich natürlich gerne mobil. <strong>Hybrid & Remote</strong> sind für mich möglich.</li>
+                        <li data-i18n="pm-culture"><strong>Die Kultur:</strong> Ich suche ein Team, das "New Work" wirklich lebt. Offenheit, Humor und der Wille, Dinge besser zu machen, sind mir wichtiger als starre Hierarchien.</li>
                     </ul>
                     
                     <div style="margin-top: 30px;">
-                        <a href="mailto:larandres1994@gmail.com" class="btn">Lass uns sprechen →</a>
+                        <a href="mailto:larandres1994@gmail.com" class="btn" data-i18n="pm-cta">Lass uns sprechen →</a>
                     </div>
                 </div>
             </div>
@@ -189,15 +186,15 @@
 <!-- MINI GAME SECTION -->
 <section style="min-height: 100vh; position: relative;">
     <div class="container">
-        <h3 style="text-align: center;">Bonus Level</h3>
-        <h2 style="text-align: center;">Can you catch my skills?</h2>
-        <p style="text-align: center;">Klicke auf die fallenden Skills! Baue Combos auf für mehr Punkte! 🎯</p>
+        <h3 style="text-align: center;" data-i18n="game-title">Bonus Level</h3>
+        <h2 style="text-align: center;" data-i18n="game-subtitle">Can you catch my skills?</h2>
+        <p style="text-align: center;" data-i18n="game-desc">Klicke auf die fallenden Skills! Baue Combos auf für mehr Punkte! 🎯</p>
         
         <div class="game-container">
             <div class="game-stats" style="display:flex; justify-content:center; gap:18px; margin-bottom:10px;">
-                <div class="stat">Score: <span id="score">0</span></div>
-                <div class="stat">Combo: <span id="combo">0</span>x</div>
-                <div class="stat">Time: <span id="timer">45</span>s</div>
+                <div class="stat"><span data-i18n="game-score">Score</span>: <span id="score">0</span></div>
+                <div class="stat"><span data-i18n="game-combo">Combo</span>: <span id="combo">0</span>x</div>
+                <div class="stat"><span data-i18n="game-time">Zeit</span>: <span id="timer">45</span>s</div>
             </div>
             
             <div class="achievements" id="achievements" style="text-align:center;"></div>
@@ -208,7 +205,7 @@
             </div>
             
             <div style="text-align:center;">
-                <button class="btn" id="startGame" style="margin-top: 20px;">
+                <button class="btn" id="startGame" style="margin-top: 20px;" data-i18n="game-start">
                     Start Game 🎮
                 </button>
             </div>
@@ -218,7 +215,7 @@
                 <p id="gameMessage"></p>
                 <div id="badgesEarned" class="badges-earned"></div>
                 <div style="margin-top:12px;">
-                    <button class="btn" id="playAgain">Play Again</button>
+                    <button class="btn" id="playAgain" data-i18n="game-play-again">Play Again</button>
                 </div>
             </div>
         </div>
@@ -227,14 +224,188 @@
     
 
     <footer style="padding: 50px 0; text-align: center; opacity: 0.5; font-size: 0.8rem; border-top: 1px solid var(--border-color);">
-        &copy; 2026 Lara Marie Andres | <a href="mailto:larandres1994@gmail.com" style="color: inherit; text-decoration: none;">Kontakt</a><br>
+        &copy; 2026 Lara Marie Andres | <a href="mailto:larandres1994@gmail.com" style="color: inherit; text-decoration: none;" data-i18n="footer-contact">Kontakt</a><br>
     </footer>
 
     <script>
     // --- All JS initialised after DOMContentLoaded ---
     window.addEventListener('DOMContentLoaded', () => {
 
-        // Scrollytelling (keine Änderungen nötig)
+        // === LANGUAGE SYSTEM ===
+        const translations = {
+            de: {
+                // Hero Section
+                'hero-greeting': 'Hallo, ich bin Lara.',
+                'hero-title': 'Kommunikation mit',
+                'hero-title-gradient': 'Substanz & Struktur.',
+                'hero-p1': 'Ich verbinde <span class="highlight">Wissenschaft & NGO-Arbeit</span> mit moderner Strategie. Mein Fokus liegt darauf, komplexe Inhalte verständlich zu machen und digitale Prozesse zu schaffen, die dem Team den Rücken freihalten.',
+                'hero-p2': 'Als <strong>Interim Head of Communications</strong> und Digital Native weiß ich: Gute Kommunikation braucht beides – das Gefühl für die richtige Story und das technische Verständnis.',
+                'scroll-hint': '↓ Mehr erfahren',
+
+                // Tabs Section
+                'section-title': 'Lerne mich kennen',
+                'section-subtitle': 'Klick dich durch meine Facetten:',
+                'tab-hard-facts': 'Hard Facts',
+                'tab-behind-scenes': 'Hinter den Kulissen',
+                'tab-perfect-match': 'Perfect Match',
+
+                // Hard Facts
+                'hf-intro': '<strong>Zuletzt (11/2021 bis 12/2025):</strong><br>Kommunikationsmanagerin bei <span class="highlight">EUniWell (Universität zu Köln)</span>.',
+                'hf-role': '<strong>Rollen-Evolution:</strong> Start als Wissenschaftliche Hilfskraft, dann <strong>Kommunikationsmanagerin</strong> mit Übernahme zusätzlicher Aufgabenbereiche<br>• 1 Jahr als <strong>Interim Head of Communications</strong> (Internationale Teamleitung)<br>• 1 Jahr als <strong>Social Media Lead</strong> (Strategie & Content).',
+                'hf-education': '<strong>Ausbildung:</strong> <span class="highlight">Master of Arts (M.A.)</span> North American Studies<br>(Universität zu Köln, Abschlussnote 1,4).',
+                'hf-tech': '<strong>Tech-Stack:</strong> TYPO3, WordPress, Adobe CC, MS Office, Basic Coding (HTML/CSS/Javascript).',
+                'hf-certs': '<strong>Zertifikate:</strong> Storytelling, New Work / Agiles Arbeiten, Projektmanagement.',
+
+                // Behind the Scenes
+                'bs-name': 'Lara Marie Andres, 31 Jahre',
+                'bs-location': 'Köln, geboren im Saarland (kenne alle Witze)',
+                'bs-english': 'Englisch: C1/C2 (Studium und Arbeit auf Englisch)',
+                'bs-french': 'Französisch: A2 (Reicht für Baguette)',
+                'bs-mindset-title': '<strong>Mein Mindset & Motivation:</strong>',
+                'bs-mindset-1': '<strong>Haltung:</strong> Ich verstehe mich als Feministin und blicke <span class="highlight">intersektional</span> auf die Welt. Mein Studium hat meinen Blick für gesellschaftliche Zusammenhänge geschärft.',
+                'bs-mindset-2': '<strong>Engagement:</strong> Queere Rechte sind mir ein echtes Anliegen. Beim SCHMIT-Z e.V. habe ich gelernt, wie wichtig Sichtbarkeit ist – und wie man sie schafft.',
+                'bs-mindset-3': '<strong>Tech-Neugier:</strong> Ich bin der Typ Mensch, der wissen will, <i>wie</i> es funktioniert. Deshalb der VHS-Kurs in Programmierung. Ich nutze Tools nicht nur, ich denke sie mit.',
+                'bs-else-title': 'Und sonst so?',
+                'bs-else-text': 'Bin ich sehr tierlieb und gerne draußen. Ich glaube daran, dass Empathie und ein respektvolles Miteinander die Basis für alles sind – im Team genauso wie im Leben.',
+
+                // Perfect Match
+                'pm-title': '<strong>Was ich suche:</strong>',
+                'pm-intro': 'Köln ist meine Homebase. Aber gute Arbeit macht nicht an der Stadtgrenze halt. Ich suche eine Aufgabe mit <span class="highlight">Wirkung</span>.',
+                'pm-environment': '<strong>Das Umfeld:</strong> Meine Wurzeln liegen im Non-Profit-Sektor. Aber ich muss dort nicht bleiben. Ein <strong>wertebasiertes Unternehmen</strong> reizt mich genauso.',
+                'pm-location': '<strong>Ort & Modus:</strong> Ob Köln, Bonn, Düsseldorf oder die Region – für den richtigen Job bin ich natürlich gerne mobil. <strong>Hybrid & Remote</strong> sind für mich möglich.',
+                'pm-culture': '<strong>Die Kultur:</strong> Ich suche ein Team, das "New Work" wirklich lebt. Offenheit, Humor und der Wille, Dinge besser zu machen, sind mir wichtiger als starre Hierarchien.',
+                'pm-cta': 'Lass uns sprechen →',
+
+                // Game Section
+                'game-title': 'Bonus Level',
+                'game-subtitle': 'Can you catch my skills?',
+                'game-desc': 'Klicke auf die fallenden Skills! Baue Combos auf für mehr Punkte! 🎯',
+                'game-start': 'Start Game 🎮',
+                'game-play-again': 'Nochmal spielen',
+                'game-score': 'Score',
+                'game-combo': 'Combo',
+                'game-time': 'Zeit',
+
+                // Game End Messages
+                'game-rank-s': '🏆 LEGENDARY! Du bist ein absoluter Profi!',
+                'game-rank-a': '🔥 AMAZING! Wir sollten definitiv reden!',
+                'game-rank-b': '✨ GREAT! Solide Performance!',
+                'game-rank-c': '💪 Guter Start! Versuch es nochmal!',
+                'game-points': 'Punkte',
+
+                // Footer
+                'footer-contact': 'Kontakt',
+            },
+
+            en: {
+                // Hero Section
+                'hero-greeting': 'Hi, I\'m Lara.',
+                'hero-title': 'Communication with',
+                'hero-title-gradient': 'Substance & Structure.',
+                'hero-p1': 'I combine <span class="highlight">science & NGO work</span> with modern strategy. My focus is on making complex content understandable and creating digital processes that support the team.',
+                'hero-p2': 'As an <strong>Interim Head of Communications</strong> and digital native, I know: Good communication needs both – the feeling for the right story and the technical understanding.',
+                'scroll-hint': '↓ Learn more',
+
+                // Tabs Section
+                'section-title': 'Get to know me',
+                'section-subtitle': 'Click through my facets:',
+                'tab-hard-facts': 'Hard Facts',
+                'tab-behind-scenes': 'Behind the Scenes',
+                'tab-perfect-match': 'Perfect Match',
+
+                // Hard Facts
+                'hf-intro': '<strong>Most recently (11/2021 to 12/2025):</strong><br>Communications Manager at <span class="highlight">EUniWell (University of Cologne)</span>.',
+                'hf-role': '<strong>Role Evolution:</strong> Started as Research Assistant, then <strong>Communications Manager</strong> with additional responsibilities<br>• 1 year as <strong>Interim Head of Communications</strong> (International Team Lead)<br>• 1 year as <strong>Social Media Lead</strong> (Strategy & Content).',
+                'hf-education': '<strong>Education:</strong> <span class="highlight">Master of Arts (M.A.)</span> North American Studies<br>(University of Cologne, Grade 1.4).',
+                'hf-tech': '<strong>Tech Stack:</strong> TYPO3, WordPress, Adobe CC, MS Office, Basic Coding (HTML/CSS/Javascript).',
+                'hf-certs': '<strong>Certificates:</strong> Storytelling, New Work / Agile Methods, Project Management.',
+
+                // Behind the Scenes
+                'bs-name': 'Lara Marie Andres, 31 years',
+                'bs-location': 'Cologne, born in Saarland (I know all the jokes)',
+                'bs-english': 'English: C1/C2 (Studies and work in English)',
+                'bs-french': 'French: A2 (Enough for baguette)',
+                'bs-mindset-title': '<strong>My Mindset & Motivation:</strong>',
+                'bs-mindset-1': '<strong>Attitude:</strong> I identify as a feminist and view the world through an <span class="highlight">intersectional</span> lens. My studies sharpened my understanding of social structures.',
+                'bs-mindset-2': '<strong>Commitment:</strong> Queer rights are important to me. At SCHMIT-Z e.V., I learned how important visibility is – and how to create it.',
+                'bs-mindset-3': '<strong>Tech Curiosity:</strong> I\'m the type who wants to know <i>how</i> things work. That\'s why I took a programming course. I don\'t just use tools, I think them through.',
+                'bs-else-title': 'What else?',
+                'bs-else-text': 'I love animals and being outdoors. I believe that empathy and respectful interaction are the foundation for everything – in teams and in life.',
+
+                // Perfect Match
+                'pm-title': '<strong>What I\'m looking for:</strong>',
+                'pm-intro': 'Cologne is my home base. But good work doesn\'t stop at the city limits. I\'m looking for a role with <span class="highlight">impact</span>.',
+                'pm-environment': '<strong>The Environment:</strong> My roots are in the non-profit sector. But I don\'t have to stay there. A <strong>values-based company</strong> is equally appealing.',
+                'pm-location': '<strong>Location & Mode:</strong> Whether Cologne, Bonn, Düsseldorf or the region – I\'m happy to be mobile for the right job. <strong>Hybrid & Remote</strong> work for me.',
+                'pm-culture': '<strong>The Culture:</strong> I\'m looking for a team that truly lives "New Work". Openness, humor, and the will to improve things matter more to me than rigid hierarchies.',
+                'pm-cta': 'Let\'s talk →',
+
+                // Game Section
+                'game-title': 'Bonus Level',
+                'game-subtitle': 'Can you catch my skills?',
+                'game-desc': 'Click on the falling skills! Build combos for more points! 🎯',
+                'game-start': 'Start Game 🎮',
+                'game-play-again': 'Play Again',
+                'game-score': 'Score',
+                'game-combo': 'Combo',
+                'game-time': 'Time',
+
+                // Game End Messages
+                'game-rank-s': '🏆 LEGENDARY! You\'re an absolute pro!',
+                'game-rank-a': '🔥 AMAZING! We should definitely talk!',
+                'game-rank-b': '✨ GREAT! Solid performance!',
+                'game-rank-c': '💪 Good start! Try again!',
+                'game-points': 'Points',
+
+                // Footer
+                'footer-contact': 'Contact',
+            }
+        };
+
+        let currentLang = localStorage.getItem('lang') || 'de';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('lang', lang);
+            
+            // Update button text (shows the OTHER language as option)
+            document.querySelector('.lang-text').textContent = lang === 'de' ? 'EN' : 'DE';
+            
+            // Update all translatable elements
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+            
+            // Update HTML lang attribute
+            document.documentElement.lang = lang;
+            
+            // Update page title
+            document.title = lang === 'de' ? 'Lara Marie Andres | Portfolio' : 'Lara Marie Andres | Portfolio';
+        }
+
+        function toggleLanguage() {
+            setLanguage(currentLang === 'de' ? 'en' : 'de');
+        }
+
+        // Initialize language system
+        const langToggle = document.getElementById('langToggle');
+        if (langToggle) {
+            langToggle.addEventListener('click', toggleLanguage);
+        }
+        setLanguage(currentLang);
+
+        // Make translations available globally for game messages
+        window.getTranslation = function(key) {
+            return translations[currentLang][key] || key;
+        };
+        window.getCurrentLang = function() {
+            return currentLang;
+        };
+
+        // Scrollytelling
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -255,7 +426,7 @@
             if (evt && evt.currentTarget) evt.currentTarget.classList.add("active");
         };
 
-        // Dark Mode Toggle (stores preference)
+        // Dark Mode Toggle
         const themeToggle = document.getElementById('themeToggle');
         function toggleTheme() {
             document.body.classList.toggle('dark-mode');
@@ -264,7 +435,7 @@
         }
         themeToggle.addEventListener('click', toggleTheme);
 
-        // Lädt gespeicherte Präferenz beim Seitenaufruf
+        // Load saved theme preference
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'dark') {
             document.body.classList.add('dark-mode');
@@ -275,8 +446,7 @@
         }
 
 
-        // === CATCH THE SKILLS GAME - FIXED/ENHANCED VERSION ===
-        // (der Spiel-Code ist hier unverändert übernommen)
+        // === CATCH THE SKILLS GAME ===
         const skillCategories = {
             hard: {
                 skills: ['TYPO3', 'WordPress', 'HTML/CSS', 'Adobe CC', 'Canva Pro', 'MS Office', 'Projekt Mgmt', 'Content Mgmt', 'SEO', 'Analytics', 'Javascript'],
@@ -335,12 +505,10 @@
             'legend': { name: '👑 Legend', threshold: 100 }
         };
 
-        // safety: only run canvas/game code if canvas supported
         function supportsCanvas() {
             return !!(canvas && ctx);
         }
 
-        // helper: rounded rectangle path
         function roundRect(ctx, x, y, w, h, r) {
             const radius = r || 6;
             ctx.beginPath();
@@ -353,14 +521,10 @@
         }
 
         if (supportsCanvas()) {
-            // Canvas setup with retina support
             function resizeCanvas() {
                 const dpr = window.devicePixelRatio || 1;
                 const rect = canvas.getBoundingClientRect() || { width: 600, height: 360 };
-                
-                // Reset transform before resizing
                 ctx.setTransform(1, 0, 0, 1, 0, 0);
-                
                 canvas.width = Math.max(300, Math.floor(rect.width * dpr));
                 canvas.height = Math.max(150, Math.floor(rect.height * dpr));
                 canvas.style.width = rect.width + 'px';
@@ -370,7 +534,6 @@
             resizeCanvas();
             window.addEventListener('resize', resizeCanvas);
 
-            // Particle Effect
             class Particle {
                 constructor(x, y, color) {
                     this.x = x;
@@ -386,7 +549,7 @@
                 update() {
                     this.x += this.vx;
                     this.y += this.vy;
-                    this.vy += 0.3; // Gravity
+                    this.vy += 0.3;
                     this.alpha -= 0.02;
                     this.life--;
                 }
@@ -401,7 +564,6 @@
                 }
             }
 
-            // Enhanced Skill Object
             class Skill {
                 constructor(forcePowerUp = false) {
                     const categories = Object.keys(skillCategories);
@@ -409,7 +571,7 @@
                     
                     if (forcePowerUp) {
                         categoryKey = 'powerups';
-                    } else if (Math.random() < 0.15) { // 15% chance for power-up
+                    } else if (Math.random() < 0.15) {
                         categoryKey = 'powerups';
                     } else {
                         categoryKey = categories[Math.floor(Math.random() * (categories.length - 1))];
@@ -425,24 +587,19 @@
                     this.canvasWidth = rect.width;
                     this.canvasHeight = rect.height;
                     
-                    // Dynamic sizing
                     ctx.font = 'bold 15px "Space Grotesk", sans-serif';
                     const textWidth = ctx.measureText(this.text).width;
                     this.width = Math.max(textWidth + 40, 110);
                     this.height = 50;
                     
-                    // Spawn position
                     this.x = Math.random() * (this.canvasWidth - this.width);
                     this.y = -80;
                     
-                    // Speed based on difficulty
                     this.speed = (1.2 + Math.random() * 1.5) * difficulty;
                     
-                    // Wobble effect
                     this.wobble = Math.random() * Math.PI * 2;
                     this.wobbleSpeed = 0.05 + Math.random() * 0.05;
                     
-                    // Magnet effect
                     this.magnetized = false;
                 }
 
@@ -450,7 +607,6 @@
                     this.y += this.speed * (powerUps.slowMotion > 0 ? 0.5 : 1);
                     this.wobble += this.wobbleSpeed;
                     
-                    // Magnet effect
                     if (powerUps.magnet > 0 && mouseY !== null) {
                         const dx = mouseX - (this.x + this.width / 2);
                         const dy = mouseY - (this.y + this.height / 2);
@@ -469,18 +625,15 @@
                     ctx.save();
                     ctx.translate(this.x + wobbleOffset, this.y);
                     
-                    // Shadow
                     ctx.shadowColor = 'rgba(0, 0, 0, 0.15)';
                     ctx.shadowBlur = 10;
                     ctx.shadowOffsetY = 4;
 
-                    // Glow for power-ups
                     if (this.isPowerUp) {
                         ctx.shadowColor = this.color;
                         ctx.shadowBlur = 20;
                     }
 
-                    // Box with gradient
                     const gradient = ctx.createLinearGradient(0, 0, this.width, 0);
                     gradient.addColorStop(0, this.color);
                     gradient.addColorStop(1, this._adjustColor(this.color, -20));
@@ -489,14 +642,12 @@
                     roundRect(ctx, 0, 0, this.width, this.height, 16);
                     ctx.fill();
 
-                    // Border for magnetized
                     if (this.magnetized) {
                         ctx.strokeStyle = '#FFD93D';
                         ctx.lineWidth = 3;
                         ctx.stroke();
                     }
 
-                    // Text
                     ctx.shadowBlur = 0;
                     ctx.fillStyle = '#FFFFFF';
                     ctx.font = `bold ${this.isPowerUp ? '18px' : '15px'} "Space Grotesk", sans-serif`;
@@ -524,7 +675,6 @@
                 }
             }
 
-            // Game control functions
             function updateUI() {
                 document.getElementById('score').textContent = score;
                 document.getElementById('combo').textContent = combo;
@@ -540,7 +690,7 @@
             function showComboText(text) {
                 comboDisplay.textContent = text;
                 comboDisplay.classList.remove('show');
-                void comboDisplay.offsetWidth; // Trigger reflow
+                void comboDisplay.offsetWidth;
                 comboDisplay.classList.add('show');
                 setTimeout(() => comboDisplay.classList.remove('show'), 900);
             }
@@ -600,40 +750,40 @@
                 document.getElementById('achievements').appendChild(badge);
             }
 
-function endGame() {
-    gameActive = false;
-    if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
-    if (spawnInterval) { clearInterval(spawnInterval); spawnInterval = null; }
-    if (animationId) { cancelAnimationFrame(animationId); animationId = null; }
+            function endGame() {
+                gameActive = false;
+                if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+                if (spawnInterval) { clearInterval(spawnInterval); spawnInterval = null; }
+                if (animationId) { cancelAnimationFrame(animationId); animationId = null; }
 
-    // WICHTIG: Canvas leeren und Skills entfernen
-    fallingSkills = [];
-    particles = [];
-    const rect = canvas.getBoundingClientRect();
-    ctx.clearRect(0, 0, rect.width * 2, rect.height * 2);
-
+                fallingSkills = [];
+                particles = [];
+                const rect = canvas.getBoundingClientRect();
+                ctx.clearRect(0, 0, rect.width * 2, rect.height * 2);
 
                 let message = '';
                 let rank = '';
                 
+                // Use translated messages
+                const pointsWord = window.getTranslation('game-points');
+                
                 if (score >= 2500) { 
-                    message = '🏆 LEGENDARY! Du bist ein absoluter Profi!';
+                    message = window.getTranslation('game-rank-s');
                     rank = 'S-Tier';
                 } else if (score >= 2000) { 
-                    message = '🔥 AMAZING! Wir sollten definitiv reden!';
+                    message = window.getTranslation('game-rank-a');
                     rank = 'A-Tier';
                 } else if (score >= 1500) { 
-                    message = '✨ GREAT! Solide Performance!';
+                    message = window.getTranslation('game-rank-b');
                     rank = 'B-Tier';
                 } else { 
-                    message = '💪 Guter Start! Versuch es nochmal!';
+                    message = window.getTranslation('game-rank-c');
                     rank = 'C-Tier';
                 }
 
-                document.getElementById('finalScore').textContent = `${score} Punkte (${rank})`;
+                document.getElementById('finalScore').textContent = `${score} ${pointsWord} (${rank})`;
                 document.getElementById('gameMessage').textContent = message;
                 
-                // Show badges
                 const badgesDiv = document.getElementById('badgesEarned');
                 badgesDiv.innerHTML = '';
                 if (achievementsUnlocked.size > 0) {
@@ -661,7 +811,6 @@ function endGame() {
                 const rect = canvas.getBoundingClientRect();
                 ctx.clearRect(0, 0, rect.width, rect.height);
 
-                // Update and draw skills
                 for (let i = fallingSkills.length - 1; i >= 0; i--) {
                     const skill = fallingSkills[i];
                     skill.update(mouseX, mouseY);
@@ -673,7 +822,6 @@ function endGame() {
                     }
                 }
 
-                // Update and draw particles
                 for (let i = particles.length - 1; i >= 0; i--) {
                     const p = particles[i];
                     p.update();
@@ -684,7 +832,6 @@ function endGame() {
                 animationId = requestAnimationFrame(gameLoop);
             }
 
-            // Interaction Handler
             let mouseX = null;
             let mouseY = null;
 
@@ -710,25 +857,19 @@ function endGame() {
                     }
                 }
 
-                let caught = false;
-
                 for (let i = fallingSkills.length - 1; i >= 0; i--) {
                     const skill = fallingSkills[i];
                     if (skill.isClicked(clickX, clickY)) {
-                        caught = true;
                         
-                        // Handle power-ups
                         if (skill.isPowerUp) {
                             activatePowerUp(skill.text);
                         } else {
-                            // Normal skill
                             const points = skill.basePoints * (1 + combo * 0.1) * (powerUps.doubleScore > 0 ? 2 : 1);
                             score += Math.floor(points);
                             combo++;
                             
                             if (combo > maxCombo) maxCombo = combo;
                             
-                            // Combo display
                             if (combo >= 5) {
                                 showComboText(`${combo}x COMBO!`);
                             }
@@ -737,18 +878,12 @@ function endGame() {
                             updateUI();
                         }
                         
-                        // Particles
                         for (let p = 0; p < 15; p++) {
-                            particles.push(new Particle(
-                                clickX, 
-                                clickY, 
-                                skill.color
-                            ));
+                            particles.push(new Particle(clickX, clickY, skill.color));
                         }
                         
                         fallingSkills.splice(i, 1);
                         
-                        // Reset combo timer
                         clearTimeout(comboTimer);
                         comboTimer = setTimeout(resetCombo, 2000);
                         break;
@@ -759,7 +894,6 @@ function endGame() {
             canvas.addEventListener('click', handleInteraction);
             canvas.addEventListener('touchstart', handleInteraction, { passive: false });
 
-            // Start Game
             function startGame() {
                 if (gameActive) return;
                 gameActive = true;
@@ -784,7 +918,6 @@ function endGame() {
 
                 resizeCanvas();
 
-                // spawn interval (uses setInterval reference stored globally so we can clear it)
                 let currentSpawnRate = 800;
                 spawnInterval = setInterval(() => {
                     if (!gameActive) {
@@ -795,13 +928,11 @@ function endGame() {
                     fallingSkills.push(new Skill());
                 }, currentSpawnRate);
 
-                // timer
                 timerInterval = setInterval(() => {
                     timeLeft--;
                     updatePowerUps();
                     document.getElementById('timer').textContent = timeLeft;
                     
-                    // Gradually increase difficulty every 10 seconds
                     if (timeLeft % 10 === 0 && timeLeft > 0) {
                         difficulty += 0.15;
                     }
@@ -811,14 +942,11 @@ function endGame() {
                     }
                 }, 1000);
 
-                // Kick off game loop
                 gameLoop();
             }
 
-            // Button bindings
             startBtn.addEventListener('click', startGame);
             playAgainBtn.addEventListener('click', () => {
-                // Restart proper
                 if (timerInterval) clearInterval(timerInterval);
                 if (spawnInterval) clearInterval(spawnInterval);
                 if (animationId) cancelAnimationFrame(animationId);
@@ -826,38 +954,37 @@ function endGame() {
                 startBtn.style.display = 'none';
                 startGame();
             });
-        } // end supportsCanvas
-
-// Parallax for ribbon layers
-(function ribbonParallax() {
-    const layers = document.querySelectorAll('.ribbon-layer');
-    if (!layers.length) return;
-
-    let ticking = false;
-
-    function onScroll() {
-        if (!ticking) {
-            window.requestAnimationFrame(update);
-            ticking = true;
         }
-    }
 
-    function update() {
-        const scrollY = window.scrollY || window.pageYOffset;
-        
-        layers.forEach((layer, index) => {
-            // Jede Ebene bewegt sich unterschiedlich schnell
-            const speed = 0.1 + (index * 0.05);
-            const yOffset = scrollY * speed;
-            layer.style.transform = `translateY(${yOffset}px)`;
-        });
-        
-        ticking = false;
-    }
+        // Parallax for ribbon layers
+        (function ribbonParallax() {
+            const layers = document.querySelectorAll('.ribbon-layer');
+            if (!layers.length) return;
 
-    window.addEventListener('scroll', onScroll, { passive: true });
-    update();
-})();
+            let ticking = false;
+
+            function onScroll() {
+                if (!ticking) {
+                    window.requestAnimationFrame(update);
+                    ticking = true;
+                }
+            }
+
+            function update() {
+                const scrollY = window.scrollY || window.pageYOffset;
+                
+                layers.forEach((layer, index) => {
+                    const speed = 0.1 + (index * 0.05);
+                    const yOffset = scrollY * speed;
+                    layer.style.transform = `translateY(${yOffset}px)`;
+                });
+                
+                ticking = false;
+            }
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            update();
+        })();
         
     }); // end DOMContentLoaded
     </script>
