@@ -9,6 +9,8 @@
 --warm-gray: #D8D4CC;
 --text-dark: #1A1816;
 --text-muted: #6B6660;
+--surface: var(--off-white);
+--card-border: var(--warm-gray);
 
 /* TOGGLE ICON */
 --toggle-bg: rgba(255,255,255,0.9);
@@ -50,6 +52,8 @@ body.dark-mode {
 --warm-gray: #3D3935;
 --text-dark: #FAF7F2;
 --text-muted: #AEA89F;
+--surface: var(--off-white);
+--card-border: var(--warm-gray);
 
 /* TOGGLE ICON DARK */
 --toggle-bg: rgba(255,255,255,0.03);
@@ -63,6 +67,8 @@ body.dark-mode {
 --modal-border: rgba(255,255,255,0.06);
 --modal-shadow: 0 40px 80px rgba(0,0,0,0.6);
 }
+
+
 
 /* === GLOBAL RESET === */
 * {
@@ -677,27 +683,42 @@ animation: comboFlash 0.6s ease-out;
 100% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
 }
 
-/* Modal: uses theme variables so it adapts to light/dark */
+/* === GAME OVER MODAL - FIXED === */
 .game-over {
-position: fixed;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-background: var(--surface);                 /* card / modal surface (changes with theme) */
-color: var(--text-dark);                    /* text color (changes with theme) */
-border: 3px solid var(--primary-accent);    /* accent border */
-border-radius: var(--radius-soft);
-padding: var(--spacing-l);
-text-align: center;
-z-index: 10001;                             /* hoch setzen, damit es über allem liegt */
-box-shadow: var(--modal-shadow);            /* uses theme shadow variable */
-max-width: 90%;
-min-width: 300px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--cream);
+    color: var(--text-dark);
+    border: 3px solid var(--primary-accent);
+    border-radius: var(--radius-soft);
+    padding: var(--spacing-l);
+    text-align: center;
+    z-index: 10001;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    width: 90%;
 }
 
-/* hidden state */
 .game-over.hidden {
-display: none;
+    display: none !important;
+}
+
+.game-over h2 {
+    color: var(--primary-accent);
+    margin-bottom: var(--spacing-s);
+    font-size: 1.8rem;
+}
+
+.game-over p {
+    color: var(--text-muted);
+    margin-bottom: var(--spacing-m);
+}
+
+body.dark-mode .game-over {
+    background: var(--off-white);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
 }
 
 /* ensure inner badges/pills are readable in both themes */
@@ -706,12 +727,6 @@ display: none;
 background: var(--surface);
 border: 2px solid var(--card-border);
 color: var(--text-dark);
-}
-
-/* heading style */
-.game-over h2 {
-color: var(--primary-accent);
-margin-bottom: var(--spacing-s);
 }
 
 .badges-earned {
