@@ -18,41 +18,6 @@
   .combo-display.show { opacity: 1; }
   .theme-toggle, .lang-toggle { outline: none; border: none; }
   
-  /* Language Toggle Button */
-  .lang-toggle {
-      position: fixed;
-      top: 30px;
-      right: 100px;
-      z-index: 10000;
-      background: var(--toggle-bg, rgba(255,255,255,0.9));
-      border: 1px solid rgba(0,0,0,0.06);
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--text-dark, #1A1816);
-      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-  }
-  .lang-toggle:hover {
-      transform: scale(1.06);
-      box-shadow: 0 10px 28px rgba(0,0,0,0.12);
-  }
-  @media (max-width: 768px) {
-      .lang-toggle {
-          top: 20px;
-          right: 80px;
-          width: 48px;
-          height: 48px;
-          font-size: 0.75rem;
-      }
-  }
 </style>
 </head>
 <body>
