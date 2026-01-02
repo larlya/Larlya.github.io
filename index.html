@@ -801,35 +801,30 @@
             });
         } // end supportsCanvas
 
-// optional: subtle parallax for ribbons
-(function initRibbonParallax() {
-  const ribbons = Array.from(document.querySelectorAll('.ribbon'));
-  if (!ribbons.length) return;
-
-  // per-ribbon speed (negative = moves slower than scroll)
-  ribbons.forEach((r, i) => r.dataset.speed = (i === 0 ? -0.12 : i === 1 ? -0.05 : 0.06));
+// subtle parallax for the long flow ribbon
+(function ribbonParallax() {
+  const ribbon = document.querySelector('.flow-ribbon');
+  if (!ribbon) return;
 
   let ticking = false;
   function onScroll() {
     if (!ticking) {
-      window.requestAnimationFrame(updateRibbons);
+      window.requestAnimationFrame(update);
       ticking = true;
     }
   }
-  function updateRibbons() {
-    const scrolled = window.scrollY || window.pageYOffset;
-    ribbons.forEach(r => {
-      const speed = parseFloat(r.dataset.speed) || 0;
-      // compute translateY based on viewport offset of element to make movement subtle
-      const rect = r.getBoundingClientRect();
-      const offset = (rect.top + (window.innerHeight * 0.2)) * speed;
-      r.style.transform = `translate3d(0, ${offset}px, 0)`;
-    });
+
+  function update() {
+    const scroll = window.scrollY || window.pageYOffset;
+    // gentle upward movement (negative means slower than scroll)
+    const offset = Math.round(scroll * -0.08);
+    ribbon.style.transform = `translate3d(0, ${offset}px, 0)`;
     ticking = false;
   }
+
   window.addEventListener('scroll', onScroll, { passive: true });
-  // initial update
-  updateRibbons();
+  // initial update so it aligns if page already scrolled
+  update();
 })();
         
     }); // end DOMContentLoaded
