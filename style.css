@@ -175,23 +175,23 @@ letter-spacing: -0.02em;
 }
 
 h1 {
-font-size: clamp(2.5rem, 6vw, 4.2rem);
-margin-bottom: var(--spacing-m);
-position: relative;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    margin-bottom: var(--spacing-m);
+    position: relative;
 }
 
 h2 {
-font-size: clamp(1.8rem, 5vw, 2.8rem);
-margin-bottom: var(--spacing-s);
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    margin-bottom: var(--spacing-s);
 }
 
 h3 {
-font-size: 1.1rem;
-text-transform: uppercase;
-letter-spacing: 0.12em;
-font-weight: 700;
-color: var(--text-muted);
-margin-bottom: var(--spacing-s);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-bottom: var(--spacing-s);
 }
 
 p {
