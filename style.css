@@ -1121,3 +1121,47 @@ body.dark-mode .ribbon-layer {
         grid-template-columns: 1fr;
     }
 }
+
+
+
+/* === INLINE HIGHLIGHT LINKS === */
+.highlight-link {
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.highlight-link:hover {
+    text-decoration: none;
+}
+
+.highlight-link .highlight {
+    cursor: pointer;
+}
+
+.highlight-link:hover .highlight {
+    background-position: 0 0;
+}
+
+/* Regular links in text (like SCHMIT-Z) */
+.check-list a.highlight-link {
+    color: var(--text-dark);
+    font-weight: 600;
+    border-bottom: 2px solid var(--primary-accent);
+    padding-bottom: 1px;
+}
+
+.check-list a.highlight-link:hover {
+    color: var(--primary-accent);
+    border-bottom-color: var(--secondary-accent);
+}
+
+body.dark-mode .check-list a.highlight-link {
+    color: var(--text-dark);
+    border-bottom-color: var(--electric-blue);
+}
+
+body.dark-mode .check-list a.highlight-link:hover {
+    color: var(--electric-blue);
+    border-bottom-color: var(--coral);
+}
