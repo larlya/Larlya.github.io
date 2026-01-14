@@ -110,6 +110,16 @@
                         <li data-i18n="hf-tech"><strong>Tech-Stack:</strong> TYPO3, WordPress, Adobe CC, MS Office, Basic Coding (HTML/CSS/Javascript).</li>
                         <li data-i18n="hf-certs"><strong>Zertifikate:</strong> Storytelling, New Work / Agiles Arbeiten, Projektmanagement.</li>
                     </ul>
+                    <div style="margin-top: 30px; padding-top: 20px; border-top: 2px solid var(--warm-gray);">
+                        <a href="Lebenslauf_Lara_Andres.pdf" download class="btn" style="display: inline-flex; align-items: center; gap: 8px;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            <span data-i18n="download-cv">Lebenslauf herunterladen (PDF)</span>
+                        </a>
+                    </div>
                 </div>
 
                 <div id="behind-scenes" class="tab-content">
@@ -122,11 +132,27 @@
                         <li data-i18n="bs-mindset-3"><strong>Tech-Neugier:</strong> Ich bin der Typ Mensch, der wissen will, <i>wie</i> es funktioniert. Deshalb der VHS-Kurs in Programmierung. Ich nutze Tools nicht nur, ich denke sie mit.</li>
                     </ul>
 
-                    <div class="info-box">                       
-                        <strong data-i18n="bs-else-title">Und sonst so?</strong><br>
-                        <span style="font-size: 0.95rem; opacity: 0.8;" data-i18n="bs-else-text">
-                        Bin ich sehr tierlieb und gerne draußen. Ich glaube daran, dass Empathie und ein respektvolles Miteinander die Basis für alles sind – im Team genauso wie im Leben.
-                        </span>
+                    <div class="info-box" style="padding: var(--spacing-l);">                       
+                        <strong data-i18n="bs-else-title">Und sonst so?</strong>
+                        
+                        <p style="font-size: 0.95rem; margin: 12px 0 20px 0;" data-i18n="bs-else-text">
+                            Ich bin sehr tierlieb und gerne draußen unterwegs. Kreativ bin ich beim Töpfern und Linolschnitt tätig. Meine große Reiseliebe kommt aus meinem interkulturellen Interesse – neue Orte und Menschen inspirieren mich.
+                        </p>
+                        
+                        <div class="photo-gallery">
+                            <div class="photo-item">
+                                <img src="foto_natur.jpg" alt="Draußen in der Natur" class="gallery-img">
+                                <p class="photo-caption" data-i18n="photo-nature">Outdoor-Liebe 🌲</p>
+                            </div>
+                            <div class="photo-item">
+                                <img src="foto_kreativ.jpg" alt="Kreative Arbeit" class="gallery-img">
+                                <p class="photo-caption" data-i18n="photo-creative">Kreativ tätig 🎨</p>
+                            </div>
+                            <div class="photo-item">
+                                <img src="foto_reise.jpg" alt="Auf Reisen" class="gallery-img">
+                                <p class="photo-caption" data-i18n="photo-travel">Weltentdecker ✈️</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -139,6 +165,15 @@
                         <li data-i18n="pm-location"><strong>Ort & Modus:</strong> Ob Köln, Bonn, Düsseldorf oder die Region – für den richtigen Job bin ich natürlich gerne mobil. <strong>Hybrid & Remote</strong> sind für mich möglich.</li>
                         <li data-i18n="pm-culture"><strong>Die Kultur:</strong> Ich suche ein Team, das "New Work" wirklich lebt. Offenheit, Humor und der Wille, Dinge besser zu machen, sind mir wichtiger als starre Hierarchien.</li>
                     </ul>
+
+                    <div class="info-box" style="margin-top: 30px;">
+                        <strong data-i18n="pm-availability-title">Verfügbarkeit & Rahmenbedingungen:</strong>
+                        <ul class="check-list" style="margin-top: 12px;">
+                            <li data-i18n="pm-start"><strong>Start:</strong> Ab sofort </li>
+                            <li data-i18n="pm-type"><strong>Anstellung:</strong> Vollzeit oder Teilzeit ab 30h/Woche</li>
+                            <li data-i18n="pm-travel"><strong>Reisebereitschaft:</strong> Gelegentliche Dienstreisen kein Problem</li>
+                        </ul>
+                    </div>
                     
                     <div style="margin-top: 30px;">
                         <a href="mailto:larandres1994@gmail.com" class="btn" data-i18n="pm-cta">Lass uns sprechen →</a>
@@ -221,6 +256,7 @@
                 'hf-education': '<strong>Ausbildung:</strong> <span class="highlight">Master of Arts (M.A.)</span> North American Studies<br>(Universität zu Köln, Abschlussnote 1,4).',
                 'hf-tech': '<strong>Tech-Stack:</strong> TYPO3, WordPress, Adobe CC, MS Office, Basic Coding (HTML/CSS/Javascript).',
                 'hf-certs': '<strong>Zertifikate:</strong> Storytelling, New Work / Agiles Arbeiten, Projektmanagement.',
+                'download-cv': 'Lebenslauf herunterladen (PDF)',
 
                 // Behind the Scenes
                 'bs-name': 'Lara Marie Andres (sie/ihr), 31 Jahre',
@@ -232,7 +268,10 @@
                 'bs-mindset-2': '<strong>Engagement:</strong> Queere Rechte sind mir ein echtes Anliegen. Beim SCHMIT-Z e.V. habe ich gelernt, wie wichtig Sichtbarkeit ist – und wie man sie schafft.',
                 'bs-mindset-3': '<strong>Tech-Neugier:</strong> Ich bin der Typ Mensch, der wissen will, <i>wie</i> es funktioniert. Deshalb der VHS-Kurs in Programmierung. Ich nutze Tools nicht nur, ich denke sie mit.',
                 'bs-else-title': 'Und sonst so?',
-                'bs-else-text': 'Bin ich sehr tierlieb und gerne draußen. Ich glaube daran, dass Empathie und ein respektvolles Miteinander die Basis für alles sind – im Team genauso wie im Leben.',
+                'bs-else-text': 'Ich bin sehr tierlieb und gerne draußen unterwegs. Kreativ bin ich beim Töpfern und Linolschnitt tätig. Meine große Reiseliebe kommt aus meinem interkulturellen Interesse – neue Orte und Menschen inspirieren mich.',
+                'photo-nature': 'Outdoor-Liebe 🌲',
+                'photo-creative': 'Kreativ tätig 🎨',
+                'photo-travel': 'Weltentdecker ✈️',
 
                 // Perfect Match
                 'pm-title': '<strong>Was ich suche:</strong>',
@@ -240,7 +279,12 @@
                 'pm-environment': '<strong>Das Umfeld:</strong> Meine Wurzeln liegen im Non-Profit-Sektor. Aber ich muss dort nicht bleiben. Ein <strong>wertebasiertes Unternehmen</strong> reizt mich genauso.',
                 'pm-location': '<strong>Ort & Modus:</strong> Ob Köln, Bonn, Düsseldorf oder die Region – für den richtigen Job bin ich natürlich gerne mobil. <strong>Hybrid & Remote</strong> sind für mich möglich.',
                 'pm-culture': '<strong>Die Kultur:</strong> Ich suche ein Team, das "New Work" wirklich lebt. Offenheit, Humor und der Wille, Dinge besser zu machen, sind mir wichtiger als starre Hierarchien.',
-                'pm-cta': 'Lass uns sprechen →',
+                'pm-cta': 'Schreib mir →',
+                'pm-availability-title': 'Verfügbarkeit & Rahmenbedingungen:',
+                'pm-start': '<strong>Start:</strong> Ab sofort',
+                'pm-type': '<strong>Anstellung:</strong> Vollzeit oder Teilzeit ab 30h/Woche',
+                'pm-travel': '<strong>Reisebereitschaft:</strong> Gelegentliche Dienstreisen kein Problem',
+
 
                 // Game Section
                 'game-title': 'Bonus Level',
@@ -285,6 +329,7 @@
                 'hf-education': '<strong>Education:</strong> <span class="highlight">Master of Arts (M.A.)</span> North American Studies<br>(University of Cologne, Grade 1.4).',
                 'hf-tech': '<strong>Tech Stack:</strong> TYPO3, WordPress, Adobe CC, MS Office, Basic Coding (HTML/CSS/Javascript).',
                 'hf-certs': '<strong>Certificates:</strong> Storytelling, New Work / Agile Methods, Project Management.',
+                'download-cv': 'Download Resume (PDF)',
 
                 // Behind the Scenes
                 'bs-name': 'Lara Marie Andres (she/her), 31 years',
@@ -296,8 +341,11 @@
                 'bs-mindset-2': '<strong>Commitment:</strong> Queer rights are important to me. At SCHMIT-Z e.V., I learned how important visibility is – and how to create it.',
                 'bs-mindset-3': '<strong>Tech Curiosity:</strong> I\'m the type who wants to know <i>how</i> things work. That\'s why I took a programming course. I don\'t just use tools, I think them through.',
                 'bs-else-title': 'What else?',
-                'bs-else-text': 'I love animals and being outdoors. I believe that empathy and respectful interaction are the foundation for everything – in teams and in life.',
-
+                'bs-else-text': 'I love animals and being outdoors. I\'m creatively active with pottery and linocut. My great love for travel comes from my intercultural interest – new places and people inspire me.',
+                'photo-nature': 'Outdoor Love 🌲',
+                'photo-creative': 'Creative Work 🎨',
+                'photo-travel': 'World Explorer ✈️',
+                
                 // Perfect Match
                 'pm-title': '<strong>What I\'m looking for:</strong>',
                 'pm-intro': 'Cologne is my home base. But good work doesn\'t stop at the city limits. I\'m looking for a role with <span class="highlight">impact</span>.',
@@ -305,6 +353,10 @@
                 'pm-location': '<strong>Location & Mode:</strong> Whether Cologne, Bonn, Düsseldorf or the region – I\'m happy to be mobile for the right job. <strong>Hybrid & Remote</strong> work for me.',
                 'pm-culture': '<strong>The Culture:</strong> I\'m looking for a team that truly lives "New Work". Openness, humor, and the will to improve things matter more to me than rigid hierarchies.',
                 'pm-cta': 'Let\'s talk →',
+                'pm-availability-title': 'Availability & Conditions:',
+                'pm-start': '<strong>Start:</strong> Immediately available',
+                'pm-type': '<strong>Employment:</strong> Full-time or part-time (min. 30h/week)',
+                'pm-travel': '<strong>Travel:</strong> Occasional business trips no problem',
 
                 // Game Section
                 'game-title': 'Bonus Level',
