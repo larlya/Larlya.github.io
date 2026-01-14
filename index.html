@@ -88,159 +88,156 @@
 </div>
 
         <section>
-            <h3 data-i18n="section-title">Lerne mich kennen</h3>
-            <p style="margin-bottom: 30px;" data-i18n="section-subtitle">Klick dich durch meine Facetten:</p>
+    <h3 data-i18n="section-title">Lerne mich kennen</h3>
+    <p style="margin-bottom: 30px;" data-i18n="section-subtitle">Klick dich durch meine Facetten:</p>
+    
+    <div class="tabs-container">
+        <div class="tab-buttons">
+            <button class="tab-btn active" onclick="openTab(event, 'hard-facts')" data-i18n="tab-hard-facts">Hard Facts</button>
+            <button class="tab-btn" onclick="openTab(event, 'behind-scenes')" data-i18n="tab-behind-scenes">Hinter den Kulissen</button>
+            <button class="tab-btn" onclick="openTab(event, 'perfect-match')" data-i18n="tab-perfect-match">Perfect Match</button>
+        </div>
+
+        <div id="hard-facts" class="tab-content active">
+            <div class="info-cards-grid">
+                <div class="info-card">
+                    <span class="info-icon">👋</span>
+                    <div class="info-content">
+                        <strong data-i18n="bs-name-label">Name & Alter</strong>
+                        <span data-i18n="bs-name">Lara Marie Andres (sie/ihr), 31 Jahre</span>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <span class="info-icon">📍</span>
+                    <div class="info-content">
+                        <strong data-i18n="bs-location-label">Standort</strong>
+                        <span data-i18n="bs-location">Köln, geboren im Saarland (kenne alle Witze)</span>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <span class="info-icon">🇬🇧</span>
+                    <div class="info-content">
+                        <strong data-i18n="bs-english-label">Englisch</strong>
+                        <span data-i18n="bs-english">C1/C2 (Studium und Arbeit auf Englisch)</span>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <span class="info-icon">🇫🇷</span>
+                    <div class="info-content">
+                        <strong data-i18n="bs-french-label">Französisch</strong>
+                        <span data-i18n="bs-french">A2 (Reicht für Baguette)</span>
+                    </div>
+                </div>
+            </div>
             
-            <div class="tabs-container">
-                <div class="tab-buttons">
-                    <button class="tab-btn active" onclick="openTab(event, 'hard-facts')" data-i18n="tab-hard-facts">Hard Facts</button>
-                    <button class="tab-btn" onclick="openTab(event, 'behind-scenes')" data-i18n="tab-behind-scenes">Hinter den Kulissen</button>
-                    <button class="tab-btn" onclick="openTab(event, 'perfect-match')" data-i18n="tab-perfect-match">Perfect Match</button>
-                </div>
+            <p data-i18n="hf-intro"><strong>Zuletzt (11/2021 bis 12/2025):</strong><br>
+            Kommunikationsmanagerin bei <span class="highlight">EUniWell (Universität zu Köln)</span>.</p>
+            
+            <ul class="check-list">
+                <li data-i18n="hf-role"><strong>Rollen-Evolution:</strong> Start als Wissenschaftliche Hilfskraft, dann <strong>Kommunikationsmanagerin</strong> mit Übernahme zusätzlicher Aufgabenbereiche<br>
+                    • 09/2024 bis 05/2025 <strong>Interim Head of Communications</strong> (Internationale Teamleitung)<br>
+                    • 01/2024 bis 01/2025 <strong>Social Media Lead</strong> (Strategie &amp; Content).
+                </li>
+                <li data-i18n="hf-education"><strong>Ausbildung:</strong> <span class="highlight">Master of Arts (M.A.)</span> North American Studies<br>
+                    (Universität zu Köln, Abschlussnote 1,4).
+                </li>
+                <li data-i18n="hf-tech"><strong>Tech-Stack:</strong> TYPO3, WordPress, Adobe CC, MS Office, Basic Coding (HTML/CSS/Javascript).</li>
+                <li data-i18n="hf-certs"><strong>Zertifikate:</strong> Storytelling, New Work / Agiles Arbeiten, Projektmanagement.</li>
+            </ul>
+            
+            <div style="margin-top: 30px; padding-top: 20px; border-top: 2px solid var(--warm-gray);">
+                <a href="Lebenslauf_Lara_Andres.pdf" download class="btn" style="display: inline-flex; align-items: center; gap: 8px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    <span data-i18n="download-cv">Lebenslauf herunterladen (PDF)</span>
+                </a>
+            </div>
+        </div>
 
-                <div id="hard-facts" class="tab-content active">
-                    <div class="info-cards-grid">
-    <div class="info-card">
-        <span class="info-icon">👋</span>
-        <div class="info-content">
-            <strong data-i18n="bs-name-label">Name & Alter</strong>
-            <span data-i18n="bs-name">Lara Marie Andres (sie/ihr), 31 Jahre</span>
-        </div>
-    </div>
-    
-    <div class="info-card">
-        <span class="info-icon">📍</span>
-        <div class="info-content">
-            <strong data-i18n="bs-location-label">Standort</strong>
-            <span data-i18n="bs-location">Köln, geboren im Saarland (kenne alle Witze)</span>
-        </div>
-    </div>
-    
-    <div class="info-card">
-        <span class="info-icon">🇬🇧</span>
-        <div class="info-content">
-            <strong data-i18n="bs-english-label">Englisch</strong>
-            <span data-i18n="bs-english">C1/C2 (Studium und Arbeit auf Englisch)</span>
-        </div>
-    </div>
-    
-    <div class="info-card">
-        <span class="info-icon">🇫🇷</span>
-        <div class="info-content">
-            <strong data-i18n="bs-french-label">Französisch</strong>
-            <span data-i18n="bs-french">A2 (Reicht für Baguette)</span>
-        </div>
-    </div>
-</div>
+        <div id="behind-scenes" class="tab-content">
+            <p data-i18n="bs-mindset-title"><strong>Mein Mindset & Motivation:</strong></p>
+            <ul class="check-list">
+                <li data-i18n="bs-mindset-1"><strong>Haltung:</strong> Ich verstehe mich als Feministin und blicke <span class="highlight">intersektional</span> auf die Welt. Mein Studium hat meinen Blick für gesellschaftliche Zusammenhänge geschärft.</li>
+                <li data-i18n="bs-mindset-2"><strong>Engagement:</strong> Queere Rechte sind mir ein echtes Anliegen. Beim SCHMIT-Z e.V. habe ich gelernt, wie wichtig Sichtbarkeit ist – und wie man sie schafft.</li>
+                <li data-i18n="bs-mindset-3"><strong>Tech-Neugier:</strong> Ich bin der Typ Mensch, der wissen will, <i>wie</i> es funktioniert. Deshalb der VHS-Kurs in Programmierung. Ich nutze Tools nicht nur, ich denke sie mit.</li>
+            </ul>
+
+            <div class="info-box" style="padding: var(--spacing-l);">                       
+                <strong data-i18n="bs-else-title">Und sonst so?</strong>
+                
+                <p style="font-size: 0.95rem; margin: 12px 0 20px 0;" data-i18n="bs-else-text">
+                    Ich bin sehr tierlieb und gerne draußen unterwegs. Kreativ bin ich beim Töpfern und Linolschnitt tätig. Meine große Reiseliebe kommt aus meinem interkulturellen Interesse – neue Orte und Menschen inspirieren mich.
+                </p>
+                
+                <div class="photo-gallery">
+                    <div class="photo-item">
+                        <img src="foto_natur.jpg" alt="Draußen in der Natur" class="gallery-img">
+                        <p class="photo-caption" data-i18n="photo-nature">Outdoor-Liebe 🌲</p>
                     </div>
-                    <p data-i18n="hf-intro"><strong>Zuletzt (11/2021 bis 12/2025):</strong><br>
-                    Kommunikationsmanagerin bei <span class="highlight">EUniWell (Universität zu Köln)</span>.</p>
+                    <div class="photo-item">
+                        <img src="foto_kreativ.jpg" alt="Kreative Arbeit" class="gallery-img">
+                        <p class="photo-caption" data-i18n="photo-creative">Kreativ tätig 🎨</p>
+                    </div>
+                    <div class="photo-item">
+                        <img src="foto_reise.jpg" alt="Auf Reisen" class="gallery-img">
+                        <p class="photo-caption" data-i18n="photo-travel">Weltentdecker ✈️</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="perfect-match" class="tab-content">
+            <p data-i18n="pm-title"><strong>Was ich suche:</strong></p>
+            <p data-i18n="pm-intro">Köln ist meine Homebase. Aber gute Arbeit macht nicht an der Stadtgrenze halt. Ich suche eine Aufgabe mit <span class="highlight">Wirkung</span>.</p>
+            
+            <ul class="check-list">
+                <li data-i18n="pm-environment"><strong>Das Umfeld:</strong> Meine Wurzeln liegen im Non-Profit-Sektor. Aber ich muss dort nicht bleiben. Ein <strong>wertebasiertes Unternehmen</strong> reizt mich genauso.</li>
+                <li data-i18n="pm-location"><strong>Ort & Modus:</strong> Ob Köln, Bonn, Düsseldorf oder die Region – für den richtigen Job bin ich natürlich gerne mobil. <strong>Hybrid & Remote</strong> sind für mich möglich.</li>
+                <li data-i18n="pm-culture"><strong>Die Kultur:</strong> Ich suche ein Team, das "New Work" wirklich lebt. Offenheit, Humor und der Wille, Dinge besser zu machen, sind mir wichtiger als starre Hierarchien.</li>
+            </ul>
+
+            <div style="margin-top: 30px; padding: var(--spacing-m); background: var(--surface); border-radius: var(--radius-soft); border: 2px solid var(--warm-gray);">
+                <strong data-i18n="pm-availability-title" style="display: block; margin-bottom: 16px; font-size: 1.05rem;">Verfügbarkeit & Rahmenbedingungen:</strong>
+                
+                <div class="availability-grid">
+                    <div class="availability-item">
+                        <span class="availability-icon">📅</span>
+                        <div>
+                            <strong data-i18n="pm-start-label">Start:</strong>
+                            <span data-i18n="pm-start-value">Ab sofort</span>
+                        </div>
+                    </div>
                     
-                    <ul class="check-list">
-                        <li data-i18n="hf-role"><strong>Rollen-Evolution:</strong> Start als Wissenschaftliche Hilfskraft, dann <strong>Kommunikationsmanagerin</strong> mit Übernahme zusätzlicher Aufgabenbereiche<br>
-                            • 09/2024 bis 05/2025 <strong>Interim Head of Communications</strong> (Internationale Teamleitung)<br>
-                            • 01/2024 bis 01/2025 <strong>Social Media Lead</strong> (Strategie &amp; Content).
-                        </li>
-                        <li data-i18n="hf-education"><strong>Ausbildung:</strong> <span class="highlight">Master of Arts (M.A.)</span> North American Studies<br>
-                            (Universität zu Köln, Abschlussnote 1,4).
-                        </li>
-                        <li data-i18n="hf-tech"><strong>Tech-Stack:</strong> TYPO3, WordPress, Adobe CC, MS Office, Basic Coding (HTML/CSS/Javascript).</li>
-                        <li data-i18n="hf-certs"><strong>Zertifikate:</strong> Storytelling, New Work / Agiles Arbeiten, Projektmanagement.</li>
-                    </ul>
-                    <div style="margin-top: 30px; padding-top: 20px; border-top: 2px solid var(--warm-gray);">
-                        <a href="Lebenslauf_Lara_Andres.pdf" download class="btn" style="display: inline-flex; align-items: center; gap: 8px;">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                                <polyline points="7 10 12 15 17 10"></polyline>
-                                <line x1="12" y1="15" x2="12" y2="3"></line>
-                            </svg>
-                            <span data-i18n="download-cv">Lebenslauf herunterladen (PDF)</span>
-                        </a>
+                    <div class="availability-item">
+                        <span class="availability-icon">⏰</span>
+                        <div>
+                            <strong data-i18n="pm-type-label">Anstellung:</strong>
+                            <span data-i18n="pm-type-value">Vollzeit oder Teilzeit ab 30h/Woche</span>
+                        </div>
                     </div>
-                </div>
-
-                <div id="behind-scenes" class="tab-content">
-    
-
-                    <p data-i18n="bs-mindset-title"><strong>Mein Mindset & Motivation:</strong></p>
-                    <ul class="check-list">
-                        <li data-i18n="bs-mindset-1"><strong>Haltung:</strong> Ich verstehe mich als Feministin und blicke <span class="highlight">intersektional</span> auf die Welt. Mein Studium hat meinen Blick für gesellschaftliche Zusammenhänge geschärft.</li>
-                        <li data-i18n="bs-mindset-2"><strong>Engagement:</strong> Queere Rechte sind mir ein echtes Anliegen. Beim SCHMIT-Z e.V. habe ich gelernt, wie wichtig Sichtbarkeit ist – und wie man sie schafft.</li>
-                        <li data-i18n="bs-mindset-3"><strong>Tech-Neugier:</strong> Ich bin der Typ Mensch, der wissen will, <i>wie</i> es funktioniert. Deshalb der VHS-Kurs in Programmierung. Ich nutze Tools nicht nur, ich denke sie mit.</li>
-                    </ul>
-
-                    <div class="info-box" style="padding: var(--spacing-l);">                       
-                        <strong data-i18n="bs-else-title">Und sonst so?</strong>
-                        
-                        <p style="font-size: 0.95rem; margin: 12px 0 20px 0;" data-i18n="bs-else-text">
-                            Ich bin sehr tierlieb und gerne draußen unterwegs. Kreativ bin ich beim Töpfern und Linolschnitt tätig. Meine große Reiseliebe kommt aus meinem interkulturellen Interesse – neue Orte und Menschen inspirieren mich.
-                        </p>
-                        
-                        <div class="photo-gallery">
-                            <div class="photo-item">
-                                <img src="foto_natur.jpg" alt="Draußen in der Natur" class="gallery-img">
-                                <p class="photo-caption" data-i18n="photo-nature">Outdoor-Liebe 🌲</p>
-                            </div>
-                            <div class="photo-item">
-                                <img src="foto_kreativ.jpg" alt="Kreative Arbeit" class="gallery-img">
-                                <p class="photo-caption" data-i18n="photo-creative">Kreativ tätig 🎨</p>
-                            </div>
-                            <div class="photo-item">
-                                <img src="foto_reise.jpg" alt="Auf Reisen" class="gallery-img">
-                                <p class="photo-caption" data-i18n="photo-travel">Weltentdecker ✈️</p>
-                            </div>
+                    
+                    <div class="availability-item">
+                        <span class="availability-icon">✈️</span>
+                        <div>
+                            <strong data-i18n="pm-travel-label">Reisebereitschaft:</strong>
+                            <span data-i18n="pm-travel-value">Gelegentliche Dienstreisen kein Problem</span>
                         </div>
                     </div>
                 </div>
-
-                <div id="perfect-match" class="tab-content">
-                    <p data-i18n="pm-title"><strong>Was ich suche:</strong></p>
-                    <p data-i18n="pm-intro">Köln ist meine Homebase. Aber gute Arbeit macht nicht an der Stadtgrenze halt. Ich suche eine Aufgabe mit <span class="highlight">Wirkung</span>.</p>
-                    
-                    <ul class="check-list">
-                        <li data-i18n="pm-environment"><strong>Das Umfeld:</strong> Meine Wurzeln liegen im Non-Profit-Sektor. Aber ich muss dort nicht bleiben. Ein <strong>wertebasiertes Unternehmen</strong> reizt mich genauso.</li>
-                        <li data-i18n="pm-location"><strong>Ort & Modus:</strong> Ob Köln, Bonn, Düsseldorf oder die Region – für den richtigen Job bin ich natürlich gerne mobil. <strong>Hybrid & Remote</strong> sind für mich möglich.</li>
-                        <li data-i18n="pm-culture"><strong>Die Kultur:</strong> Ich suche ein Team, das "New Work" wirklich lebt. Offenheit, Humor und der Wille, Dinge besser zu machen, sind mir wichtiger als starre Hierarchien.</li>
-                    </ul>
-
-                    <div style="margin-top: 30px; padding: var(--spacing-m); background: var(--surface); border-radius: var(--radius-soft); border: 2px solid var(--warm-gray);">
-    <strong data-i18n="pm-availability-title" style="display: block; margin-bottom: 16px; font-size: 1.05rem;">Verfügbarkeit & Rahmenbedingungen:</strong>
-    
-    <div class="availability-grid">
-        <div class="availability-item">
-            <span class="availability-icon">📅</span>
-            <div>
-                <strong data-i18n="pm-start-label">Start:</strong>
-                <span data-i18n="pm-start-value">Ab sofort</span>
             </div>
-        </div>
-        
-        <div class="availability-item">
-            <span class="availability-icon">⏰</span>
-            <div>
-                <strong data-i18n="pm-type-label">Anstellung:</strong>
-                <span data-i18n="pm-type-value">Vollzeit oder Teilzeit ab 30h/Woche</span>
-            </div>
-        </div>
-        
-        <div class="availability-item">
-            <span class="availability-icon">✈️</span>
-            <div>
-                <strong data-i18n="pm-travel-label">Reisebereitschaft:</strong>
-                <span data-i18n="pm-travel-value">Gelegentliche Dienstreisen kein Problem</span>
+            
+            <div style="margin-top: 30px;">
+                <a href="mailto:larandres1994@gmail.com" class="btn" data-i18n="pm-cta">Lass uns sprechen →</a>
             </div>
         </div>
     </div>
-</div>
-                    
-                    <div style="margin-top: 30px;">
-                        <a href="mailto:larandres1994@gmail.com" class="btn" data-i18n="pm-cta">Lass uns sprechen →</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </div>
+</section>
 
 <!-- MINI GAME SECTION -->
 <section style="min-height: 100vh; position: relative;">
