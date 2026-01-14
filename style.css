@@ -1165,3 +1165,28 @@ body.dark-mode .check-list a.highlight-link:hover {
     color: var(--electric-blue);
     border-bottom-color: var(--coral);
 }
+
+
+
+/* Für Links in Paragraphs (wie EUniWell) */
+p a.highlight-link {
+    color: var(--text-dark);
+    font-weight: 600;
+    border-bottom: 2px solid var(--primary-accent);
+    padding-bottom: 1px;
+}
+
+p a.highlight-link:hover {
+    color: var(--primary-accent);
+    border-bottom-color: var(--secondary-accent);
+}
+
+body.dark-mode p a.highlight-link {
+    color: var(--text-dark);
+    border-bottom-color: var(--electric-blue);
+}
+
+body.dark-mode p a.highlight-link:hover {
+    color: var(--electric-blue);
+    border-bottom-color: var(--coral);
+}
