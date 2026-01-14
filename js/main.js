@@ -9,7 +9,7 @@
                 'hero-title': 'Kommunikation mit',
                 'hero-title-gradient': 'Substanz & Struktur.',
                 'hero-p1': 'Ich verbinde <span class="highlight">Wissenschaft & NGO-Arbeit</span> mit moderner Strategie. Mein Fokus liegt darauf, komplexe Inhalte verständlich zu machen und digitale Prozesse zu schaffen, die dem Team den Rücken freihalten.',
-                'hero-p2': 'Als <strong>Interim Head of Communications</strong> und Digital Native weiß ich: Gute Kommunikation braucht beides – das Gefühl für die richtige Story und das technische Verständnis.',
+                'hero-p2': 'Als <strong>Kommunikationsmanagerin</strong> und Digital Native weiß ich: Gute Kommunikation braucht beides – das Gefühl für die richtige Story und das technische Verständnis.',
                 'scroll-hint': '↓ Mehr erfahren',
 
                 // Tabs Section
@@ -20,7 +20,7 @@
                 'tab-perfect-match': 'Perfect Match',
 
                 // Hard Facts
-                'hf-intro': '<strong>Zuletzt (11/2021 bis 12/2025):</strong><br>Kommunikationsmanagerin bei <a href="https://www.euniwell.eu/" target="_blank" rel="noopener noreferrer" class="highlight-link"><span class="highlight">EUniWell (Universität zu Köln)</span></a>.',
+                'hf-intro': '<strong>Zuletzt (11/2021 bis 12/2025):</strong><br>Kommunikationsmanagerin bei <a href="https://www.euniwell.eu/" target="_blank" rel="noopener noreferrer" class="highlight-link">EUniWell (Universität zu Köln)</a>.',
                 'hf-role': '<strong>Rollen-Evolution:</strong> Start als Wissenschaftliche Hilfskraft, dann <strong>Kommunikationsmanagerin</strong> mit Übernahme zusätzlicher Aufgabenbereiche<br>• 09/2024 bis 05/2025 als <strong>Interim Head of Communications</strong> (Internationale Teamleitung)<br>• 01/2024 bis 01/2025 als <strong>Social Media Lead</strong> (Strategie & Content).',
                 'hf-education': '<strong>Ausbildung:</strong> <span class="highlight">Master of Arts (M.A.)</span> North American Studies<br>(Universität zu Köln, Abschlussnote 1,4).',
                 'hf-tech': '<strong>Tech-Stack:</strong> TYPO3, WordPress, Adobe CC, MS Office, Basic Coding (HTML/CSS/Javascript).',
@@ -40,7 +40,7 @@
                 'bs-else-text': 'Ich bin sehr tierlieb und gerne draußen unterwegs. Kreativ bin ich beim Töpfern und Linolschnitt tätig. Meine große Reiseliebe kommt aus meinem interkulturellen Interesse – neue Orte und Menschen inspirieren mich.',
                 'photo-nature': 'Outdoor-Liebe 🌲',
                 'photo-creative': 'Kreativ tätig 🎨',
-                'photo-travel': 'Weltentdecker ✈️',
+                'photo-travel': 'Weltentdeckerin ✈️',
 
                 // Perfect Match
                 'pm-title': '<strong>Was ich suche:</strong>',
@@ -82,7 +82,7 @@
                 'hero-title': 'Communication with',
                 'hero-title-gradient': 'Substance & Structure.',
                 'hero-p1': 'I combine <span class="highlight">science & NGO work</span> with modern strategy. My focus is on making complex content understandable and creating digital processes that support the team.',
-                'hero-p2': 'As an <strong>Interim Head of Communications</strong> and digital native, I know: Good communication needs both – the feeling for the right story and the technical understanding.',
+                'hero-p2': 'As an <strong>Communications Manager</strong> and digital native, I know: Good communication needs both – the feeling for the right story and the technical understanding.',
                 'scroll-hint': '↓ Learn more',
 
                 // Tabs Section
@@ -93,7 +93,7 @@
                 'tab-perfect-match': 'Perfect Match',
 
                 // Hard Facts
-                'hf-intro': '<strong>Most recently (11/2021 to 12/2025):</strong><br>Communications Manager at <a href="https://www.euniwell.eu/" target="_blank" rel="noopener noreferrer" class="highlight-link"><span class="highlight">EUniWell (University of Cologne)</span></a>.',
+                'hf-intro': '<strong>Most recently (11/2021 to 12/2025):</strong><br>Communications Manager at <a href="https://www.euniwell.eu/" target="_blank" rel="noopener noreferrer" class="highlight-link">EUniWell (University of Cologne)</a>.',
                 'hf-role': '<strong>Role Evolution:</strong> Started as Research Assistant, then <strong>Communications Manager</strong> with additional responsibilities<br>• 09/2024 to 05/2025 as <strong>Interim Head of Communications</strong> (International Team Lead)<br>• 01/2024 to 01/2025 as <strong>Social Media Lead</strong> (Strategy & Content).',
                 'hf-education': '<strong>Education:</strong> <span class="highlight">Master of Arts (M.A.)</span> North American Studies<br>(University of Cologne, Grade 1.4).',
                 'hf-tech': '<strong>Tech Stack:</strong> TYPO3, WordPress, Adobe CC, MS Office, Basic Coding (HTML/CSS/Javascript).',
