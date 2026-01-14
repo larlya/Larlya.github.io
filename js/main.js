@@ -20,7 +20,7 @@
                 'tab-perfect-match': 'Perfect Match',
 
                 // Hard Facts
-                'hf-intro': '<strong>Zuletzt (11/2021 bis 12/2025):</strong><br>Kommunikationsmanagerin bei <span class="highlight">EUniWell (Universität zu Köln)</span>.',
+                'hf-intro': '<strong>Zuletzt (11/2021 bis 12/2025):</strong><br>Kommunikationsmanagerin bei <a href="https://www.euniwell.eu/" target="_blank" rel="noopener noreferrer" class="highlight-link"><span class="highlight">EUniWell (Universität zu Köln)</span></a>.',
                 'hf-role': '<strong>Rollen-Evolution:</strong> Start als Wissenschaftliche Hilfskraft, dann <strong>Kommunikationsmanagerin</strong> mit Übernahme zusätzlicher Aufgabenbereiche<br>• 09/2024 bis 05/2025 als <strong>Interim Head of Communications</strong> (Internationale Teamleitung)<br>• 01/2024 bis 01/2025 als <strong>Social Media Lead</strong> (Strategie & Content).',
                 'hf-education': '<strong>Ausbildung:</strong> <span class="highlight">Master of Arts (M.A.)</span> North American Studies<br>(Universität zu Köln, Abschlussnote 1,4).',
                 'hf-tech': '<strong>Tech-Stack:</strong> TYPO3, WordPress, Adobe CC, MS Office, Basic Coding (HTML/CSS/Javascript).',
@@ -34,7 +34,7 @@
                 'bs-french': 'Französisch: A2 (Reicht für Baguette)',
                 'bs-mindset-title': '<strong>Mein Mindset & Motivation:</strong>',
                 'bs-mindset-1': '<strong>Haltung:</strong> Ich verstehe mich als Feministin und blicke <span class="highlight">intersektional</span> auf die Welt. Mein Studium hat meinen Blick für gesellschaftliche Zusammenhänge geschärft.',
-                'bs-mindset-2': '<strong>Engagement:</strong> Queere Rechte sind mir ein echtes Anliegen. Beim SCHMIT-Z e.V. habe ich gelernt, wie wichtig Sichtbarkeit ist – und wie man sie schafft.',
+                'bs-mindset-2': '<strong>Engagement:</strong> Queere Rechte sind mir ein echtes Anliegen. Beim <a href="https://www.schmit-z.de/" target="_blank" rel="noopener noreferrer" class="highlight-link">SCHMIT-Z e.V.</a> habe ich gelernt, wie wichtig Sichtbarkeit ist – und wie man sie schafft.',
                 'bs-mindset-3': '<strong>Tech-Neugier:</strong> Ich bin der Typ Mensch, der wissen will, <i>wie</i> es funktioniert. Deshalb der VHS-Kurs in Programmierung. Ich nutze Tools nicht nur, ich denke sie mit.',
                 'bs-else-title': 'Und sonst so?',
                 'bs-else-text': 'Ich bin sehr tierlieb und gerne draußen unterwegs. Kreativ bin ich beim Töpfern und Linolschnitt tätig. Meine große Reiseliebe kommt aus meinem interkulturellen Interesse – neue Orte und Menschen inspirieren mich.',
@@ -44,7 +44,7 @@
 
                 // Perfect Match
                 'pm-title': '<strong>Was ich suche:</strong>',
-                'pm-intro': 'Köln ist meine Homebase. Aber gute Arbeit macht nicht an der Stadtgrenze halt. Ich suche eine Aufgabe mit <span class="highlight">Wirkung</span>.',
+                'pm-intro': 'Köln ist mein Zuhause. Aber gute Arbeit macht nicht an der Stadtgrenze halt. Ich suche eine Aufgabe mit <span class="highlight">Wirkung</span>.',
                 'pm-environment': '<strong>Das Umfeld:</strong> Meine Wurzeln liegen im Non-Profit-Sektor. Aber ich muss dort nicht bleiben. Ein <strong>wertebasiertes Unternehmen</strong> reizt mich genauso.',
                 'pm-location': '<strong>Ort & Modus:</strong> Ob Köln, Bonn, Düsseldorf oder die Region – für den richtigen Job bin ich natürlich gerne mobil. <strong>Hybrid & Remote</strong> sind für mich möglich.',
                 'pm-culture': '<strong>Die Kultur:</strong> Ich suche ein Team, das "New Work" wirklich lebt. Offenheit, Humor und der Wille, Dinge besser zu machen, sind mir wichtiger als starre Hierarchien.',
@@ -93,7 +93,7 @@
                 'tab-perfect-match': 'Perfect Match',
 
                 // Hard Facts
-                'hf-intro': '<strong>Most recently (11/2021 to 12/2025):</strong><br>Communications Manager at <span class="highlight">EUniWell (University of Cologne)</span>.',
+                'hf-intro': '<strong>Most recently (11/2021 to 12/2025):</strong><br>Communications Manager at <a href="https://www.euniwell.eu/" target="_blank" rel="noopener noreferrer" class="highlight-link"><span class="highlight">EUniWell (University of Cologne)</span></a>.',
                 'hf-role': '<strong>Role Evolution:</strong> Started as Research Assistant, then <strong>Communications Manager</strong> with additional responsibilities<br>• 09/2024 to 05/2025 as <strong>Interim Head of Communications</strong> (International Team Lead)<br>• 01/2024 to 01/2025 as <strong>Social Media Lead</strong> (Strategy & Content).',
                 'hf-education': '<strong>Education:</strong> <span class="highlight">Master of Arts (M.A.)</span> North American Studies<br>(University of Cologne, Grade 1.4).',
                 'hf-tech': '<strong>Tech Stack:</strong> TYPO3, WordPress, Adobe CC, MS Office, Basic Coding (HTML/CSS/Javascript).',
@@ -107,7 +107,7 @@
                 'bs-french': 'French: A2 (Enough for baguette)',
                 'bs-mindset-title': '<strong>My Mindset & Motivation:</strong>',
                 'bs-mindset-1': '<strong>Attitude:</strong> I identify as a feminist and view the world through an <span class="highlight">intersectional</span> lens. My studies sharpened my understanding of social structures.',
-                'bs-mindset-2': '<strong>Commitment:</strong> Queer rights are important to me. At SCHMIT-Z e.V., I learned how important visibility is – and how to create it.',
+                'bs-mindset-2': '<strong>Commitment:</strong> Queer rights are important to me. At <a href="https://www.schmit-z.de/" target="_blank" rel="noopener noreferrer" class="highlight-link">SCHMIT-Z e.V.</a>, I learned how important visibility is – and how to create it.',
                 'bs-mindset-3': '<strong>Tech Curiosity:</strong> I\'m the type who wants to know <i>how</i> things work. That\'s why I took a programming course. I don\'t just use tools, I think them through.',
                 'bs-else-title': 'What else?',
                 'bs-else-text': 'I love animals and being outdoors. I\'m creatively active with pottery and linocut. My great love for travel comes from my intercultural interest – new places and people inspire me.',
@@ -117,7 +117,7 @@
                 
                 // Perfect Match
                 'pm-title': '<strong>What I\'m looking for:</strong>',
-                'pm-intro': 'Cologne is my home base. But good work doesn\'t stop at the city limits. I\'m looking for a role with <span class="highlight">impact</span>.',
+                'pm-intro': 'Cologne is my home. But good work doesn\'t stop at the city limits. I\'m looking for a role with <span class="highlight">impact</span>.',
                 'pm-environment': '<strong>The Environment:</strong> My roots are in the non-profit sector. But I don\'t have to stay there. A <strong>values-based company</strong> is equally appealing.',
                 'pm-location': '<strong>Location & Mode:</strong> Whether Cologne, Bonn, Düsseldorf or the region – I\'m happy to be mobile for the right job. <strong>Hybrid & Remote</strong> work for me.',
                 'pm-culture': '<strong>The Culture:</strong> I\'m looking for a team that truly lives "New Work". Openness, humor, and the will to improve things matter more to me than rigid hierarchies.',
