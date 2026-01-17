@@ -894,6 +894,8 @@ body.dark-mode .ribbon-layer {
 
 .photo-item {
     text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .gallery-img {
@@ -922,8 +924,18 @@ body.dark-mode .ribbon-layer {
 
 @media (max-width: 768px) {
     .photo-gallery {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 12px;
+        grid-template-columns: 1fr;
+        gap: var(--spacing-m);
+        max-width: 100%;
+    }
+    
+    .photo-item {
+        width: 100%;
+    }
+    
+    .gallery-img {
+        max-width: 400px;
+        margin: 0 auto;
     }
 }
 
