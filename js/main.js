@@ -32,6 +32,10 @@
                 'bs-location': 'Köln, geboren im Saarland (kenne alle Witze)',
                 'bs-english': 'Englisch: C1/C2 (Studium und Arbeit auf Englisch)',
                 'bs-french': 'Französisch: A2 (Reicht für Baguette)',
+                'bs-name-label': 'Name & Alter',
+                'bs-location-label': 'Standort',
+                'bs-english-label': 'Englisch',
+                'bs-french-label': 'Französisch',
                 'bs-mindset-title': '<strong>Mein Mindset & Motivation:</strong>',
                 'bs-mindset-1': '<strong>Haltung:</strong> Ich verstehe mich als Feministin und blicke <span class="highlight">intersektional</span> auf die Welt. Mein Studium hat meinen Blick für gesellschaftliche Zusammenhänge geschärft.',
                 'bs-mindset-2': '<strong>Engagement:</strong> Queere Rechte sind mir ein echtes Anliegen. Beim <a href="https://www.schmit-z.de/" target="_blank" rel="noopener noreferrer" class="highlight-link">SCHMIT-Z e.V.</a> habe ich gelernt, wie wichtig Sichtbarkeit ist – und wie man sie schafft.',
@@ -53,6 +57,12 @@
                 'pm-start': '<strong>Start:</strong> Ab sofort',
                 'pm-type': '<strong>Anstellung:</strong> Vollzeit oder Teilzeit ab 30h/Woche',
                 'pm-travel': '<strong>Reisebereitschaft:</strong> Gelegentliche Dienstreisen kein Problem',
+                'pm-start-label': 'Start:',
+                'pm-start-value': 'Ab sofort',
+                'pm-type-label': 'Anstellung:',
+                'pm-type-value': 'Vollzeit oder Teilzeit ab 30h/Woche',
+                'pm-travel-label': 'Reisebereitschaft:',
+                'pm-travel-value': 'Gelegentliche Dienstreisen kein Problem',
 
 
                 // Game Section
@@ -73,7 +83,7 @@
                 'game-points': 'Punkte',
 
                 // Footer
-                'footer-contact': 'Kontakt',
+                'footer-contact': 'larandres1994@gmail.com',
             },
 
             en: {
@@ -105,6 +115,10 @@
                 'bs-location': 'Cologne, born in Saarland (I know all the jokes)',
                 'bs-english': 'English: C1/C2 (Studies and work in English)',
                 'bs-french': 'French: A2 (Enough for baguette)',
+                'bs-name-label': 'Name & Age',
+                'bs-location-label': 'Location',
+                'bs-english-label': 'English',
+                'bs-french-label': 'French',
                 'bs-mindset-title': '<strong>My Mindset & Motivation:</strong>',
                 'bs-mindset-1': '<strong>Attitude:</strong> I identify as a feminist and view the world through an <span class="highlight">intersectional</span> lens. My studies sharpened my understanding of social structures.',
                 'bs-mindset-2': '<strong>Commitment:</strong> Queer rights are important to me. At <a href="https://www.schmit-z.de/" target="_blank" rel="noopener noreferrer" class="highlight-link">SCHMIT-Z e.V.</a>, I learned how important visibility is – and how to create it.',
@@ -126,6 +140,12 @@
                 'pm-start': '<strong>Start:</strong> Immediately available',
                 'pm-type': '<strong>Employment:</strong> Full-time or part-time (min. 30h/week)',
                 'pm-travel': '<strong>Travel:</strong> Occasional business trips no problem',
+                'pm-start-label': 'Start:',
+                'pm-start-value': 'Immediately',
+                'pm-type-label': 'Employment type:',
+                'pm-type-value': 'Full-time or part-time (min. 30h/week)',
+                'pm-travel-label': 'Willingness to travel:',
+                'pm-travel-value': 'Open to occasional business trips',
 
                 // Game Section
                 'game-title': 'Bonus Level',
@@ -145,7 +165,7 @@
                 'game-points': 'Points',
 
                 // Footer
-                'footer-contact': 'Contact',
+                'footer-contact': 'larandres1994@gmail.com',
             }
         };
 
