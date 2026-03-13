@@ -16,16 +16,16 @@
   --toggle-bg: rgba(249, 248, 243, 0.92);
   --toggle-color: #c8a96e;
 
-  /* NEUE AKZENTFARBEN */
-  --coral: #c8a96e;           /* → Warm Amber (ersetzt Coral) */
-  --electric-blue: #8fbc5a;   /* → Sage Lime (ersetzt Electric Blue) */
-  --dark-taupe: #c6c9b5;      /* → Sage Gray (bleibt strukturell) */
-  --deep-red: #8b4513;        /* → Terracotta (ersetzt Deep Red) */
-  --sky: #4a7c3f;             /* → Moss Green (ersetzt Sky) */
+  /* AKZENTFARBEN */
+  --amber: #c8a96e;
+  --sage-lime: #8fbc5a;
+  --sage-gray: #c6c9b5;
+  --terracotta: #8b4513;
+  --moss-green: #4a7c3f;
 
   /* FARBLOGIK LIGHT MODE */
-  --primary-accent: var(--coral);      /* Warm Amber als Haupt-CTA */
-  --secondary-accent: var(--electric-blue); /* Sage Lime als Hover/Second */
+  --primary-accent: var(--amber);
+  --secondary-accent: var(--sage-lime);
 
   /* GRADIENTS */
   --gradient-warm: linear-gradient(135deg, #26501f 0%, #c8a96e 100%);
@@ -55,15 +55,13 @@ body.dark-mode {
   --surface: var(--off-white);
   --card-border: var(--warm-gray);
 
-  /* TOGGLE ICON DARK */
   --toggle-bg: rgba(53, 60, 43, 0.85);
   --toggle-color: #c8a96e;
 
-  /* FARBLOGIK DARK MODE (konträr) */
-  --primary-accent: var(--electric-blue);   /* Sage Lime als Haupt-CTA im Dark */
-  --secondary-accent: var(--coral);         /* Warm Amber als Hover im Dark */
+  /* FARBLOGIK DARK MODE */
+  --primary-accent: var(--sage-lime);
+  --secondary-accent: var(--amber);
 
-  /* MODAL / SHADOW */
   --modal-border: rgba(240, 238, 219, 0.06);
   --modal-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
 }
@@ -121,7 +119,7 @@ body {
 }
 
 .theme-toggle .moon-svg { display: block; width: 20px; height: 20px; color: var(--toggle-color); }
-.theme-toggle .sun-svg  { display: none; width: 20px; height: 20px; color: var(--toggle-color); }
+.theme-toggle .sun-svg  { display: none;  width: 20px; height: 20px; color: var(--toggle-color); }
 
 body.dark-mode .moon-svg { display: none; }
 body.dark-mode .sun-svg  { display: block; }
@@ -215,7 +213,7 @@ strong {
 
 /* HIGHLIGHT - Light Mode: Sage Lime */
 .highlight {
-  background: linear-gradient(to right, transparent 0%, var(--electric-blue) 50%, transparent 100%);
+  background: linear-gradient(to right, transparent 0%, var(--sage-lime) 50%, transparent 100%);
   background-size: 200% 100%;
   background-position: 100% 0;
   padding: 2px 8px;
@@ -231,7 +229,7 @@ strong {
 
 /* HIGHLIGHT - Dark Mode: Warm Amber */
 body.dark-mode .highlight {
-  background: linear-gradient(to right, transparent 0%, var(--coral) 50%, transparent 100%);
+  background: linear-gradient(to right, transparent 0%, var(--amber) 50%, transparent 100%);
   background-size: 200% 100%;
   background-position: 100% 0;
   padding: 2px 8px;
@@ -348,14 +346,8 @@ section:first-of-type {
 }
 
 @keyframes fadeSlideIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* === LISTS === */
@@ -372,7 +364,7 @@ ul.check-list li {
   line-height: 1.6;
 }
 
-/* BULLET POINTS - Light Mode: Sage Lime, Hover Warm Amber */
+/* BULLET POINTS - Light Mode: Sage Lime initial, Amber on hover */
 ul.check-list li::before {
   content: '✦';
   position: absolute;
@@ -383,7 +375,7 @@ ul.check-list li::before {
   font-size: 1.2rem;
   width: 26px;
   height: 26px;
-  background: #8fbc5a;
+  background: var(--sage-lime);
   color: #1a1f16;
   border-radius: 50%;
   display: flex;
@@ -393,19 +385,19 @@ ul.check-list li::before {
 }
 
 ul.check-list li:hover::before {
-  background: var(--coral);
+  background: var(--amber);
   transform: scale(1.15);
   color: #1a1f16;
 }
 
-/* BULLET POINTS - Dark Mode: Warm Amber, Hover Sage Lime */
+/* BULLET POINTS - Dark Mode: Amber initial, Sage Lime on hover */
 body.dark-mode ul.check-list li::before {
-  background: var(--coral);
+  background: var(--amber);
   color: #1a1f16;
 }
 
 body.dark-mode ul.check-list li:hover::before {
-  background: var(--electric-blue);
+  background: var(--sage-lime);
   transform: scale(1.15);
   color: #1a1f16;
 }
@@ -426,7 +418,7 @@ body.dark-mode ul.check-list li:hover::before {
   border-radius: 50%;
   object-fit: cover;
   border: 4px solid var(--off-white);
-  outline: 3px solid var(--dark-taupe);
+  outline: 3px solid var(--sage-gray);
   transition: all 0.4s ease;
 }
 
@@ -471,6 +463,7 @@ body.dark-mode ul.check-list li:hover::before {
   border: none;
   cursor: pointer;
   border-radius: var(--radius-pill);
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
 }
 
 .btn:hover {
@@ -490,7 +483,7 @@ body.dark-mode .btn:hover {
   background: linear-gradient(135deg, rgba(198, 201, 181, 0.15) 0%, rgba(143, 188, 90, 0.08) 100%);
   padding: var(--spacing-m);
   border-radius: var(--radius-soft);
-  border-left: 4px solid var(--dark-taupe);
+  border-left: 4px solid var(--sage-gray);
 }
 
 .info-box strong {
@@ -525,25 +518,20 @@ footer a:hover {
   h1 {
     font-size: 3rem;
   }
-
   .profile-header {
     flex-direction: column;
     text-align: center;
   }
-
   .tabs-container {
     padding: var(--spacing-m);
   }
-
   .tab-buttons {
     justify-content: center;
   }
-
   .tab-btn {
     font-size: 0.75rem;
     padding: 10px 18px;
   }
-
   .theme-toggle {
     top: 20px;
     right: 20px;
@@ -556,7 +544,7 @@ footer a:hover {
 /* === SCROLL INDICATOR === */
 @keyframes bounce {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(8px); }
+  50%       { transform: translateY(8px); }
 }
 
 .scroll-hint {
@@ -645,8 +633,8 @@ footer a:hover {
 }
 
 @keyframes badgePop {
-  0% { transform: scale(0); opacity: 0; }
-  50% { transform: scale(1.2); }
+  0%   { transform: scale(0); opacity: 0; }
+  50%  { transform: scale(1.2); }
   100% { transform: scale(1); opacity: 1; }
 }
 
@@ -700,8 +688,8 @@ footer a:hover {
 }
 
 @keyframes comboFlash {
-  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
-  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+  0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+  50%  { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
   100% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
 }
 
@@ -769,29 +757,15 @@ body.dark-mode .game-over {
 }
 
 @media (max-width: 768px) {
-  #gameCanvas {
-    height: 550px;
-    max-width: 100%;
-  }
-  .game-stats {
-    font-size: 1rem;
-    gap: var(--spacing-s);
-  }
-  .game-stats .stat {
-    padding: 10px 18px;
-  }
-  .combo-display {
-    font-size: 3rem;
-  }
+  #gameCanvas { height: 550px; max-width: 100%; }
+  .game-stats { font-size: 1rem; gap: var(--spacing-s); }
+  .game-stats .stat { padding: 10px 18px; }
+  .combo-display { font-size: 3rem; }
 }
 
 @media (max-width: 480px) {
-  #gameCanvas {
-    height: 450px;
-  }
-  .combo-display {
-    font-size: 2.5rem;
-  }
+  #gameCanvas { height: 450px; }
+  .combo-display { font-size: 2.5rem; }
 }
 
 
@@ -815,7 +789,6 @@ body.dark-mode .game-over {
   transition: transform 0.1s ease-out;
 }
 
-/* Ribbon 1: Primärgrün */
 .ribbon-1 {
   width: 800px;
   height: 800px;
@@ -824,7 +797,6 @@ body.dark-mode .game-over {
   right: -200px;
 }
 
-/* Ribbon 2: Warm Amber */
 .ribbon-2 {
   width: 600px;
   height: 600px;
@@ -833,7 +805,6 @@ body.dark-mode .game-over {
   left: -150px;
 }
 
-/* Ribbon 3: Sage Lime + Grün */
 .ribbon-3 {
   width: 700px;
   height: 700px;
@@ -852,10 +823,7 @@ body.dark-mode .ribbon-layer {
 }
 
 @media (max-width: 768px) {
-  .ribbon-layer {
-    opacity: 0.12;
-    filter: blur(60px);
-  }
+  .ribbon-layer { opacity: 0.12; filter: blur(60px); }
   .ribbon-1 { width: 500px; height: 500px; }
   .ribbon-2 { width: 400px; height: 400px; }
   .ribbon-3 { width: 450px; height: 450px; }
@@ -901,18 +869,9 @@ body.dark-mode .ribbon-layer {
 }
 
 @media (max-width: 768px) {
-  .photo-gallery {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-m);
-    max-width: 100%;
-  }
-  .photo-item {
-    width: 100%;
-  }
-  .gallery-img {
-    max-width: 400px;
-    margin: 0 auto;
-  }
+  .photo-gallery { grid-template-columns: 1fr; gap: var(--spacing-m); max-width: 100%; }
+  .photo-item { width: 100%; }
+  .gallery-img { max-width: 400px; margin: 0 auto; }
 }
 
 
@@ -963,13 +922,8 @@ body.dark-mode .ribbon-layer {
 }
 
 @media (max-width: 768px) {
-  .availability-item {
-    gap: 10px;
-  }
-  .availability-icon {
-    font-size: 1.3rem;
-    min-width: 28px;
-  }
+  .availability-item { gap: 10px; }
+  .availability-icon { font-size: 1.3rem; min-width: 28px; }
 }
 
 
@@ -1026,19 +980,9 @@ body.dark-mode .ribbon-layer {
 }
 
 @media (max-width: 768px) {
-  .hero-content-centered {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: var(--spacing-s);
-  }
-  .hero-profile-img-inline {
-    width: 160px;
-    height: 160px;
-  }
-  .hero-text-inline h2 {
-    margin-top: var(--spacing-s);
-  }
+  .hero-content-centered { flex-direction: column; align-items: center; text-align: center; gap: var(--spacing-s); }
+  .hero-profile-img-inline { width: 160px; height: 160px; }
+  .hero-text-inline h2 { margin-top: var(--spacing-s); }
 }
 
 
@@ -1099,9 +1043,7 @@ body.dark-mode .ribbon-layer {
 }
 
 @media (max-width: 768px) {
-  .info-cards-grid {
-    grid-template-columns: 1fr;
-  }
+  .info-cards-grid { grid-template-columns: 1fr; }
 }
 
 
@@ -1138,12 +1080,12 @@ body.dark-mode .ribbon-layer {
 
 body.dark-mode .check-list a.highlight-link {
   color: var(--text-dark);
-  border-bottom-color: #8fbc5a;
+  border-bottom-color: var(--sage-lime);
 }
 
 body.dark-mode .check-list a.highlight-link:hover {
-  color: #8fbc5a;
-  border-bottom-color: var(--coral);
+  color: var(--sage-lime);
+  border-bottom-color: var(--amber);
 }
 
 p a.highlight-link {
@@ -1160,10 +1102,10 @@ p a.highlight-link:hover {
 
 body.dark-mode p a.highlight-link {
   color: var(--text-dark);
-  border-bottom-color: #8fbc5a;
+  border-bottom-color: var(--sage-lime);
 }
 
 body.dark-mode p a.highlight-link:hover {
-  color: #8fbc5a;
-  border-bottom-color: var(--coral);
+  color: var(--sage-lime);
+  border-bottom-color: var(--amber);
 }
