@@ -253,35 +253,36 @@
         }
 
 
-        // === CATCH THE SKILLS GAME ===
-        const skillCategories = {
-            hard: {
-                skills: ['TYPO3', 'WordPress', 'HTML/CSS', 'Adobe CC', 'Canva Pro', 'MS Office', 'Projekt Mgmt', 'Content Mgmt', 'SEO', 'Analytics', 'Javascript'],
-                color: '#0096FF',
-                points: 10
-            },
-            soft: {
-                skills: ['Strategie', 'Storytelling', 'Teamwork', 'Resilienz', 'Empathie', 'Priorisierung', 'Agilität', 'Leadership', 'Kreativität'],
-                color: '#FF6B5A',
-                points: 15
-            },
-            languages: {
-                skills: ['Englisch C1', 'Französisch A2', 'Deutsch Native'],
-                color: '#B8B4AC',
-                points: 20
-            },
-            tools: {
-                skills: ['Social Media', 'Newsletter', 'Webdesign', 'Grafik', 'Community Mgmt', 'Event Mgmt', 'Redaktion'],
-                color: '#5586FF',
-                points: 12
-            },
-            powerups: {
-                skills: ['⚡ 2x Score', '🕐 Slow-Mo', '🧲 Magnet', '⭐ Bonus'],
-                color: '#FFD93D',
-                points: 0,
-                isPowerUp: true
-            }
-        };
+// === CATCH THE SKILLS GAME ===
+const skillCategories = {
+    hard: {
+        skills: ['TYPO3', 'WordPress', 'HTML/CSS', 'Adobe CC', 'Canva Pro', 'MS Office', 'Projekt Mgmt', 'Content Mgmt', 'SEO', 'Analytics', 'Javascript'],
+        color: '#8fbc5a',      // war: #0096FF → jetzt: Sage Lime
+        points: 10
+    },
+    soft: {
+        skills: ['Strategie', 'Storytelling', 'Teamwork', 'Resilienz', 'Empathie', 'Priorisierung', 'Agilität', 'Leadership', 'Kreativität'],
+        color: '#c8a96e',      // war: #FF6B5A → jetzt: Warm Amber
+        points: 15
+    },
+    languages: {
+        skills: ['Englisch C1', 'Französisch A2', 'Deutsch Native'],
+        color: '#c6c9b5',      // war: #B8B4AC → jetzt: Sage Gray
+        points: 20
+    },
+    tools: {
+        skills: ['Social Media', 'Newsletter', 'Webdesign', 'Grafik', 'Community Mgmt', 'Event Mgmt', 'Redaktion'],
+        color: '#4a7c3f',      // war: #5586FF → jetzt: Moss Green
+        points: 12
+    },
+    powerups: {
+        skills: ['⚡ 2x Score', '🕐 Slow-Mo', '🧲 Magnet', '⭐ Bonus'],
+        color: '#26501f',      // war: #FFD93D → jetzt: Dark Spruce
+        points: 0,
+        isPowerUp: true
+    }
+};
+
 
         let gameActive = false;
         let score = 0;
@@ -449,14 +450,14 @@
                     roundRect(ctx, 0, 0, this.width, this.height, 16);
                     ctx.fill();
 
-                    if (this.magnetized) {
-                        ctx.strokeStyle = '#FFD93D';
-                        ctx.lineWidth = 3;
-                        ctx.stroke();
-                    }
+if (this.magnetized) {
+    ctx.strokeStyle = '#c8a96e';   // war: #FFD93D → jetzt: Warm Amber
+    ctx.lineWidth = 3;
+    ctx.stroke();
+}
 
                     ctx.shadowBlur = 0;
-                    ctx.fillStyle = '#FFFFFF';
+                    ctx.fillStyle = '#1a1f16';         // war: #FFFFFF → jetzt: Deep Forest (Kontrast)
                     ctx.font = `bold ${this.isPowerUp ? '18px' : '15px'} "Space Grotesk", sans-serif`;
                     ctx.textAlign = 'center';
                     ctx.textBaseline = 'middle';
